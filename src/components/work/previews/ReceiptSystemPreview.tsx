@@ -98,3 +98,4 @@ export const ReceiptSystemPreview: React.FC = () => {
 };
 
 export default ReceiptSystemPreview;
+

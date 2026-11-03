@@ -40,8 +40,8 @@ export const BolmeetPreview: React.FC = () => {
                     shouldReduceMotion
                       ? {}
                       : {
-                          scaleY: [0.4, 1.2, 0.4],
-                        }
+                        scaleY: [0.4, 1.2, 0.4],
+                      }
                   }
                   transition={{
                     repeat: Infinity,
@@ -93,3 +93,4 @@ export const BolmeetPreview: React.FC = () => {
 };
 
 export default BolmeetPreview;
+

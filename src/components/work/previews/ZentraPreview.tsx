@@ -88,8 +88,8 @@ export const ZentraPreview: React.FC = () => {
               shouldReduceMotion
                 ? {}
                 : {
-                    top: ["10%", "90%", "10%"],
-                  }
+                  top: ["10%", "90%", "10%"],
+                }
             }
             transition={{
               repeat: Infinity,
@@ -124,3 +124,4 @@ export const ZentraPreview: React.FC = () => {
 };
 
 export default ZentraPreview;
+
