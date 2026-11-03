@@ -37,7 +37,7 @@
   --border-subtle: #E2E8F0;
   --border-subtle-hover: #CBD5E1;
 
-  --accent-primary: #4D7C0F; /* High-contrast accessible green for light backgrounds */
+  --accent-primary: #4D7C0F;
   --accent-hover: #3F6212;
   --accent-active: #365314;
   --accent-muted: rgba(77, 124, 15, 0.08);
@@ -102,6 +102,28 @@
     outline: 2px solid var(--focus-ring);
     outline-offset: 2px;
   }
+}
+
+/* Technical background textures and subtle lighting */
+.bg-tech-grid {
+  background-size: 48px 48px;
+  background-image: 
+    linear-gradient(to right, rgba(30, 38, 56, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(30, 38, 56, 0.45) 1px, transparent 1px);
+}
+
+.bg-tech-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(30, 38, 56, 0.6) 1px, transparent 1px);
+}
+
+.mask-radial-hero {
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 85%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 85%);
+}
+
+.bg-lime-glow-subtle {
+  background: radial-gradient(circle at 65% 45%, rgba(186, 242, 71, 0.08) 0%, rgba(16, 21, 34, 0.3) 45%, transparent 70%);
 }
 
 /* Reduced motion preference */

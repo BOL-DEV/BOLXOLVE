@@ -175,3 +175,4 @@ export const Code: React.FC<TypographyProps> = ({
     {children}
   </Component>
 );
+

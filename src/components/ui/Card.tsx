@@ -89,3 +89,4 @@ export const CardFooter: React.FC<React.HTMLAttributes<HTMLDivElement>> = ({
 );
 
 export default Card;
+
