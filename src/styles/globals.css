@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* BOLXOLVE Official Brand Palette (Dark by default - Core Brand Identity) */
+  --bg-primary: #050915;
+  --bg-secondary: #101522;
+  --bg-elevated: #151B2B;
+  --border-subtle: #1E2638;
+  --border-subtle-hover: rgba(186, 242, 71, 0.25);
+
+  --accent-primary: #BAF247;
+  --accent-hover: #A8E035;
+  --accent-active: #94CC24;
+  --accent-muted: rgba(186, 242, 71, 0.12);
+  --accent-border: rgba(186, 242, 71, 0.22);
+  --accent-glow: rgba(186, 242, 71, 0.15);
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #A1A1AA;
+  --text-tertiary: #71717A;
+
+  /* Focus & interactive state */
+  --focus-ring: #BAF247;
+
+  /* Font fallbacks */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+/* Light context tokens (for explicit light sections or light theme support) */
+.light, [data-theme="light"] {
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-elevated: #F1F5F9;
+  --border-subtle: #E2E8F0;
+  --border-subtle-hover: #CBD5E1;
+
+  --accent-primary: #4D7C0F; /* High-contrast accessible green for light backgrounds */
+  --accent-hover: #3F6212;
+  --accent-active: #365314;
+  --accent-muted: rgba(77, 124, 15, 0.08);
+  --accent-border: rgba(77, 124, 15, 0.2);
+  --accent-glow: rgba(77, 124, 15, 0.1);
+
+  --text-primary: #050915;
+  --text-secondary: #64748B;
+  --text-tertiary: #94A3B8;
+
+  --focus-ring: #4D7C0F;
+}
+
+@layer base {
+  * {
+    border-color: var(--border-subtle);
+  }
+
+  html {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* High-contrast brand text selection */
+  ::selection {
+    background-color: #BAF247;
+    color: #050915;
+  }
+
+  /* Clean minimal scrollbars for technical feel */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050915;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1E2638;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #2E3850;
+  }
+
+  /* Focus outline accessibility */
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
