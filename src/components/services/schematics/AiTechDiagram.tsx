@@ -48,13 +48,13 @@ export const AiTechDiagram: React.FC = () => {
                 shouldReduceMotion
                   ? {}
                   : {
-                      scale: [1, 1.06, 1],
-                      boxShadow: [
-                        "0 0 10px rgba(186,242,71,0.2)",
-                        "0 0 20px rgba(186,242,71,0.4)",
-                        "0 0 10px rgba(186,242,71,0.2)",
-                      ],
-                    }
+                    scale: [1, 1.06, 1],
+                    boxShadow: [
+                      "0 0 10px rgba(186,242,71,0.2)",
+                      "0 0 20px rgba(186,242,71,0.4)",
+                      "0 0 10px rgba(186,242,71,0.2)",
+                    ],
+                  }
               }
               transition={{
                 repeat: Infinity,
@@ -102,3 +102,4 @@ export const AiTechDiagram: React.FC = () => {
 };
 
 export default AiTechDiagram;
+

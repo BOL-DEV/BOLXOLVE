@@ -34,8 +34,8 @@ export const EcommerceDiagram: React.FC = () => {
               shouldReduceMotion
                 ? {}
                 : {
-                    left: ["10%", "85%", "10%"],
-                  }
+                  left: ["10%", "85%", "10%"],
+                }
             }
             transition={{
               repeat: Infinity,
@@ -105,3 +105,4 @@ export const EcommerceDiagram: React.FC = () => {
 };
 
 export default EcommerceDiagram;
+

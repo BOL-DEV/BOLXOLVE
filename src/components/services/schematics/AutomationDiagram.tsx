@@ -41,9 +41,9 @@ export const AutomationDiagram: React.FC = () => {
                 shouldReduceMotion
                   ? {}
                   : {
-                      left: ["0%", "100%"],
-                      opacity: [0, 1, 0],
-                    }
+                    left: ["0%", "100%"],
+                    opacity: [0, 1, 0],
+                  }
               }
               transition={{
                 repeat: Infinity,
@@ -110,3 +110,4 @@ export const AutomationDiagram: React.FC = () => {
 };
 
 export default AutomationDiagram;
+

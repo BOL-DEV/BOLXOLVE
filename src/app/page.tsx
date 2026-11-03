@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/hero/Hero";
 import Services from "@/components/services/Services";
+import SelectedWork from "@/components/work/SelectedWork";
 
 export default function Home() {
   return (
@@ -16,6 +17,9 @@ export default function Home() {
 
         {/* Phase 3: Services & Capabilities Section */}
         <Services />
+
+        {/* Phase 4: Selected Work / Portfolio Section */}
+        <SelectedWork />
       </main>
     </div>
   );

@@ -63,8 +63,8 @@ export const CustomSoftwareDiagram: React.FC = () => {
               shouldReduceMotion
                 ? {}
                 : {
-                    scale: [1, 1.08, 1],
-                  }
+                  scale: [1, 1.08, 1],
+                }
             }
             transition={{
               repeat: Infinity,
@@ -113,3 +113,4 @@ export const CustomSoftwareDiagram: React.FC = () => {
 };
 
 export default CustomSoftwareDiagram;
+

@@ -91,3 +91,4 @@ export const CAPABILITIES: Capability[] = [
     tag: "COGNITIVE SYSTEMS",
   },
 ];
+

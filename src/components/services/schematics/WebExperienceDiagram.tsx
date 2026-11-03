@@ -58,8 +58,8 @@ export const WebExperienceDiagram: React.FC = () => {
                 shouldReduceMotion
                   ? {}
                   : {
-                      rotate: [0, 90, 180, 270, 360],
-                    }
+                    rotate: [0, 90, 180, 270, 360],
+                  }
               }
               transition={{
                 repeat: Infinity,
@@ -101,3 +101,4 @@ export const WebExperienceDiagram: React.FC = () => {
 };
 
 export default WebExperienceDiagram;
+
