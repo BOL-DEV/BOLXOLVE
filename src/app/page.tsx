@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "@/components/layout/Navbar";
 import Hero from "@/components/hero/Hero";
+import Services from "@/components/services/Services";
 
 export default function Home() {
   return (
@@ -8,9 +9,13 @@ export default function Home() {
       {/* Official Refined Navigation */}
       <Navbar />
 
-      {/* Official Hero Section */}
+      {/* Main Content Flow */}
       <main className="grow flex flex-col">
+        {/* Phase 2: Hero Section */}
         <Hero />
+
+        {/* Phase 3: Services & Capabilities Section */}
+        <Services />
       </main>
     </div>
   );

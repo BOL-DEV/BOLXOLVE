@@ -77,6 +77,10 @@ export const Navbar: React.FC = () => {
             >
               <button
                 type="button"
+                onClick={() => {
+                  window.location.hash = "#services";
+                  setServicesOpen(false);
+                }}
                 className="inline-flex items-center text-sm font-medium text-[#A1A1AA] hover:text-white transition-colors duration-150 py-2 gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#BAF247] rounded-sm"
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"

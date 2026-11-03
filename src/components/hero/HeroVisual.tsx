@@ -238,3 +238,4 @@ export const HeroVisual: React.FC = () => {
 };
 
 export default HeroVisual;
+
