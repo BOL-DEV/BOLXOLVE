@@ -22,8 +22,8 @@ const SIZE_MAP: Record<LogoVariant, Record<LogoSize, { height: number; width: nu
     xs: { height: 24, width: 48, styleClass: "h-6 w-auto" },
     sm: { height: 32, width: 64, styleClass: "h-8 w-auto" },
     md: { height: 40, width: 80, styleClass: "h-10 w-auto" },
-    lg: { height: 52, width: 104, styleClass: "h-[46px] sm:h-[52px] w-auto" },
-    xl: { height: 64, width: 128, styleClass: "h-16 w-auto" },
+    lg: { height: 64, width: 128, styleClass: "h-[52px] sm:h-[60px] md:h-[64px] w-auto" },
+    xl: { height: 76, width: 152, styleClass: "h-[64px] sm:h-[76px] w-auto" },
   },
   full: {
     xs: { height: 26, width: 52, styleClass: "h-[26px] w-auto" },
