@@ -17,9 +17,9 @@ export const HeroVisual: React.FC = () => {
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  // Restrained, dignified tilt angles (-3.5deg to +3.5deg)
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], [3.5, -3.5]);
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-3.5, 3.5]);
+  // Restrained, dignified tilt angles (-3deg to +3deg)
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [3, -3]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-3, 3]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion || !containerRef.current) return;
@@ -40,16 +40,16 @@ export const HeroVisual: React.FC = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[500px] sm:max-w-[560px] lg:max-w-[620px] xl:max-w-[680px] aspect-[4/5] sm:aspect-square flex items-center justify-center lg:justify-end select-none overflow-visible"
+      className="relative w-full max-w-[400px] sm:max-w-[460px] lg:max-w-[500px] xl:max-w-[540px] aspect-[4/5] sm:aspect-square flex items-center justify-center select-none"
       style={{ perspective: 1200 }}
       aria-hidden="true"
     >
-      {/* Carefully Controlled Atmospheric Lime Lighting (Centered on Symbol) */}
-      <div className="absolute inset-0 flex items-center justify-center lg:justify-end pointer-events-none">
-        <div className="w-[85%] h-[85%] rounded-full bg-gradient-to-tr from-[#BAF247]/10 via-[#BAF247]/3 to-transparent blur-3xl opacity-75" />
+      {/* Subtle, Soft Ambient Lime Lighting (Reduced Intensity) */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <div className="w-[70%] h-[70%] rounded-full bg-gradient-to-tr from-[#BAF247]/8 via-[#BAF247]/2 to-transparent blur-3xl opacity-60" />
       </div>
 
-      {/* The Monumental Official BOLXOLVE Symbol (Ultra-High Resolution Master Asset) */}
+      {/* The Official BOLXOLVE Brand Symbol (Refined 20–25% Scale & Generous Negative Space) */}
       <motion.div
         style={
           shouldReduceMotion
@@ -64,7 +64,7 @@ export const HeroVisual: React.FC = () => {
           shouldReduceMotion
             ? {}
             : {
-                y: [-6, 6, -6],
+                y: [-5, 5, -5],
               }
         }
         transition={{
@@ -72,9 +72,9 @@ export const HeroVisual: React.FC = () => {
           duration: 8.5,
           ease: "easeInOut",
         }}
-        className="relative z-10 flex items-center justify-center translate-x-0 sm:translate-x-3 lg:translate-x-8 xl:translate-x-12"
+        className="relative z-10 flex items-center justify-center"
       >
-        <div className="relative w-[270px] h-[350px] sm:w-[360px] sm:h-[467px] md:w-[420px] md:h-[545px] lg:w-[460px] lg:h-[597px] xl:w-[520px] xl:h-[675px] transition-transform duration-200">
+        <div className="relative w-[210px] h-[273px] sm:w-[280px] sm:h-[364px] md:w-[330px] md:h-[428px] lg:w-[360px] lg:h-[467px] xl:w-[410px] xl:h-[532px] transition-transform duration-200">
           <Image
             src="/brand/logo_symbol_hd.png"
             alt="BOLXOLVE Official Brandmark"
