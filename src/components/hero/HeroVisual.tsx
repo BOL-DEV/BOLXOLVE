@@ -13,7 +13,7 @@ export const HeroVisual: React.FC = () => {
   const mouseY = useMotionValue(0);
 
   // Smooth springs for high-end organic feel
-  const springConfig = { damping: 30, stiffness: 90 };
+  const springConfig = { damping: 32, stiffness: 85 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
@@ -40,16 +40,16 @@ export const HeroVisual: React.FC = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[440px] sm:max-w-[480px] lg:max-w-[520px] xl:max-w-[560px] aspect-[4/5] sm:aspect-square flex items-center justify-center select-none"
+      className="relative w-full max-w-[500px] sm:max-w-[560px] lg:max-w-[620px] xl:max-w-[680px] aspect-[4/5] sm:aspect-square flex items-center justify-center lg:justify-end select-none overflow-visible"
       style={{ perspective: 1200 }}
       aria-hidden="true"
     >
-      {/* Symmetrical, Carefully Controlled Ambient Atmospheric Glow (No offset, no silhouette) */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[70%] h-[70%] rounded-full bg-gradient-to-tr from-[#BAF247]/8 via-[#BAF247]/3 to-transparent blur-3xl opacity-60" />
+      {/* Carefully Controlled Atmospheric Lime Lighting (Centered on Symbol) */}
+      <div className="absolute inset-0 flex items-center justify-center lg:justify-end pointer-events-none">
+        <div className="w-[85%] h-[85%] rounded-full bg-gradient-to-tr from-[#BAF247]/10 via-[#BAF247]/3 to-transparent blur-3xl opacity-75" />
       </div>
 
-      {/* The Single, Pristine Official BOLXOLVE Brand Symbol */}
+      {/* The Monumental Official BOLXOLVE Symbol (Ultra-High Resolution Master Asset) */}
       <motion.div
         style={
           shouldReduceMotion
@@ -69,18 +69,19 @@ export const HeroVisual: React.FC = () => {
         }
         transition={{
           repeat: Infinity,
-          duration: 8,
+          duration: 8.5,
           ease: "easeInOut",
         }}
-        className="relative z-10 flex items-center justify-center"
+        className="relative z-10 flex items-center justify-center translate-x-0 sm:translate-x-3 lg:translate-x-8 xl:translate-x-12"
       >
-        <div className="relative w-48 h-[252px] sm:w-60 sm:h-[315px] lg:w-72 lg:h-[378px] xl:w-[310px] xl:h-[407px]">
+        <div className="relative w-[270px] h-[350px] sm:w-[360px] sm:h-[467px] md:w-[420px] md:h-[545px] lg:w-[460px] lg:h-[597px] xl:w-[520px] xl:h-[675px] transition-transform duration-200">
           <Image
-            src="/brand/logo_icon_hi_res.png"
+            src="/brand/logo_symbol_hd.png"
             alt="BOLXOLVE Official Brandmark"
-            width={234}
-            height={307}
+            width={1150}
+            height={1493}
             priority
+            quality={100}
             className="w-full h-full object-contain select-none pointer-events-none"
           />
         </div>

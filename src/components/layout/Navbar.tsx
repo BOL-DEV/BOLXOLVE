@@ -66,7 +66,7 @@ export const Navbar: React.FC = () => {
             <Logo variant="clean" size="sm" href="/" priority />
           </div>
 
-          {/* Desktop Navigation Links */}
+          {/* Desktop Navigation Links (Refined Readability) */}
           <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
             {/* Services Dropdown */}
             <div
@@ -80,7 +80,7 @@ export const Navbar: React.FC = () => {
                   window.location.hash = "#services";
                   setServicesOpen(false);
                 }}
-                className="inline-flex items-center text-xs font-mono uppercase tracking-[0.14em] text-[#A1A1AA] hover:text-white transition-colors duration-150 py-2 gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#BAF247] rounded-sm"
+                className="inline-flex items-center text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 py-2 gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#BAF247] rounded-sm font-medium"
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"
               >
@@ -112,7 +112,7 @@ export const Navbar: React.FC = () => {
                       <Link
                         key={item.slug}
                         href={`#${item.slug}`}
-                        className="flex items-center justify-between px-3 py-2 text-xs font-medium text-[#A1A1AA] hover:text-white hover:bg-[#151B2B] rounded transition-colors group"
+                        className="flex items-center justify-between px-3 py-2 text-xs font-medium text-[#D4D4D8] hover:text-white hover:bg-[#151B2B] rounded transition-colors group"
                         role="menuitem"
                         onClick={() => setServicesOpen(false)}
                       >
@@ -127,28 +127,28 @@ export const Navbar: React.FC = () => {
 
             <Link
               href="#work"
-              className="text-xs font-mono uppercase tracking-[0.14em] text-[#A1A1AA] hover:text-white transition-colors duration-150"
+              className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Work
             </Link>
 
             <Link
               href="#services"
-              className="text-xs font-mono uppercase tracking-[0.14em] text-[#A1A1AA] hover:text-white transition-colors duration-150"
+              className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Technology
             </Link>
 
             <Link
               href="#about"
-              className="text-xs font-mono uppercase tracking-[0.14em] text-[#A1A1AA] hover:text-white transition-colors duration-150"
+              className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Company
             </Link>
 
             <Link
               href="#contact"
-              className="text-xs font-mono uppercase tracking-[0.14em] text-[#A1A1AA] hover:text-white transition-colors duration-150"
+              className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Contact
             </Link>
@@ -166,7 +166,7 @@ export const Navbar: React.FC = () => {
             <button
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-[#A1A1AA] hover:text-white hover:bg-[#101522] rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BAF247]"
+              className="p-2 text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#BAF247]"
               aria-expanded={mobileMenuOpen}
               aria-label="Toggle navigation menu"
             >
@@ -196,7 +196,7 @@ export const Navbar: React.FC = () => {
                         key={item.slug}
                         href={`#${item.slug}`}
                         onClick={() => setMobileMenuOpen(false)}
-                        className="block px-3 py-2 text-sm text-[#A1A1AA] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
+                        className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                       >
                         {item.title}
                       </Link>
@@ -208,28 +208,28 @@ export const Navbar: React.FC = () => {
                   <Link
                     href="#work"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-[#A1A1AA] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
+                    className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
                     Work
                   </Link>
                   <Link
                     href="#services"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-[#A1A1AA] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
+                    className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
                     Technology
                   </Link>
                   <Link
                     href="#about"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-[#A1A1AA] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
+                    className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
                     Company
                   </Link>
                   <Link
                     href="#contact"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block px-3 py-2 text-sm text-[#A1A1AA] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
+                    className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
                     Contact
                   </Link>
