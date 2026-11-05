@@ -13,12 +13,13 @@ export const HeroVisual: React.FC = () => {
   const mouseY = useMotionValue(0);
 
   // Smooth springs for high-end organic feel
-  const springConfig = { damping: 25, stiffness: 120 };
+  const springConfig = { damping: 28, stiffness: 100 };
   const smoothX = useSpring(mouseX, springConfig);
   const smoothY = useSpring(mouseY, springConfig);
 
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], [6, -6]);
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-6, 6]);
+  // Restrained, dignified tilt angles (-5deg to +5deg)
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [5, -5]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-5, 5]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (shouldReduceMotion || !containerRef.current) return;
@@ -39,60 +40,41 @@ export const HeroVisual: React.FC = () => {
       ref={containerRef}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative w-full max-w-[540px] lg:max-w-[620px] mx-auto aspect-square flex items-center justify-center select-none"
-      style={{ perspective: 1200 }}
+      className="relative w-full max-w-[520px] lg:max-w-[580px] xl:max-w-[640px] aspect-[4/5] sm:aspect-square flex items-center justify-center select-none"
+      style={{ perspective: 1400 }}
       aria-hidden="true"
     >
-      {/* Background Ambient Glow (Carefully controlled - max 8% opacity) */}
-      <div className="absolute inset-0 bg-lime-glow-subtle pointer-events-none rounded-full blur-3xl opacity-75" />
-
-      {/* Outer Rotating Calibration Compass Ring */}
-      <motion.div
-        animate={
-          shouldReduceMotion
-            ? {}
-            : {
-                rotate: 360,
-              }
-        }
-        transition={{
-          repeat: Infinity,
-          duration: 120,
-          ease: "linear",
-        }}
-        className="absolute w-[88%] h-[88%] rounded-full border border-[#1E2638]/70 pointer-events-none"
-      >
-        {/* Cardinal tick marks */}
-        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-3 bg-[#1E2638]" />
-        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-1.5 h-3 bg-[#1E2638]" />
-        <span className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2 w-3 h-1.5 bg-[#1E2638]" />
-        <span className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2 w-3 h-1.5 bg-[#1E2638]" />
-
-        {/* Degree coordinate marks */}
-        <span className="absolute top-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[#71717A]/60 tracking-wider">
-          000°
-        </span>
-        <span className="absolute right-2 top-1/2 -translate-y-1/2 text-[9px] font-mono text-[#71717A]/60 tracking-wider">
-          090°
-        </span>
-        <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[9px] font-mono text-[#71717A]/60 tracking-wider">
-          180°
-        </span>
-        <span className="absolute left-2 top-1/2 -translate-y-1/2 text-[9px] font-mono text-[#71717A]/60 tracking-wider">
-          270°
-        </span>
-      </motion.div>
-
-      {/* Secondary Inner Concentric Calibration Arc */}
-      <div className="absolute w-[70%] h-[70%] rounded-full border border-dashed border-[#1E2638]/60 pointer-events-none" />
-
-      {/* Isometric 45-degree guideline planes */}
+      {/* Ambient Lighting & Controlled Lime Atmospheric Bloom */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[94%] h-px bg-gradient-to-r from-transparent via-[#1E2638]/60 to-transparent rotate-45" />
-        <div className="w-[94%] h-px bg-gradient-to-r from-transparent via-[#1E2638]/60 to-transparent -rotate-45" />
+        <div className="w-[85%] h-[85%] rounded-full bg-gradient-to-tr from-[#BAF247]/10 via-[#BAF247]/5 to-transparent blur-3xl" />
+        <div className="w-[60%] h-[60%] rounded-full bg-[#101522]/90 blur-2xl" />
       </div>
 
-      {/* 3D Motion Plate with the Interlocking Mark */}
+      {/* Layer 1: Oversized Cropped Silhouette / Brand Geometry Watermark */}
+      <div className="absolute -top-10 -right-12 w-[380px] h-[498px] sm:w-[460px] sm:h-[600px] opacity-[0.045] pointer-events-none overflow-hidden select-none">
+        <Image
+          src="/brand/logo_icon_hi_res.png"
+          alt=""
+          width={234}
+          height={307}
+          className="w-full h-full object-contain filter grayscale contrast-200"
+        />
+      </div>
+
+      {/* Layer 2: Subtle Architectural Gallery Registration Rules */}
+      <div className="absolute inset-4 sm:inset-6 pointer-events-none">
+        {/* Corner registration brackets */}
+        <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#1E2638]" />
+        <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#1E2638]" />
+        <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#1E2638]" />
+        <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#1E2638]" />
+
+        {/* Fine hairline datum lines across center */}
+        <div className="absolute top-1/2 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#1E2638]/40 to-transparent" />
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#1E2638]/40 to-transparent" />
+      </div>
+
+      {/* Layer 3: Dynamic 3D Parallax Stage with the Official BOLXOLVE Symbol */}
       <motion.div
         style={
           shouldReduceMotion
@@ -107,135 +89,40 @@ export const HeroVisual: React.FC = () => {
           shouldReduceMotion
             ? {}
             : {
-                y: [-6, 6, -6],
+                y: [-7, 7, -7],
               }
         }
         transition={{
           repeat: Infinity,
-          duration: 8,
+          duration: 8.5,
           ease: "easeInOut",
         }}
-        className="relative z-10 w-[78%] h-[78%] flex items-center justify-center"
+        className="relative z-10 flex flex-col items-center justify-center"
       >
-        {/* Hairline Technical Carrier Card */}
-        <div className="absolute inset-0 rounded-2xl bg-[#101522]/60 backdrop-blur-[2px] border border-[#1E2638] shadow-[0_16px_48px_rgba(0,0,0,0.5)] overflow-hidden">
-          {/* Subtle Hairline Grid inside carrier */}
-          <div className="absolute inset-0 bg-tech-grid opacity-35" />
+        {/* Soft Radial Backlight directly behind the symbol */}
+        <div className="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-[#BAF247]/12 blur-2xl pointer-events-none" />
 
-          {/* Crosshair markers in corners */}
-          <span className="absolute top-3 left-3 text-[#71717A] text-[10px] font-mono select-none">+</span>
-          <span className="absolute top-3 right-3 text-[#71717A] text-[10px] font-mono select-none">+</span>
-          <span className="absolute bottom-3 left-3 text-[#71717A] text-[10px] font-mono select-none">+</span>
-          <span className="absolute bottom-3 right-3 text-[#71717A] text-[10px] font-mono select-none">+</span>
-
-          {/* Top Left Telemetry Readout */}
-          <div className="absolute top-3 left-7 flex items-center space-x-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] animate-pulse" />
-            <span className="text-[10px] font-mono tracking-widest text-[#A1A1AA] uppercase">
-              SYS // KINETIC CORE
-            </span>
-          </div>
-
-          {/* Bottom Right Coordinate Readout */}
-          <div className="absolute bottom-3 right-7">
-            <span className="text-[10px] font-mono tracking-wider text-[#71717A]">
-              BOLXOLVE // 51.5074° N
-            </span>
-          </div>
-        </div>
-
-        {/* Central Interlocking BOLXOLVE Symbol Assembly */}
-        <div className="relative z-20 w-48 h-64 sm:w-56 sm:h-72 flex items-center justify-center">
-          {/* Subtle Under-Glow behind the Mark */}
-          <div className="absolute w-44 h-44 rounded-full bg-[#BAF247]/10 blur-xl pointer-events-none" />
-
-          {/* The Actual Official BOLXOLVE High-Resolution Transparent Mark */}
+        {/* The Official BOLXOLVE High-Resolution Transparent Mark */}
+        <div className="relative w-52 h-[272px] sm:w-68 sm:h-[356px] md:w-76 md:h-[400px] lg:w-[320px] lg:h-[420px] xl:w-[360px] xl:h-[472px]">
           <Image
             src="/brand/logo_icon_hi_res.png"
-            alt="BOLXOLVE Kinetic Geometric Mark"
+            alt="BOLXOLVE Official Brandmark"
             width={234}
             height={307}
             priority
-            className="w-full h-full object-contain filter drop-shadow-[0_4px_24px_rgba(186,242,71,0.22)] select-none pointer-events-none"
-          />
-
-          {/* Dynamic Laser Intersect Line (Shear Axis) */}
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? {}
-                : {
-                    opacity: [0.3, 0.8, 0.3],
-                    scaleX: [0.95, 1.05, 0.95],
-                  }
-            }
-            transition={{
-              repeat: Infinity,
-              duration: 4,
-              ease: "easeInOut",
-            }}
-            className="absolute top-[48%] left-1/2 -translate-x-1/2 w-48 h-[1px] bg-gradient-to-r from-transparent via-[#BAF247]/80 to-transparent pointer-events-none"
+            className="w-full h-full object-contain filter drop-shadow-[0_20px_50px_rgba(0,0,0,0.9)] drop-shadow-[0_0_36px_rgba(186,242,71,0.18)] select-none pointer-events-none"
           />
         </div>
 
-        {/* Floating Telemetry Annotation Badge 1 (Top Right) */}
-        <motion.div
-          animate={
-            shouldReduceMotion
-              ? {}
-              : {
-                  y: [-3, 3, -3],
-                }
-          }
-          transition={{
-            repeat: Infinity,
-            duration: 5,
-            ease: "easeInOut",
-            delay: 0.5,
-          }}
-          className="absolute -top-3 -right-2 sm:-right-4 px-3 py-1.5 rounded bg-[#101522] border border-[#1E2638] shadow-[0_8px_20px_rgba(0,0,0,0.6)] flex items-center space-x-2"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
-          <div className="flex flex-col">
-            <span className="text-[9px] font-mono uppercase tracking-wider text-[#BAF247] font-semibold">
-              DUAL-PATH INTERLOCK
-            </span>
-            <span className="text-[8px] font-mono text-[#71717A]">
-              PRECISION GEOMETRY
-            </span>
-          </div>
-        </motion.div>
-
-        {/* Floating Telemetry Annotation Badge 2 (Bottom Left) */}
-        <motion.div
-          animate={
-            shouldReduceMotion
-              ? {}
-              : {
-                  y: [3, -3, 3],
-                }
-          }
-          transition={{
-            repeat: Infinity,
-            duration: 6,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-          className="absolute -bottom-3 -left-2 sm:-left-4 px-3 py-1.5 rounded bg-[#101522] border border-[#1E2638] shadow-[0_8px_20px_rgba(0,0,0,0.6)] flex items-center space-x-2"
-        >
-          <div className="flex flex-col">
-            <span className="text-[9px] font-mono uppercase tracking-wider text-white font-medium">
-              SOLVE VECTOR
-            </span>
-            <span className="text-[8px] font-mono text-[#BAF247]">
-              ACTIVE // 100% NOMINAL
-            </span>
-          </div>
-        </motion.div>
+        {/* Refined Brand Identity Tag (Authentic, Restrained) */}
+        <div className="mt-6 sm:mt-8 flex items-center gap-2.5 text-[10px] font-mono tracking-[0.24em] text-[#71717A] uppercase select-none">
+          <span>BOLXOLVE BRANDMARK</span>
+          <span className="w-1 h-1 rounded-full bg-[#BAF247]" />
+          <span>GEOMETRIC EDITION</span>
+        </div>
       </motion.div>
     </div>
   );
 };
 
 export default HeroVisual;
-
