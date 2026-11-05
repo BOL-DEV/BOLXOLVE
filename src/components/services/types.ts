@@ -3,13 +3,11 @@ export interface ServiceCategory {
   number: string;
   title: string;
   categoryLabel: string;
-  shortDescription: string;
   description: string;
   deliverables: string[];
+  example: string;
+  note?: string;
   slugs: string[];
-  solutionRoute?: string;
-  solutionLabel?: string;
-  featuredInterfaceId: "invoice" | "zentra" | "ecommerce" | "automation" | "bolmeet" | "education";
 }
 
 export const SERVICE_CATEGORIES: ServiceCategory[] = [
@@ -17,115 +15,117 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     id: "web-digital",
     number: "01",
     title: "Web & Digital Experiences",
-    categoryLabel: "DIGITAL EXPERIENCES",
-    shortDescription: "Business websites, landing pages, web portals and interactive digital platforms.",
+    categoryLabel: "WEB & PLATFORMS",
     description:
-      "We design and engineer bespoke web platforms that establish immediate brand credibility, engage visitors, and turn casual traffic into qualified commercial relationships. Every platform is built for speed, responsiveness, and clear conversion paths.",
+      "We create websites and online platforms that help businesses present themselves professionally, reach more people and make it easier for customers to find and use their services.",
     deliverables: [
-      "Business websites & brand flagships",
-      "Campaign & high-converting landing pages",
-      "Client, member & customer web portals",
-      "Interactive digital experiences & tools",
+      "Business websites",
+      "Landing pages",
+      "Company and organisation portals",
+      "Booking websites",
+      "Interactive web platforms",
     ],
-    slugs: ["business-websites", "web-digital-experiences", "web-digital"],
-    solutionRoute: "/solutions/zentra",
-    solutionLabel: "View ZENTRA Experience Case Study",
-    featuredInterfaceId: "zentra",
+    example:
+      "A website for a real estate company where visitors can browse properties, view property details, search available listings and request inspections.",
+    slugs: ["web-digital", "business-websites", "web-digital-experiences"],
   },
   {
     id: "custom-software",
     number: "02",
     title: "Custom Software & Business Systems",
-    categoryLabel: "BUSINESS SYSTEMS",
-    shortDescription: "Bespoke operational software, management platforms, internal tools and business applications.",
+    categoryLabel: "CUSTOM SOFTWARE",
     description:
-      "Purpose-built operational software that replaces disjointed spreadsheets and cumbersome manual processes. Engineered around your organization's exact workflows, ensuring data integrity, role-based security, and frictionless team coordination.",
+      "Sometimes ordinary apps and spreadsheets are not enough to run a business. We build software around the way your business works, helping you manage daily activities, keep records and reduce unnecessary manual work.",
     deliverables: [
-      "Bespoke operational software",
-      "Business management platforms",
-      "Internal tools & employee portals",
-      "Custom business web applications",
+      "Business management systems",
+      "Inventory and stock management",
+      "Sales and transaction management",
+      "Staff and customer management",
+      "Custom dashboards and reporting",
+      "Internal business applications",
     ],
-    slugs: ["custom-web-apps", "business-management", "custom-software", "business-systems"],
-    solutionRoute: "/solutions/invoice-management",
-    solutionLabel: "Explore Invoice Management System",
-    featuredInterfaceId: "invoice",
+    example:
+      "A building materials distribution company that needs to manage products, stock levels, sales, suppliers, customers and staff from one system.",
+    note: "Custom software built specifically for your unique operational needs.",
+    slugs: ["custom-software", "custom-web-apps", "business-management", "business-systems"],
   },
   {
     id: "ecommerce",
     number: "03",
     title: "E-commerce Solutions",
-    categoryLabel: "COMMERCE INFRASTRUCTURE",
-    shortDescription: "Online storefronts, payment integrations, inventory workflows and commerce infrastructure.",
+    categoryLabel: "ONLINE STORES",
     description:
-      "High-conversion commerce experiences engineered for reliability under peak transactional load. From atomic inventory control to automated payment routing and customer account portals, we build commerce engines that scale.",
+      "We help businesses sell their products online. From displaying products to receiving orders and accepting payments, we build online stores that make buying easier for customers.",
     deliverables: [
-      "Bespoke online storefronts",
-      "Multi-gateway payment integrations",
-      "Real-time inventory workflows",
-      "Scalable commerce infrastructure",
+      "Online stores",
+      "Product catalogues",
+      "Shopping carts and checkout",
+      "Online payment integration",
+      "Order management",
+      "Inventory connections",
     ],
-    slugs: ["ecommerce-platforms", "ecommerce-solutions", "ecommerce"],
-    solutionRoute: "/solutions/zentra",
-    solutionLabel: "View High-Volume Commerce Engine",
-    featuredInterfaceId: "ecommerce",
+    example:
+      "An online fashion and footwear store where customers can browse products, select sizes and colours, add items to their cart, pay online and track orders.",
+    slugs: ["ecommerce", "ecommerce-platforms", "ecommerce-solutions"],
   },
   {
     id: "automation",
     number: "04",
     title: "Business Automation & Integrations",
     categoryLabel: "WORKFLOW AUTOMATION",
-    shortDescription: "Workflow automation, system integrations, process optimisation and operational efficiency.",
     description:
-      "Eliminate repetitive administrative overhead and human data-entry bottlenecks. We link your commercial tools, automate transaction processing, and build intelligent background pipelines that run quietly 24/7.",
+      "We connect the tools a business already uses and automate repetitive tasks, so employees spend less time doing the same things manually.",
     deliverables: [
-      "Workflow automation engines",
-      "System & third-party API integrations",
-      "Process optimisation pipelines",
-      "Operational efficiency infrastructure",
+      "Automatic email notifications",
+      "Customer follow-ups",
+      "Connecting business applications",
+      "Automated reports",
+      "Order and payment notifications",
+      "Approval and record-keeping workflows",
     ],
-    slugs: ["workflow-automation", "business-automation", "automation"],
-    solutionRoute: "/solutions/invoice-management",
-    solutionLabel: "View Document Dispatch Pipeline",
-    featuredInterfaceId: "automation",
+    example:
+      "An online store that automatically records customer orders, sends confirmation emails, notifies the business, updates stock and prepares orders for processing.",
+    slugs: ["automation", "workflow-automation", "business-automation"],
   },
   {
-    id: "ai-emerging",
+    id: "ai-solutions",
     number: "05",
     title: "AI & Intelligent Solutions",
-    categoryLabel: "INTELLIGENT SYSTEMS",
-    shortDescription: "AI-powered applications, intelligent assistants, document processing and business intelligence integrations.",
+    categoryLabel: "PRACTICAL AI",
     description:
-      "Practical, high-utility artificial intelligence integrated directly into your everyday operations. We implement production-ready models for document processing, meeting synthesis, and decision support with enterprise privacy.",
+      "We use artificial intelligence to help businesses handle information, answer questions, process documents and complete certain tasks faster.",
     deliverables: [
-      "AI-powered applications",
-      "Intelligent virtual assistants",
-      "Automated document processing",
-      "Business intelligence integrations",
+      "AI-powered assistants",
+      "Customer support assistants",
+      "Document reading and processing",
+      "AI integrations into existing software",
+      "Business information analysis",
+      "Intelligent search and reporting",
     ],
-    slugs: ["ai-integrations", "ai-solutions", "ai-emerging"],
-    solutionRoute: "/solutions/bolmeet-ai",
-    solutionLabel: "View BOLMEET AI Case Study",
-    featuredInterfaceId: "bolmeet",
+    example:
+      "An AI business assistant that can answer questions about company records, extract information from uploaded invoices and summarise sales using authorised business data.",
+    slugs: ["ai-solutions", "ai-integrations", "ai-emerging"],
   },
   {
     id: "education-solutions",
     number: "06",
     title: "Education Technology Solutions",
-    categoryLabel: "ACADEMIC OPERATIONS",
-    shortDescription: "Digital platforms for primary and secondary schools, school administration, academic operations and education management.",
+    categoryLabel: "PLANNED SOLUTION",
     description:
-      "Purpose-built administrative and academic software engineered specifically for K-12 primary and secondary educational institutions. Replaces fragmented paper books with a unified, secure digital operating environment.",
+      "We build digital tools that help primary and secondary schools manage their daily activities, keep student records and make school administration easier for teachers, parents and school owners.",
     deliverables: [
-      "Primary & secondary school platforms",
-      "School administrative systems",
-      "Academic operations & registers",
-      "Unified education management",
+      "Student records",
+      "Attendance management",
+      "School fee management",
+      "Academic records and results",
+      "Parent communication",
+      "Staff and class management",
+      "School administration dashboards",
     ],
+    example:
+      "A school management platform with separate experiences for administrators, teachers and parents.",
+    note: "Planned solution direction in active development.",
     slugs: ["education-solutions", "education-tech", "education"],
-    solutionRoute: "/solutions/education",
-    solutionLabel: "Explore Education Solutions Roadmap",
-    featuredInterfaceId: "education",
   },
 ];
 
