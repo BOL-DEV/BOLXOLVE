@@ -5,7 +5,7 @@ import { Globe, ShieldCheck, Ticket, Users, QrCode, CheckCircle2, ArrowUpRight }
 
 export const ZentraWebInterface: React.FC = () => {
   return (
-    <div className="w-full rounded-2xl bg-[#050915] border border-[#1E2638] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] select-none">
+    <div className="w-full bg-[#050915] select-none text-white">
       {/* Browser Bar */}
       <div className="px-4 py-3 sm:px-6 bg-[#0B0F1C] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
         <div className="flex items-center gap-2.5">
@@ -140,3 +140,4 @@ export const ZentraWebInterface: React.FC = () => {
 };
 
 export default ZentraWebInterface;
+

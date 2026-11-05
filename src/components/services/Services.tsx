@@ -6,12 +6,9 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   ArrowRight,
   ArrowUpRight,
-  Check,
   ChevronDown,
   Layers,
-  Sparkles,
   Receipt,
-  FileText,
 } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
@@ -34,7 +31,8 @@ const INTERFACE_MAP: Record<string, React.FC> = {
 };
 
 export const Services: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<string>(SERVICE_CATEGORIES[1].id); // Defaults to Custom Software (Invoice System) or first
+  // Default to Custom Software & Business Systems (02) which features the Invoice Management System
+  const [activeTab, setActiveTab] = useState<string>(SERVICE_CATEGORIES[1].id);
   const [expandedMobileId, setExpandedMobileId] = useState<string | null>(SERVICE_CATEGORIES[1].id);
   const [viewMode, setViewMode] = useState<"service" | "featuredInvoice">("service");
   const shouldReduceMotion = useReducedMotion();
@@ -61,9 +59,8 @@ export const Services: React.FC = () => {
   }, []);
 
   const activeCategory =
-    SERVICE_CATEGORIES.find((c) => c.id === activeTab) || SERVICE_CATEGORIES[0];
+    SERVICE_CATEGORIES.find((c) => c.id === activeTab) || SERVICE_CATEGORIES[1];
 
-  // If the active category is custom-software, it naturally uses the invoice interface
   const isInvoiceCategory = activeCategory.id === "custom-software";
   const ActiveVisualComponent =
     !isInvoiceCategory && viewMode === "featuredInvoice"
@@ -73,53 +70,49 @@ export const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="relative w-full py-20 sm:py-28 lg:py-36 bg-[#050915] border-b border-[#1E2638] overflow-hidden"
+      className="relative w-full py-24 sm:py-32 lg:py-36 bg-[#050915] border-b border-[#1E2638] overflow-hidden"
     >
       {/* Anchor Aliases */}
       <span id="what-we-do" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="our-services" className="relative -top-28 pointer-events-none block h-0 w-0" />
 
-      {/* Controlled Lime Ambient Glow */}
-      <div className="absolute top-1/4 right-[5%] w-[600px] h-[600px] bg-radial-hero pointer-events-none opacity-20" />
+      {/* Atmospheric Soft Ambient Lighting (Aligned with Hero) */}
+      <div className="absolute top-1/4 right-[10%] w-[620px] h-[620px] rounded-full bg-radial-hero pointer-events-none opacity-25 blur-3xl" />
 
       <Container size="wide" className="relative z-10">
         {/* =========================================================================
-            1. SOPHISTICATED EDITORIAL INTRODUCTION
+            1. EDITORIAL SECTION HEADER (In Line with Hero Typography)
            ========================================================================= */}
         <div className="max-w-3xl mb-16 sm:mb-20 space-y-5">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center space-x-3">
-            <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
-            <span className="text-xs font-mono font-medium tracking-[0.2em] uppercase text-[#BAF247]">
+          {/* Hero-Style Eyebrow */}
+          <div className="inline-flex items-center gap-3">
+            <span className="w-5 h-px bg-[#BAF247]" />
+            <span className="text-[11px] sm:text-xs font-mono font-medium tracking-[0.22em] uppercase text-[#BAF247]">
               WHAT WE DO / OUR SERVICES
-            </span>
-            <span className="text-[#1E2638] font-mono text-xs">/</span>
-            <span className="text-[11px] font-mono tracking-widest text-[#71717A] uppercase">
-              06 CORE DISCIPLINES
             </span>
           </div>
 
-          {/* Headline */}
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+          {/* Confident Editorial Headline */}
+          <h2 className="text-4xl sm:text-5xl md:text-6xl lg:text-[3.85rem] font-bold tracking-[-0.04em] text-white leading-[1.04] max-w-3xl">
             Technology built around the way your{" "}
-            <span className="text-[#BAF247]">business works.</span>
+            <span className="text-[#BAF247] font-bold inline">business works.</span>
           </h2>
 
           {/* Supporting Copy */}
-          <p className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed font-normal">
+          <p className="text-base sm:text-lg md:text-[1.125rem] text-[#A1A1AA] leading-relaxed max-w-2xl font-normal pt-1">
             From digital experiences to intelligent business systems, we build practical technology that helps organisations operate better and grow with confidence.
           </p>
         </div>
 
         {/* =========================================================================
-            2. DESKTOP ASYMMETRIC SPLIT LAYOUT (>= 1024px)
+            2. DESKTOP ASYMMETRIC EDITORIAL STAGE (>= 1024px)
            ========================================================================= */}
-        <div className="hidden lg:grid grid-cols-12 gap-8 xl:gap-12 items-start">
-          {/* Left Column (5 Cols): Editorial Services Navigation List */}
+        <div className="hidden lg:grid grid-cols-12 gap-12 xl:gap-16 items-start">
+          {/* Left Column (5 Cols): Editorial Index Directory (Zero Card Boxes!) */}
           <div
-            className="col-span-5 space-y-2.5"
+            className="col-span-5 border-t border-b border-[#1E2638] divide-y divide-[#1E2638]"
             role="tablist"
-            aria-label="BOLXOLVE Service Categories"
+            aria-label="BOLXOLVE Service Capabilities"
           >
             {SERVICE_CATEGORIES.map((category) => {
               const isActive = category.id === activeTab;
@@ -143,10 +136,8 @@ export const Services: React.FC = () => {
                     }
                   }}
                   className={cn(
-                    "group relative p-5 rounded-xl border transition-all duration-200 cursor-pointer select-none outline-none focus-visible:ring-1 focus-visible:ring-[#BAF247]",
-                    isActive
-                      ? "bg-[#101522] border-[#BAF247]/50 shadow-[0_8px_24px_rgba(0,0,0,0.5)]"
-                      : "bg-[#0B0F1C]/70 border-[#1E2638] hover:bg-[#101522]/60 hover:border-[#1E2638]/90"
+                    "group py-5 sm:py-6 px-3 sm:px-4 cursor-pointer transition-all duration-200 select-none outline-none relative",
+                    isActive ? "bg-[#101522]/30" : "hover:bg-[#101522]/15"
                   )}
                 >
                   {/* Invisible anchor targets for navbar and footer hash jumps */}
@@ -158,29 +149,26 @@ export const Services: React.FC = () => {
                     />
                   ))}
 
-                  {/* Clean Accent Bar on Active */}
-                  <div
-                    className={cn(
-                      "absolute left-0 top-3 bottom-3 w-1 rounded-r transition-all duration-200",
-                      isActive ? "bg-[#BAF247]" : "bg-transparent group-hover:bg-[#1E2638]"
-                    )}
-                  />
+                  {/* Clean Electric Lime Left Line on Active */}
+                  {isActive && (
+                    <span className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#BAF247]" />
+                  )}
 
                   {/* Number & Category Eyebrow */}
-                  <div className="flex items-center justify-between mb-1.5 pl-1.5">
+                  <div className="flex items-center justify-between">
                     <span
                       className={cn(
-                        "text-xs font-mono font-bold tracking-widest transition-colors",
-                        isActive ? "text-[#BAF247]" : "text-[#71717A] group-hover:text-[#A1A1AA]"
+                        "text-xs font-mono tracking-widest transition-colors",
+                        isActive ? "text-[#BAF247] font-bold" : "text-[#71717A] group-hover:text-white"
                       )}
                     >
                       {category.number} // {category.categoryLabel}
                     </span>
-                    <ArrowRight
+                    <ArrowUpRight
                       className={cn(
-                        "w-3.5 h-3.5 transition-transform duration-200",
+                        "w-4 h-4 transition-all duration-200",
                         isActive
-                          ? "text-[#BAF247] translate-x-0"
+                          ? "text-[#BAF247] opacity-100 translate-x-0"
                           : "text-[#71717A] opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5"
                       )}
                     />
@@ -189,38 +177,49 @@ export const Services: React.FC = () => {
                   {/* Title */}
                   <h3
                     className={cn(
-                      "text-lg font-bold tracking-tight pl-1.5 transition-colors mb-1",
-                      isActive ? "text-white" : "text-[#D4D4D8] group-hover:text-white"
+                      "text-xl sm:text-2xl font-bold tracking-tight transition-colors mt-2",
+                      isActive ? "text-white" : "text-[#A1A1AA] group-hover:text-white"
                     )}
                   >
                     {category.title}
                   </h3>
 
-                  {/* Short Description */}
-                  <p className="text-xs text-[#71717A] leading-relaxed line-clamp-2 pl-1.5 font-normal">
-                    {category.shortDescription}
-                  </p>
+                  {/* Description reveal on active */}
+                  {isActive ? (
+                    <motion.p
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      transition={{ duration: 0.2 }}
+                      className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed pt-2 font-normal"
+                    >
+                      {category.shortDescription}
+                    </motion.p>
+                  ) : (
+                    <p className="text-xs text-[#71717A] leading-relaxed pt-1 line-clamp-1 font-normal hidden xl:block">
+                      {category.shortDescription}
+                    </p>
+                  )}
                 </div>
               );
             })}
           </div>
 
-          {/* Right Column (7 Cols): Detailed Service Presentation Stage */}
-          <div className="col-span-7 sticky top-28 space-y-6">
+          {/* Right Column (7 Cols): Open Architectural Stage (Zero Outer Card Nesting!) */}
+          <div className="col-span-7 sticky top-24 space-y-6">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCategory.id}
                 id={`service-panel-${activeCategory.id}`}
                 role="tabpanel"
                 aria-label={activeCategory.title}
-                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+                initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -6 }}
+                exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
                 transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="p-6 sm:p-8 rounded-2xl bg-[#101522] border border-[#1E2638] shadow-[0_16px_48px_rgba(0,0,0,0.6)] space-y-6"
+                className="space-y-6"
               >
-                {/* Header Stage */}
-                <div className="space-y-3">
+                {/* 1. Category Overview & Editorial Scope */}
+                <div className="space-y-4">
                   <div className="flex items-center justify-between border-b border-[#1E2638] pb-3 text-xs font-mono">
                     <div className="flex items-center space-x-2.5">
                       <span className="text-[#BAF247] font-bold">{activeCategory.number}</span>
@@ -230,48 +229,43 @@ export const Services: React.FC = () => {
                       </span>
                     </div>
 
-                    <span className="text-[11px] text-[#A1A1AA] font-mono">
-                      ENGINEERED BY BOLXOLVE
+                    <span className="text-[11px] font-mono text-[#71717A] uppercase tracking-wider">
+                      SPECIFICATION // READY
                     </span>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-tight">
+                  <h3 className="text-3xl sm:text-4xl font-bold tracking-tight text-white leading-tight">
                     {activeCategory.title}
                   </h3>
 
-                  <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed font-normal">
+                  <p className="text-base text-[#A1A1AA] leading-relaxed max-w-2xl font-normal">
                     {activeCategory.description}
                   </p>
                 </div>
 
-                {/* Scope & Engineered Deliverables (Clean 2x2 Grid) */}
-                <div className="space-y-2.5 pt-2 border-t border-[#1E2638]">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block font-medium">
-                    CORE DELIVERABLES &amp; CAPABILITIES
+                {/* 2. Core Deliverables (Refined Architectural Grid with Green Micro-Bullets) */}
+                <div className="py-4 border-y border-[#1E2638]/70 space-y-2.5">
+                  <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#71717A] block font-medium">
+                    Core Capabilities &amp; Deliverables
                   </span>
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2.5 text-xs font-mono text-[#D4D4D8]">
                     {activeCategory.deliverables.map((item) => (
-                      <div
-                        key={item}
-                        className="p-2.5 rounded-lg bg-[#050915] border border-[#1E2638] flex items-center justify-between group hover:border-[#BAF247]/30 transition-colors"
-                      >
-                        <span className="text-xs font-medium text-white group-hover:text-[#BAF247] transition-colors truncate pr-2">
-                          {item}
-                        </span>
-                        <Check className="w-3.5 h-3.5 text-[#BAF247] shrink-0" />
+                      <div key={item} className="flex items-center gap-2.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] shrink-0" />
+                        <span className="text-[#D4D4D8] truncate">{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
-                {/* Primary Action & Solution Route Controls */}
-                <div className="pt-2 flex flex-wrap items-center justify-between gap-3 border-t border-[#1E2638]">
+                {/* 3. Primary Action & Dedicated Route Link */}
+                <div className="flex flex-wrap items-center justify-between gap-4 pt-1">
                   <Button
                     variant="primary"
                     size="md"
                     href="#contact"
-                    iconRight={<ArrowRight className="w-4 h-4" />}
+                    iconRight={<ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />}
+                    className="shadow-[0_4px_24px_rgba(186,242,71,0.22)]"
                   >
                     Inquire about {activeCategory.title.split("&")[0].trim()}
                   </Button>
@@ -287,50 +281,39 @@ export const Services: React.FC = () => {
                   )}
                 </div>
 
-                {/* =========================================================================
-                    FEATURED SOFTWARE INTERFACE VIEWPORT
-                   ========================================================================= */}
-                <div className="pt-4 border-t border-[#1E2638] space-y-3">
-                  <div className="flex items-center justify-between text-xs font-mono">
-                    <span className="text-[10px] uppercase tracking-wider text-[#71717A] flex items-center gap-1.5">
+                {/* 4. Single Elevated Product Window (The Software Interface Visual) */}
+                <div className="pt-4 relative">
+                  {/* Subtle Context Bar */}
+                  <div className="flex items-center justify-between pb-3 text-xs font-mono">
+                    <div className="flex items-center gap-2 text-[#71717A]">
                       <Layers className="w-3.5 h-3.5 text-[#BAF247]" />
-                      REALISTIC SOFTWARE INTERFACE DEMONSTRATION
-                    </span>
+                      <span className="text-[11px] uppercase tracking-wider text-[#A1A1AA]">
+                        {isInvoiceCategory
+                          ? "FEATURED SYSTEM ARCHITECTURE // INVOICE MANAGEMENT"
+                          : "LIVE DOMAIN INTERFACE DEMONSTRATION"}
+                      </span>
+                    </div>
 
-                    {/* View Switcher: allows inspecting the Featured Invoice System from any category */}
                     {!isInvoiceCategory && (
-                      <div className="inline-flex items-center gap-1 p-0.5 rounded-md bg-[#050915] border border-[#1E2638] text-[10px]">
-                        <button
-                          type="button"
-                          onClick={() => setViewMode("service")}
-                          className={cn(
-                            "px-2 py-0.5 rounded transition-colors",
-                            viewMode === "service"
-                              ? "bg-[#101522] text-[#BAF247] font-semibold"
-                              : "text-[#71717A] hover:text-white"
-                          )}
-                        >
-                          Domain UI
-                        </button>
-                        <button
-                          type="button"
-                          onClick={() => setViewMode("featuredInvoice")}
-                          className={cn(
-                            "px-2 py-0.5 rounded transition-colors flex items-center gap-1",
-                            viewMode === "featuredInvoice"
-                              ? "bg-[#101522] text-[#BAF247] font-semibold"
-                              : "text-[#71717A] hover:text-white"
-                          )}
-                        >
-                          <Receipt className="w-3 h-3" />
-                          Featured Invoice System
-                        </button>
-                      </div>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setViewMode(viewMode === "service" ? "featuredInvoice" : "service")
+                        }
+                        className="text-[11px] font-mono text-[#71717A] hover:text-[#BAF247] transition-colors flex items-center gap-1.5"
+                      >
+                        <Receipt className="w-3.5 h-3.5 text-[#BAF247]" />
+                        <span>
+                          {viewMode === "service"
+                            ? "Inspect Invoice Engine →"
+                            : "← Back to Domain UI"}
+                        </span>
+                      </button>
                     )}
                   </div>
 
-                  {/* Render the Active Visual Component */}
-                  <div className="relative">
+                  {/* Framed Hardware / Software Viewport */}
+                  <div className="relative rounded-xl bg-[#080D1A] border border-[#1E2638] shadow-[0_24px_60px_rgba(0,0,0,0.7)] overflow-hidden">
                     <ActiveVisualComponent />
                   </div>
                 </div>
@@ -340,20 +323,17 @@ export const Services: React.FC = () => {
         </div>
 
         {/* =========================================================================
-            3. MOBILE & TABLET EXPANDABLE DOSSIER (< 1024px)
+            3. MOBILE & TABLET EDITORIAL EXPANSION (< 1024px)
            ========================================================================= */}
-        <div className="lg:hidden space-y-4">
+        <div className="lg:hidden border-t border-b border-[#1E2638] divide-y divide-[#1E2638]">
           {SERVICE_CATEGORIES.map((category) => {
             const isExpanded = expandedMobileId === category.id;
             const CategoryVisualComponent =
               INTERFACE_MAP[category.featuredInterfaceId] || InvoiceSystemInterface;
 
             return (
-              <div
-                key={category.id}
-                className="rounded-xl bg-[#101522] border border-[#1E2638] overflow-hidden transition-all duration-200 shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
-              >
-                {/* Mobile Anchor jumps */}
+              <div key={category.id} className="transition-colors duration-200">
+                {/* Mobile Anchor targets */}
                 {category.slugs.map((slug) => (
                   <span
                     key={slug}
@@ -362,13 +342,13 @@ export const Services: React.FC = () => {
                   />
                 ))}
 
-                {/* Collapsible Header */}
+                {/* Collapsible Row */}
                 <button
                   type="button"
                   onClick={() =>
                     setExpandedMobileId(isExpanded ? null : category.id)
                   }
-                  className="w-full p-5 text-left flex items-start justify-between gap-4 outline-none focus-visible:ring-1 focus-visible:ring-[#BAF247]"
+                  className="w-full py-5 px-3 text-left flex items-start justify-between gap-4 outline-none focus-visible:ring-1 focus-visible:ring-[#BAF247]"
                   aria-expanded={isExpanded}
                   aria-controls={`mobile-panel-${category.id}`}
                 >
@@ -390,7 +370,7 @@ export const Services: React.FC = () => {
                     </p>
                   </div>
 
-                  <div className="p-2 rounded-lg bg-[#050915] border border-[#1E2638] text-[#71717A] shrink-0 mt-1">
+                  <div className="p-1.5 text-[#71717A] shrink-0 mt-1">
                     <ChevronDown
                       className={cn(
                         "w-4 h-4 transition-transform duration-200",
@@ -400,7 +380,7 @@ export const Services: React.FC = () => {
                   </div>
                 </button>
 
-                {/* Expandable Body */}
+                {/* Expanded Content */}
                 <AnimatePresence>
                   {isExpanded && (
                     <motion.div
@@ -409,46 +389,38 @@ export const Services: React.FC = () => {
                       animate={{ opacity: 1, height: "auto" }}
                       exit={shouldReduceMotion ? { opacity: 0, height: 0 } : { opacity: 0, height: 0 }}
                       transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                      className="px-5 pb-6 space-y-5 border-t border-[#1E2638]/70"
+                      className="px-3 pb-6 space-y-5"
                     >
-                      {/* Detailed narrative */}
-                      <div className="pt-4 space-y-2">
-                        <p className="text-sm text-[#D4D4D8] leading-relaxed">
-                          {category.description}
-                        </p>
-                      </div>
+                      <p className="text-sm text-[#D4D4D8] leading-relaxed pt-2">
+                        {category.description}
+                      </p>
 
                       {/* Deliverables */}
-                      <div className="space-y-2">
+                      <div className="py-3 border-y border-[#1E2638] space-y-2">
                         <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block font-medium">
-                          DELIVERABLES &amp; CAPABILITIES
+                          Core Capabilities &amp; Deliverables
                         </span>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#D4D4D8]">
                           {category.deliverables.map((item) => (
-                            <div
-                              key={item}
-                              className="p-2.5 rounded-lg bg-[#050915] border border-[#1E2638] flex items-center justify-between"
-                            >
-                              <span className="text-xs font-medium text-white truncate pr-2">
-                                {item}
-                              </span>
-                              <Check className="w-3 h-3 text-[#BAF247] shrink-0" />
+                            <div key={item} className="flex items-center gap-2">
+                              <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] shrink-0" />
+                              <span>{item}</span>
                             </div>
                           ))}
                         </div>
                       </div>
 
-                      {/* Software Interface Preview */}
-                      <div className="space-y-2 pt-2">
+                      {/* Software Viewport */}
+                      <div className="space-y-2 pt-1">
                         <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block font-medium">
-                          SOFTWARE INTERFACE DEMONSTRATION
+                          Live System Demonstration
                         </span>
-                        <div className="overflow-x-auto">
+                        <div className="rounded-xl bg-[#080D1A] border border-[#1E2638] overflow-hidden overflow-x-auto">
                           <CategoryVisualComponent />
                         </div>
                       </div>
 
-                      {/* CTAs */}
+                      {/* Actions */}
                       <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
                         <Button
                           variant="primary"

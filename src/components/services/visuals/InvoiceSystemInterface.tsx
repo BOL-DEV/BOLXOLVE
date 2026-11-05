@@ -5,16 +5,11 @@ import {
   Receipt,
   FileCheck,
   Download,
-  Filter,
   Search,
   CheckCircle2,
   Clock,
   ArrowUpRight,
   ShieldCheck,
-  Building2,
-  Calendar,
-  Layers,
-  Plus,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -117,22 +112,22 @@ export const InvoiceSystemInterface: React.FC = () => {
     INVOICE_DATA.find((inv) => inv.id === selectedInvoiceId) || INVOICE_DATA[0];
 
   return (
-    <div className="w-full rounded-2xl bg-[#050915] border border-[#1E2638] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] select-none">
+    <div className="w-full bg-[#050915] select-none text-white">
       {/* =========================================================================
-          1. APPLICATION HEADER BAR
+          1. APPLICATION TITLEBAR
          ========================================================================= */}
-      <div className="px-4 py-3 sm:px-6 bg-[#0B0F1C] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
-        {/* Left: Window Identity & Breadcrumb */}
-        <div className="flex items-center gap-2.5">
+      <div className="px-4 py-3 sm:px-5 bg-[#090D1A] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        {/* Left: Window Dots & Application Identity */}
+        <div className="flex items-center gap-3">
           <div className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-[#1E2638]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#1E2638]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#1E2638]" />
           </div>
-          <span className="text-[#1E2638] font-mono">|</span>
+          <span className="text-[#1E2638]">|</span>
           <div className="flex items-center gap-2">
             <Receipt className="w-3.5 h-3.5 text-[#BAF247]" />
-            <span className="text-white font-semibold">BOLXOLVE INVOICE ENGINE</span>
+            <span className="text-white font-semibold tracking-tight">BOLXOLVE INVOICE &amp; BILLING ENGINE</span>
             <span className="text-[#71717A] hidden sm:inline">// Apex Logistics Ltd</span>
           </div>
         </div>
@@ -149,91 +144,89 @@ export const InvoiceSystemInterface: React.FC = () => {
       </div>
 
       {/* =========================================================================
-          2. REVENUE & TRANSACTION SUMMARY CARDS
+          2. INTEGRATED METRICS STRIP (Divide-x, NO CARD BOXES)
          ========================================================================= */}
-      <div className="p-4 sm:p-6 bg-[#080D1A] border-b border-[#1E2638]">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-          {/* Card 1: Total Billed */}
-          <div className="p-3 sm:p-4 rounded-xl bg-[#101522] border border-[#1E2638] space-y-1">
-            <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
-              <span>Total Billed (MTD)</span>
-              <span className="text-[#BAF247] font-semibold">+14.2%</span>
-            </div>
-            <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
-              £142,850.00
-            </div>
-            <div className="text-[10px] font-mono text-[#71717A]">
-              Across 388 commercial invoices
-            </div>
+      <div className="grid grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 sm:divide-x divide-[#1E2638] border-b border-[#1E2638] bg-[#070B16]">
+        {/* Metric 1 */}
+        <div className="p-4 sm:p-4.5 space-y-1">
+          <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
+            <span>Total Billed (MTD)</span>
+            <span className="text-[#BAF247] font-semibold">+14.2%</span>
           </div>
-
-          {/* Card 2: Settled Volume */}
-          <div className="p-3 sm:p-4 rounded-xl bg-[#101522] border border-[#1E2638] space-y-1">
-            <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
-              <span>Settled Revenue</span>
-              <CheckCircle2 className="w-3 h-3 text-[#BAF247]" />
-            </div>
-            <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
-              £130,430.00
-            </div>
-            <div className="text-[10px] font-mono text-[#BAF247]">
-              384 cleared receipts (91.3%)
-            </div>
+          <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
+            £142,850.00
           </div>
-
-          {/* Card 3: Pending Receivables */}
-          <div className="p-3 sm:p-4 rounded-xl bg-[#101522] border border-[#1E2638] space-y-1">
-            <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
-              <span>Pending Clearance</span>
-              <Clock className="w-3 h-3 text-[#A8E035]" />
-            </div>
-            <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
-              £12,420.00
-            </div>
-            <div className="text-[10px] font-mono text-[#71717A]">
-              4 corporate wires in transit
-            </div>
+          <div className="text-[10px] font-mono text-[#71717A]">
+            388 commercial invoices
           </div>
+        </div>
 
-          {/* Card 4: Tax / VAT */}
-          <div className="p-3 sm:p-4 rounded-xl bg-[#101522] border border-[#1E2638] space-y-1">
-            <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
-              <span>VAT Liability (20%)</span>
-              <ShieldCheck className="w-3 h-3 text-[#BAF247]" />
-            </div>
-            <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
-              £23,808.33
-            </div>
-            <div className="text-[10px] font-mono text-[#71717A]">
-              Auto-calculated &amp; audited
-            </div>
+        {/* Metric 2 */}
+        <div className="p-4 sm:p-4.5 space-y-1">
+          <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
+            <span>Settled Revenue</span>
+            <CheckCircle2 className="w-3 h-3 text-[#BAF247]" />
+          </div>
+          <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
+            £130,430.00
+          </div>
+          <div className="text-[10px] font-mono text-[#BAF247]">
+            384 cleared receipts (91.3%)
+          </div>
+        </div>
+
+        {/* Metric 3 */}
+        <div className="p-4 sm:p-4.5 space-y-1">
+          <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
+            <span>Pending Clearance</span>
+            <Clock className="w-3 h-3 text-[#A8E035]" />
+          </div>
+          <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
+            £12,420.00
+          </div>
+          <div className="text-[10px] font-mono text-[#71717A]">
+            4 corporate wires in transit
+          </div>
+        </div>
+
+        {/* Metric 4 */}
+        <div className="p-4 sm:p-4.5 space-y-1">
+          <div className="flex items-center justify-between text-[10px] font-mono uppercase text-[#71717A]">
+            <span>VAT Liability (20%)</span>
+            <ShieldCheck className="w-3 h-3 text-[#BAF247]" />
+          </div>
+          <div className="text-lg sm:text-xl font-bold font-mono text-white tracking-tight">
+            £23,808.33
+          </div>
+          <div className="text-[10px] font-mono text-[#71717A]">
+            Auto-audited &amp; compliant
           </div>
         </div>
       </div>
 
       {/* =========================================================================
-          3. BUSINESS MANAGEMENT CONTROLS & ACTION BAR
+          3. MANAGEMENT CONTROLS & SEARCH BAR
          ========================================================================= */}
-      <div className="px-4 py-3 sm:px-6 bg-[#050915] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-3">
-        {/* Status Filters */}
-        <div className="flex items-center gap-1.5 p-1 rounded-lg bg-[#101522] border border-[#1E2638] text-xs font-mono">
+      <div className="px-4 py-2.5 sm:px-5 bg-[#050915] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
+        {/* Filter Pills */}
+        <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={() => setActiveFilter("all")}
             className={cn(
-              "px-2.5 py-1 rounded transition-colors",
+              "px-2.5 py-1 rounded text-xs transition-colors",
               activeFilter === "all"
                 ? "bg-[#1E2638] text-[#BAF247] font-semibold"
                 : "text-[#71717A] hover:text-white"
             )}
           >
-            All Records (388)
+            All (388)
           </button>
           <button
             type="button"
             onClick={() => setActiveFilter("settled")}
             className={cn(
-              "px-2.5 py-1 rounded transition-colors",
+              "px-2.5 py-1 rounded text-xs transition-colors",
               activeFilter === "settled"
                 ? "bg-[#1E2638] text-[#BAF247] font-semibold"
                 : "text-[#71717A] hover:text-white"
@@ -245,7 +238,7 @@ export const InvoiceSystemInterface: React.FC = () => {
             type="button"
             onClick={() => setActiveFilter("pending")}
             className={cn(
-              "px-2.5 py-1 rounded transition-colors",
+              "px-2.5 py-1 rounded text-xs transition-colors",
               activeFilter === "pending"
                 ? "bg-[#1E2638] text-[#BAF247] font-semibold"
                 : "text-[#71717A] hover:text-white"
@@ -255,45 +248,36 @@ export const InvoiceSystemInterface: React.FC = () => {
           </button>
         </div>
 
-        {/* Search & Actions */}
-        <div className="flex items-center gap-2 grow sm:grow-0 justify-end">
-          <div className="relative w-full sm:w-48">
-            <Search className="w-3.5 h-3.5 text-[#71717A] absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search invoices..."
-              className="w-full bg-[#101522] border border-[#1E2638] rounded-lg pl-8 pr-3 py-1.5 text-xs text-white placeholder-[#71717A] focus:outline-none focus:border-[#BAF247]/60 font-mono"
-            />
-          </div>
-
-          <div className="hidden sm:flex items-center gap-2">
-            <span className="px-2.5 py-1.5 rounded-lg bg-[#101522] border border-[#1E2638] text-[11px] font-mono text-[#A1A1AA] flex items-center gap-1.5">
-              <Download className="w-3 h-3 text-[#BAF247]" />
-              Export CSV
-            </span>
-          </div>
+        {/* Search */}
+        <div className="relative w-full sm:w-56">
+          <Search className="w-3.5 h-3.5 text-[#71717A] absolute left-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+          <input
+            type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search by client or ID..."
+            className="w-full bg-[#0A0F1D] border border-[#1E2638] rounded pl-8 pr-3 py-1 text-xs text-white placeholder-[#71717A] focus:outline-none focus:border-[#BAF247]/60 font-mono"
+          />
         </div>
       </div>
 
       {/* =========================================================================
-          4. INVOICE RECORDS TABLE & LIVE VOUCHER STAGE (SPLIT VIEW)
+          4. INVOICE RECORDS & VOUCHER INSPECTION (SPLIT)
          ========================================================================= */}
       <div className="grid grid-cols-1 xl:grid-cols-12 divide-y xl:divide-y-0 xl:divide-x divide-[#1E2638]">
-        {/* Table Viewport (7 Cols on wide) */}
+        {/* Table Viewport */}
         <div className="xl:col-span-7 overflow-x-auto">
           <table className="w-full text-left border-collapse text-xs">
             <thead>
-              <tr className="border-b border-[#1E2638] bg-[#0A0F1D] text-[10px] font-mono text-[#71717A] uppercase tracking-wider">
+              <tr className="border-b border-[#1E2638] bg-[#080D1A] text-[10px] font-mono text-[#71717A] uppercase tracking-wider">
                 <th className="py-2.5 px-4 font-medium">Invoice ID</th>
                 <th className="py-2.5 px-3 font-medium">Client Organisation</th>
                 <th className="py-2.5 px-3 font-medium text-right">Amount</th>
                 <th className="py-2.5 px-3 font-medium text-center">Status</th>
-                <th className="py-2.5 px-4 font-medium text-right">Voucher</th>
+                <th className="py-2.5 px-4 font-medium text-right">Inspect</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#1E2638]/70 font-mono">
+            <tbody className="divide-y divide-[#1E2638]/60 font-mono">
               {filteredInvoices.map((inv) => {
                 const isSelected = inv.id === selectedInvoice.id;
                 return (
@@ -303,11 +287,11 @@ export const InvoiceSystemInterface: React.FC = () => {
                     className={cn(
                       "cursor-pointer transition-colors group",
                       isSelected
-                        ? "bg-[#151B2B]"
-                        : "hover:bg-[#101522]/70 bg-transparent"
+                        ? "bg-[#101522]"
+                        : "hover:bg-[#101522]/50 bg-transparent"
                     )}
                   >
-                    <td className="py-3 px-4">
+                    <td className="py-2.5 px-4">
                       <div className="flex items-center gap-2">
                         <span
                           className={cn(
@@ -324,16 +308,16 @@ export const InvoiceSystemInterface: React.FC = () => {
                       </span>
                     </td>
 
-                    <td className="py-3 px-3">
-                      <span className="text-white font-medium block truncate max-w-[180px]">
+                    <td className="py-2.5 px-3">
+                      <span className="text-white font-medium block truncate max-w-[170px]">
                         {inv.client}
                       </span>
-                      <span className="text-[10px] text-[#71717A] block truncate max-w-[180px]">
+                      <span className="text-[10px] text-[#71717A] block truncate max-w-[170px]">
                         {inv.service}
                       </span>
                     </td>
 
-                    <td className="py-3 px-3 text-right">
+                    <td className="py-2.5 px-3 text-right">
                       <span className="font-semibold text-white block">
                         {inv.amount}
                       </span>
@@ -342,20 +326,20 @@ export const InvoiceSystemInterface: React.FC = () => {
                       </span>
                     </td>
 
-                    <td className="py-3 px-3 text-center">
+                    <td className="py-2.5 px-3 text-center">
                       <span
                         className={cn(
                           "inline-flex items-center gap-1 px-2 py-0.5 rounded text-[10px] font-semibold",
                           inv.status === "settled"
-                            ? "bg-[#BAF247]/10 text-[#BAF247] border border-[#BAF247]/30"
-                            : "bg-amber-400/10 text-amber-300 border border-amber-400/30"
+                            ? "bg-[#BAF247]/10 text-[#BAF247]"
+                            : "bg-amber-400/10 text-amber-300"
                         )}
                       >
-                        {inv.status === "settled" ? "Settled" : "Pending Wire"}
+                        {inv.status === "settled" ? "Settled" : "Pending"}
                       </span>
                     </td>
 
-                    <td className="py-3 px-4 text-right">
+                    <td className="py-2.5 px-4 text-right">
                       <span className="inline-flex items-center gap-1 text-[11px] text-[#A1A1AA] group-hover:text-[#BAF247] transition-colors">
                         View
                         <ArrowUpRight className="w-3 h-3" />
@@ -369,28 +353,27 @@ export const InvoiceSystemInterface: React.FC = () => {
 
           {filteredInvoices.length === 0 && (
             <div className="py-8 text-center text-xs font-mono text-[#71717A]">
-              No invoices matched your filter criteria.
+              No invoices match your filter criteria.
             </div>
           )}
         </div>
 
-        {/* Live Voucher Inspection Sub-Stage (5 Cols on wide) */}
-        <div className="xl:col-span-5 p-4 sm:p-5 bg-[#080D1A] space-y-4">
-          <div className="flex items-center justify-between pb-3 border-b border-[#1E2638] text-xs font-mono">
-            <span className="text-[11px] uppercase tracking-wider text-[#BAF247] font-semibold flex items-center gap-1.5">
+        {/* Live Voucher Inspection (Clean border-divided sidebar) */}
+        <div className="xl:col-span-5 p-4 sm:p-5 bg-[#070B16] space-y-4">
+          <div className="flex items-center justify-between pb-2.5 border-b border-[#1E2638] text-xs font-mono">
+            <span className="text-[10px] uppercase tracking-wider text-[#BAF247] font-semibold flex items-center gap-1.5">
               <FileCheck className="w-3.5 h-3.5 text-[#BAF247]" />
-              Audit Voucher Inspection
+              Digital Voucher Inspection
             </span>
             <span className="text-[10px] text-[#71717A]">
               {selectedInvoice.id}
             </span>
           </div>
 
-          {/* Voucher Summary Card */}
-          <div className="p-4 rounded-xl bg-[#101522] border border-[#1E2638] space-y-3 text-xs font-mono">
+          <div className="space-y-3 text-xs font-mono">
             <div>
               <span className="text-[10px] uppercase text-[#71717A] tracking-wider block">
-                Billed Entity
+                Billed Organisation
               </span>
               <span className="text-white font-semibold text-sm">
                 {selectedInvoice.client}
@@ -424,33 +407,31 @@ export const InvoiceSystemInterface: React.FC = () => {
               </div>
             </div>
 
-            {/* Cryptographic Verification Seal */}
             <div className="pt-2 border-t border-[#1E2638]/70 space-y-1 text-[9px] text-[#71717A]">
               <div className="flex items-center justify-between">
                 <span>AUDIT HASH:</span>
                 <span className="text-white">{selectedInvoice.hash}</span>
               </div>
               <div className="flex items-center justify-between">
-                <span>SECURITY PROTOCOL:</span>
+                <span>PROTOCOL:</span>
                 <span className="text-[#BAF247]">ED25519 IMMUTABLE SIGNED</span>
               </div>
             </div>
           </div>
 
-          {/* Quick Action Footer */}
-          <div className="flex items-center justify-between text-[11px] font-mono text-[#71717A]">
-            <span>Generated in 0.28s</span>
+          <div className="pt-1 border-t border-[#1E2638] flex items-center justify-between text-[11px] font-mono text-[#71717A]">
+            <span>Compiled in 0.28s</span>
             <span className="text-white font-medium flex items-center gap-1 hover:text-[#BAF247] cursor-pointer">
-              <Download className="w-3 h-3 text-[#BAF247]" /> Download Official PDF
+              <Download className="w-3 h-3 text-[#BAF247]" /> Download PDF
             </span>
           </div>
         </div>
       </div>
 
       {/* =========================================================================
-          5. BOTTOM STATUS BAR
+          5. BOTTOM STATUS STRIP
          ========================================================================= */}
-      <div className="px-4 py-2.5 sm:px-6 bg-[#0B0F1C] border-t border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-[#71717A]">
+      <div className="px-4 py-2 sm:px-5 bg-[#090D1A] border-t border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-[#71717A]">
         <span>CHRONOLOGICAL TRANSACTION LEDGER // 100% RECONCILED</span>
         <span className="text-white">BOLXOLVE ENTERPRISE CORE ENGINE</span>
       </div>

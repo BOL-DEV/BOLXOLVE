@@ -5,7 +5,7 @@ import { Workflow, CheckCircle2, Clock, Terminal, ArrowUpRight, Cpu, FileCheck }
 
 export const AutomationPipelineInterface: React.FC = () => {
   return (
-    <div className="w-full rounded-2xl bg-[#050915] border border-[#1E2638] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] select-none">
+    <div className="w-full bg-[#050915] select-none text-white">
       {/* Header */}
       <div className="px-4 py-3 sm:px-6 bg-[#0B0F1C] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-3 text-xs font-mono">
         <div className="flex items-center gap-2 text-white">
@@ -117,3 +117,4 @@ export const AutomationPipelineInterface: React.FC = () => {
 };
 
 export default AutomationPipelineInterface;
+
