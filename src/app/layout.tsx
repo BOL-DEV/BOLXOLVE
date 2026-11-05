@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
@@ -18,6 +20,9 @@ export const metadata: Metadata = {
     "AI Integrations",
     "Enterprise Software",
     "E-Commerce Systems",
+    "ZENTRA",
+    "BOLMEET AI",
+    "Invoice Management",
   ],
   authors: [{ name: "BOLXOLVE LTD" }],
   creator: "BOLXOLVE LTD",
@@ -53,9 +58,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="min-h-screen bg-[#050915] text-white antialiased font-sans flex flex-col selection:bg-[#BAF247] selection:text-[#050915]">
-        {children}
+        {/* Global Navigation across all routes */}
+        <Navbar />
+
+        {/* Dynamic Route Content */}
+        <div className="grow flex flex-col">
+          {children}
+        </div>
+
+        {/* Global Footer across all routes */}
+        <Footer />
       </body>
     </html>
   );
 }
-

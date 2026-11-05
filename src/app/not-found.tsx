@@ -3,15 +3,15 @@ import React from "react";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#050915] text-white px-6">
+    <div className="flex min-h-[60vh] flex-col items-center justify-center bg-[#050915] text-white px-6 py-24">
       <span className="text-xs font-mono uppercase tracking-[0.24em] text-[#BAF247] mb-4">
         404 — Page Not Found
       </span>
-      <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4">
+      <h1 className="text-4xl md:text-5xl font-black tracking-tight text-white mb-4 text-center">
         Lost in digital space
       </h1>
       <p className="text-sm md:text-base text-[#A1A1AA] max-w-md text-center mb-8">
-        The page you are looking for does not exist or has been moved to another coordinate.
+        The page or case study you are looking for does not exist or has been moved to another coordinate.
       </p>
       <Link
         href="/"
@@ -22,4 +22,3 @@ export default function NotFound() {
     </div>
   );
 }
-

@@ -2,8 +2,9 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Menu, X, ArrowUpRight, ChevronDown } from "lucide-react";
+import { Menu, X, ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
 import Logo from "@/components/brand/Logo";
 import Button from "@/components/ui/Button";
 import Container from "@/components/ui/Container";
@@ -15,6 +16,7 @@ export const Navbar: React.FC = () => {
   const [servicesOpen, setServicesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const shouldReduceMotion = useReducedMotion();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +49,11 @@ export const Navbar: React.FC = () => {
     };
   }, [mobileMenuOpen]);
 
+  const handleServicesClick = () => {
+    setServicesOpen(false);
+    router.push("/#services");
+  };
+
   return (
     <motion.header
       initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: -12 }}
@@ -66,7 +73,7 @@ export const Navbar: React.FC = () => {
             <Logo variant="clean" size="sm" href="/" priority />
           </div>
 
-          {/* Desktop Navigation Links (Refined Readability) */}
+          {/* Desktop Navigation Links (Refined Readability & Multi-Page Routing) */}
           <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
             {/* Services Dropdown */}
             <div
@@ -76,10 +83,7 @@ export const Navbar: React.FC = () => {
             >
               <button
                 type="button"
-                onClick={() => {
-                  window.location.hash = "#services";
-                  setServicesOpen(false);
-                }}
+                onClick={handleServicesClick}
                 className="inline-flex items-center text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 py-2 gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#BAF247] rounded-sm font-medium"
                 aria-expanded={servicesOpen}
                 aria-haspopup="true"
@@ -111,7 +115,7 @@ export const Navbar: React.FC = () => {
                     {COMPANY_INFO.services.map((item) => (
                       <Link
                         key={item.slug}
-                        href={`#${item.slug}`}
+                        href={`/#${item.slug}`}
                         className="flex items-center justify-between px-3 py-2 text-xs font-medium text-[#D4D4D8] hover:text-white hover:bg-[#151B2B] rounded transition-colors group"
                         role="menuitem"
                         onClick={() => setServicesOpen(false)}
@@ -120,34 +124,45 @@ export const Navbar: React.FC = () => {
                         <ArrowUpRight className="w-3.5 h-3.5 text-[#71717A] opacity-0 group-hover:opacity-100 group-hover:text-[#BAF247] transition-all" />
                       </Link>
                     ))}
+                    <div className="pt-1 mt-1 border-t border-[#1E2638]">
+                      <Link
+                        href="/solutions/education"
+                        className="flex items-center justify-between px-3 py-2 text-xs font-medium text-[#BAF247] hover:bg-[#151B2B] rounded transition-colors group"
+                        role="menuitem"
+                        onClick={() => setServicesOpen(false)}
+                      >
+                        <span>Education Solution (Upcoming)</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-[#BAF247] opacity-80 group-hover:translate-x-0.5 transition-transform" />
+                      </Link>
+                    </div>
                   </motion.div>
                 )}
               </AnimatePresence>
             </div>
 
             <Link
-              href="#work"
+              href="/#work"
               className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Work
             </Link>
 
             <Link
-              href="#services"
+              href="/#services"
               className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Technology
             </Link>
 
             <Link
-              href="#about"
+              href="/#about"
               className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Company
             </Link>
 
             <Link
-              href="#contact"
+              href="/#contact"
               className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Contact
@@ -156,7 +171,7 @@ export const Navbar: React.FC = () => {
 
           {/* Desktop Right CTA */}
           <div className="hidden md:flex items-center space-x-5">
-            <Button variant="primary" size="sm" href="#contact">
+            <Button variant="primary" size="sm" href="/#contact">
               Start a project
             </Button>
           </div>
@@ -194,40 +209,47 @@ export const Navbar: React.FC = () => {
                     {COMPANY_INFO.services.map((item) => (
                       <Link
                         key={item.slug}
-                        href={`#${item.slug}`}
+                        href={`/#${item.slug}`}
                         onClick={() => setMobileMenuOpen(false)}
                         className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                       >
                         {item.title}
                       </Link>
                     ))}
+                    <Link
+                      href="/solutions/education"
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block px-3 py-2 text-sm text-[#BAF247] hover:text-[#cbf95c] hover:bg-[#101522] rounded-md transition-colors font-medium"
+                    >
+                      Education Platform (Upcoming)
+                    </Link>
                   </div>
                 </div>
 
                 <div className="pt-2 border-t border-[#1E2638]/60 space-y-1">
                   <Link
-                    href="#work"
+                    href="/#work"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
                     Work
                   </Link>
                   <Link
-                    href="#services"
+                    href="/#services"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
                     Technology
                   </Link>
                   <Link
-                    href="#about"
+                    href="/#about"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
                     Company
                   </Link>
                   <Link
-                    href="#contact"
+                    href="/#contact"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
@@ -239,7 +261,7 @@ export const Navbar: React.FC = () => {
                   <Button
                     variant="primary"
                     size="md"
-                    href="#contact"
+                    href="/#contact"
                     className="w-full justify-center"
                     onClick={() => setMobileMenuOpen(false)}
                   >

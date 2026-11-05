@@ -1,17 +1,20 @@
 export interface Project {
   id: string;
+  slug: string;
   number: string;
   title: string;
   category: string;
   tag: string;
   description: string;
   capabilities: string[];
+  route: string;
   isFeatured?: boolean;
 }
 
 export const PROJECTS: Project[] = [
   {
     id: "zentra",
+    slug: "zentra",
     number: "01",
     title: "ZENTRA",
     category: "SaaS / Event Technology",
@@ -24,11 +27,30 @@ export const PROJECTS: Project[] = [
       "Attendee QR verification",
       "Unified event operations",
     ],
+    route: "/work/zentra",
     isFeatured: true,
   },
   {
-    id: "bolmeet-ai",
+    id: "invoice-management",
+    slug: "invoice-management",
     number: "02",
+    title: "Invoice Management System",
+    category: "Business Software / Automation",
+    tag: "WORKFLOW DIGITISATION",
+    description:
+      "A custom business solution that digitises receipt creation, transaction records, invoice dispatch, and automated financial document generation.",
+    capabilities: [
+      "Digital receipt & invoice generation",
+      "Multi-rate tax calculation engine",
+      "Automated document creation & export",
+      "Audit trail & chronological ledgers",
+    ],
+    route: "/work/invoice-management",
+  },
+  {
+    id: "bolmeet-ai",
+    slug: "bolmeet-ai",
+    number: "03",
     title: "BOLMEET AI",
     category: "Artificial Intelligence / Collaboration",
     tag: "COGNITIVE WORKSPACE",
@@ -37,39 +59,9 @@ export const PROJECTS: Project[] = [
     capabilities: [
       "Real-time audio communication",
       "Neural speech transcription",
-      "Intelligent summaries",
-      "Actionable task generation",
+      "Intelligent executive summaries",
+      "Actionable task generation & sync",
     ],
-  },
-  {
-    id: "argyrworldwide",
-    number: "03",
-    title: "ARGYRWORLDWIDE",
-    category: "E-commerce / Digital Commerce",
-    tag: "GLOBAL BRAND COMMERCE",
-    description:
-      "An e-commerce experience designed to bring a footwear brand online, with product discovery, shopping functionality and international payment capabilities.",
-    capabilities: [
-      "Footwear product discovery",
-      "Shopping & bag functionality",
-      "International payment gateway",
-      "Brand aesthetic & storytelling",
-    ],
-  },
-  {
-    id: "receipt-management",
-    number: "04",
-    title: "Business Receipt Management System",
-    category: "Business Software / Automation",
-    tag: "INTERNAL ENTERPRISE TOOL",
-    description:
-      "A custom business solution that digitises receipt creation, transaction records and document generation.",
-    capabilities: [
-      "Digital receipt generation",
-      "Transaction record tracking",
-      "Automated document creation",
-      "Audit trail & export systems",
-    ],
+    route: "/work/bolmeet-ai",
   },
 ];
-

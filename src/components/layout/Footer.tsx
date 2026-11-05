@@ -35,45 +35,53 @@ export const Footer: React.FC = () => {
               {COMPANY_INFO.services.map((service) => (
                 <li key={service.slug}>
                   <Link
-                    href={`#${service.slug}`}
+                    href={`/#${service.slug}`}
                     className="text-[#A1A1AA] hover:text-white transition-colors duration-150"
                   >
                     {service.title}
                   </Link>
                 </li>
               ))}
+              <li>
+                <Link
+                  href="/solutions/education"
+                  className="text-[#BAF247] hover:text-[#cbf95c] transition-colors duration-150 flex items-center gap-1.5"
+                >
+                  <span>Education (Upcoming)</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Technology Column */}
+          {/* Selected Work Column */}
           <div>
             <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247] block mb-4">
-              Technology
+              Selected Work
             </span>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="#architecture" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
-                  Full-Stack Architecture
+                <Link href="/work/zentra" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                  ZENTRA SaaS
                 </Link>
               </li>
               <li>
-                <Link href="#cloud" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
-                  Cloud Infrastructure
+                <Link href="/work/invoice-management" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                  Invoice Management
                 </Link>
               </li>
               <li>
-                <Link href="#ai" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
-                  Autonomous AI Agents
+                <Link href="/work/bolmeet-ai" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                  BOLMEET AI
                 </Link>
               </li>
               <li>
-                <Link href="#security" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
-                  Enterprise Security
+                <Link href="/solutions/education" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                  Education Platform
                 </Link>
               </li>
               <li>
-                <Link href="#performance" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
-                  Edge Performance
+                <Link href="/#work" className="text-[#71717A] hover:text-[#BAF247] transition-colors duration-150">
+                  &larr; All Portfolio Work
                 </Link>
               </li>
             </ul>
@@ -86,23 +94,23 @@ export const Footer: React.FC = () => {
             </span>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="#about" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                <Link href="/#about" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
                   About BOLXOLVE
                 </Link>
               </li>
               <li>
-                <Link href="#contact" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                <Link href="/#contact" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
                   Direct Inquiries
                 </Link>
               </li>
               <li>
-                <Link href="#careers" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
-                  Engineering Careers
+                <Link href="/#work" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                  Engineering Portfolio
                 </Link>
               </li>
               <li>
-                <Link href="#legal" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
-                  Terms & Privacy
+                <Link href="/#contact" className="text-[#A1A1AA] hover:text-white transition-colors duration-150">
+                  Start a project
                 </Link>
               </li>
             </ul>
@@ -126,4 +134,3 @@ export const Footer: React.FC = () => {
 };
 
 export default Footer;
-

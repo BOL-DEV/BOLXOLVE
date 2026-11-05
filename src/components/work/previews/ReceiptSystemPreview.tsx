@@ -16,32 +16,32 @@ export const ReceiptSystemPreview: React.FC = () => {
       <div className="relative z-10 flex items-center justify-between pb-3 border-b border-[#1E2638] text-[10px] font-mono">
         <div className="flex items-center space-x-2">
           <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
-          <span className="text-white font-semibold">RECEIPT MANAGEMENT ENGINE</span>
+          <span className="text-white font-semibold">INVOICE &amp; RECEIPT ENGINE</span>
           <span className="text-[#71717A] hidden sm:inline">&bull; TRANSACTION LEDGER</span>
         </div>
-        <span className="text-[9px] px-2 py-0.5 rounded bg-[#101522] border border-[#1E2638] text-[#71717A]">
-          SYSTEM BLUEPRINT
+        <span className="text-[9px] px-2 py-0.5 rounded bg-[#101522] border border-[#1E2638] text-[#BAF247] font-semibold">
+          ACTIVE DEPLOYMENT
         </span>
       </div>
 
       {/* Document Generation & Ledger Visualization */}
       <div className="relative z-10 my-auto py-3 grid grid-cols-12 gap-4 items-center">
-        {/* Left: Digital Receipt Voucher Mockup */}
+        {/* Left: Digital Invoice & Receipt Voucher Mockup */}
         <div className="col-span-12 sm:col-span-6 p-4 rounded-lg bg-[#101522]/90 border border-[#1E2638] space-y-2.5">
           <div className="flex items-center justify-between border-b border-[#1E2638] pb-2">
             <span className="text-[9px] font-mono text-[#BAF247] flex items-center gap-1 font-semibold">
-              <Receipt className="w-3 h-3 text-[#BAF247]" /> DIGITAL RECEIPT VOUCHER
+              <Receipt className="w-3 h-3 text-[#BAF247]" /> DIGITAL INVOICE VOUCHER
             </span>
-            <span className="text-[9px] font-mono text-[#71717A]">#RC-88102</span>
+            <span className="text-[9px] font-mono text-[#71717A]">#INV-88102</span>
           </div>
 
           <div className="space-y-1.5 text-[10px] font-mono">
             <div className="flex justify-between text-[#A1A1AA]">
-              <span>Corporate Consulting Deliverable</span>
+              <span>Corporate Software Engineering</span>
               <span className="text-white">&pound;4,200.00</span>
             </div>
             <div className="flex justify-between text-[#A1A1AA]">
-              <span>System Integration &amp; Deployment</span>
+              <span>Infrastructure Deployment &amp; SLA</span>
               <span className="text-white">&pound;2,800.00</span>
             </div>
             <div className="flex justify-between text-[#71717A] pt-1 border-t border-[#1E2638]">
@@ -60,7 +60,7 @@ export const ReceiptSystemPreview: React.FC = () => {
           <div className="p-3.5 rounded-lg bg-[#151B2B] border border-[#BAF247]/30 space-y-2">
             <div className="flex items-center justify-between">
               <span className="text-[9px] font-mono uppercase text-[#BAF247] font-semibold flex items-center gap-1">
-                <FileCheck className="w-3 h-3 text-[#BAF247]" /> AUTOMATED PIPELINE
+                <FileCheck className="w-3 h-3 text-[#BAF247]" /> AUTOMATED DISPATCH
               </span>
               <span className="text-[8px] font-mono text-[#71717A]">AUDIT SIGNED</span>
             </div>
@@ -68,34 +68,33 @@ export const ReceiptSystemPreview: React.FC = () => {
             <div className="grid grid-cols-3 gap-2 text-center text-[9px] font-mono">
               <div className="p-2 rounded bg-[#050915] border border-[#1E2638] text-white">
                 <Download className="w-3 h-3 text-[#BAF247] mx-auto mb-1" />
-                <span>PDF Format</span>
+                <span>PDF EXPORT</span>
               </div>
               <div className="p-2 rounded bg-[#050915] border border-[#1E2638] text-white">
                 <Database className="w-3 h-3 text-[#BAF247] mx-auto mb-1" />
-                <span>ERP Synced</span>
+                <span>LEDGER DB</span>
               </div>
               <div className="p-2 rounded bg-[#050915] border border-[#1E2638] text-white">
                 <Check className="w-3 h-3 text-[#BAF247] mx-auto mb-1" />
-                <span>Archived</span>
+                <span>RECONCILED</span>
               </div>
             </div>
           </div>
 
-          <div className="p-2.5 rounded bg-[#101522]/80 border border-[#1E2638] flex items-center justify-between text-[9px] font-mono text-[#71717A]">
-            <span>HASH: 8f92b...c31e9</span>
-            <span className="text-[#BAF247]">ZERO-LOSS COMPLIANT</span>
+          <div className="p-2 rounded bg-[#101522] border border-[#1E2638] flex items-center justify-between text-[9px] font-mono text-[#71717A]">
+            <span>AUDIT STATUS: VERIFIED</span>
+            <span className="text-[#BAF247]">100% TRACEABLE</span>
           </div>
         </div>
       </div>
 
-      {/* Telemetry Footer */}
-      <div className="relative z-10 pt-2 border-t border-[#1E2638] flex items-center justify-between text-[9px] font-mono text-[#71717A]">
-        <span>IMMUTABLE AUDIT LOG &bull; PDF GENERATION &bull; CSV EXPORT</span>
-        <span className="text-white">ENTERPRISE AUTOMATION READY</span>
+      {/* Bottom Status Bar */}
+      <div className="relative z-10 flex items-center justify-between pt-2 border-t border-[#1E2638] text-[9px] font-mono text-[#71717A]">
+        <span>IMMUTABLE CHRONOLOGICAL RECORDS</span>
+        <span className="text-white font-medium">DISPATCH ENGINE ACTIVE</span>
       </div>
     </div>
   );
 };
 
 export default ReceiptSystemPreview;
-
