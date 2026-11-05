@@ -1,94 +1,134 @@
-export interface Capability {
+export interface ServiceCategory {
   id: string;
   number: string;
   title: string;
+  categoryLabel: string;
   shortDescription: string;
   description: string;
-  services: string[];
+  deliverables: string[];
   slugs: string[];
-  tag: string;
+  solutionRoute?: string;
+  solutionLabel?: string;
+  featuredInterfaceId: "invoice" | "zentra" | "ecommerce" | "automation" | "bolmeet" | "education";
 }
 
-export const CAPABILITIES: Capability[] = [
+export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: "web-digital",
     number: "01",
     title: "Web & Digital Experiences",
-    shortDescription: "High-impact digital platforms engineered for brand authority and audience engagement.",
+    categoryLabel: "DIGITAL EXPERIENCES",
+    shortDescription: "Business websites, landing pages, web portals and interactive digital platforms.",
     description:
-      "Thoughtfully designed digital experiences that establish your online presence, communicate your brand and connect you with your audience.",
-    services: [
-      "Business websites",
-      "Landing pages",
-      "Web portals",
-      "Interactive digital experiences",
+      "We design and engineer bespoke web platforms that establish immediate brand credibility, engage visitors, and turn casual traffic into qualified commercial relationships. Every platform is built for speed, responsiveness, and clear conversion paths.",
+    deliverables: [
+      "Business websites & brand flagships",
+      "Campaign & high-converting landing pages",
+      "Client, member & customer web portals",
+      "Interactive digital experiences & tools",
     ],
-    slugs: ["business-websites", "web-digital-experiences"],
-    tag: "EXPERIENCE ENGINE",
-  },
-  {
-    id: "ecommerce",
-    number: "02",
-    title: "E-commerce Solutions",
-    shortDescription: "Frictionless commerce infrastructure built for transactions, operations, and scale.",
-    description:
-      "Digital commerce platforms designed to simplify selling, manage operations and create seamless shopping experiences.",
-    services: [
-      "Online stores",
-      "Payment integrations",
-      "Order management",
-      "E-commerce platforms",
-    ],
-    slugs: ["ecommerce-platforms"],
-    tag: "TRANSACTION RUNTIME",
+    slugs: ["business-websites", "web-digital-experiences", "web-digital"],
+    solutionRoute: "/solutions/zentra",
+    solutionLabel: "View ZENTRA Experience Case Study",
+    featuredInterfaceId: "zentra",
   },
   {
     id: "custom-software",
-    number: "03",
-    title: "Custom Software & Systems",
-    shortDescription: "Bespoke software architecture transforming complex logic into scalable operational tools.",
+    number: "02",
+    title: "Custom Software & Business Systems",
+    categoryLabel: "BUSINESS SYSTEMS",
+    shortDescription: "Bespoke operational software, management platforms, internal tools and business applications.",
     description:
-      "Purpose-built software that transforms complex business processes into organised, efficient and scalable systems.",
-    services: [
-      "Business management systems",
-      "Custom web applications",
-      "SaaS platforms",
-      "Internal business tools",
+      "Purpose-built operational software that replaces disjointed spreadsheets and cumbersome manual processes. Engineered around your organization's exact workflows, ensuring data integrity, role-based security, and frictionless team coordination.",
+    deliverables: [
+      "Bespoke operational software",
+      "Business management platforms",
+      "Internal tools & employee portals",
+      "Custom business web applications",
     ],
-    slugs: ["custom-web-apps", "business-management"],
-    tag: "CORE ARCHITECTURE",
+    slugs: ["custom-web-apps", "business-management", "custom-software", "business-systems"],
+    solutionRoute: "/solutions/invoice-management",
+    solutionLabel: "Explore Invoice Management System",
+    featuredInterfaceId: "invoice",
+  },
+  {
+    id: "ecommerce",
+    number: "03",
+    title: "E-commerce Solutions",
+    categoryLabel: "COMMERCE INFRASTRUCTURE",
+    shortDescription: "Online storefronts, payment integrations, inventory workflows and commerce infrastructure.",
+    description:
+      "High-conversion commerce experiences engineered for reliability under peak transactional load. From atomic inventory control to automated payment routing and customer account portals, we build commerce engines that scale.",
+    deliverables: [
+      "Bespoke online storefronts",
+      "Multi-gateway payment integrations",
+      "Real-time inventory workflows",
+      "Scalable commerce infrastructure",
+    ],
+    slugs: ["ecommerce-platforms", "ecommerce-solutions", "ecommerce"],
+    solutionRoute: "/solutions/zentra",
+    solutionLabel: "View High-Volume Commerce Engine",
+    featuredInterfaceId: "ecommerce",
   },
   {
     id: "automation",
     number: "04",
-    title: "Automation & Integration",
-    shortDescription: "Unified systems connecting tools and eliminating manual operational bottlenecks.",
+    title: "Business Automation & Integrations",
+    categoryLabel: "WORKFLOW AUTOMATION",
+    shortDescription: "Workflow automation, system integrations, process optimisation and operational efficiency.",
     description:
-      "Connect your tools, eliminate repetitive processes and create more efficient workflows through intelligent automation.",
-    services: [
-      "Workflow automation",
-      "API development",
-      "Third-party integrations",
-      "Process optimisation",
+      "Eliminate repetitive administrative overhead and human data-entry bottlenecks. We link your commercial tools, automate transaction processing, and build intelligent background pipelines that run quietly 24/7.",
+    deliverables: [
+      "Workflow automation engines",
+      "System & third-party API integrations",
+      "Process optimisation pipelines",
+      "Operational efficiency infrastructure",
     ],
-    slugs: ["workflow-automation"],
-    tag: "PIPELINE ORCHESTRATION",
+    slugs: ["workflow-automation", "business-automation", "automation"],
+    solutionRoute: "/solutions/invoice-management",
+    solutionLabel: "View Document Dispatch Pipeline",
+    featuredInterfaceId: "automation",
   },
   {
     id: "ai-emerging",
     number: "05",
-    title: "AI & Emerging Technologies",
-    shortDescription: "Intelligent automation and adaptive models delivering real-world operational leverage.",
+    title: "AI & Intelligent Solutions",
+    categoryLabel: "INTELLIGENT SYSTEMS",
+    shortDescription: "AI-powered applications, intelligent assistants, document processing and business intelligence integrations.",
     description:
-      "Explore practical applications of intelligent technology to improve business operations and create new possibilities.",
-    services: [
+      "Practical, high-utility artificial intelligence integrated directly into your everyday operations. We implement production-ready models for document processing, meeting synthesis, and decision support with enterprise privacy.",
+    deliverables: [
       "AI-powered applications",
-      "AI integrations",
-      "Intelligent workflows",
-      "Emerging technology solutions",
+      "Intelligent virtual assistants",
+      "Automated document processing",
+      "Business intelligence integrations",
     ],
-    slugs: ["ai-integrations"],
-    tag: "COGNITIVE SYSTEMS",
+    slugs: ["ai-integrations", "ai-solutions", "ai-emerging"],
+    solutionRoute: "/solutions/bolmeet-ai",
+    solutionLabel: "View BOLMEET AI Case Study",
+    featuredInterfaceId: "bolmeet",
+  },
+  {
+    id: "education-solutions",
+    number: "06",
+    title: "Education Technology Solutions",
+    categoryLabel: "ACADEMIC OPERATIONS",
+    shortDescription: "Digital platforms for primary and secondary schools, school administration, academic operations and education management.",
+    description:
+      "Purpose-built administrative and academic software engineered specifically for K-12 primary and secondary educational institutions. Replaces fragmented paper books with a unified, secure digital operating environment.",
+    deliverables: [
+      "Primary & secondary school platforms",
+      "School administrative systems",
+      "Academic operations & registers",
+      "Unified education management",
+    ],
+    slugs: ["education-solutions", "education-tech", "education"],
+    solutionRoute: "/solutions/education",
+    solutionLabel: "Explore Education Solutions Roadmap",
+    featuredInterfaceId: "education",
   },
 ];
 
+// Backwards compatibility aliases
+export type Capability = ServiceCategory;
+export const CAPABILITIES = SERVICE_CATEGORIES;
