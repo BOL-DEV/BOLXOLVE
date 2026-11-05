@@ -25,19 +25,19 @@ export const Hero: React.FC = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: shouldReduceMotion ? 0 : 0.12,
-        delayChildren: shouldReduceMotion ? 0 : 0.08,
+        staggerChildren: shouldReduceMotion ? 0 : 0.1,
+        delayChildren: shouldReduceMotion ? 0 : 0.05,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 },
+    hidden: shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
+        duration: 0.55,
         ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
       },
     },
@@ -45,13 +45,10 @@ export const Hero: React.FC = () => {
 
   return (
     <section className="relative w-full min-h-[calc(100vh-80px)] flex flex-col justify-between overflow-hidden bg-[#050915] border-b border-[#1E2638]">
-      {/* Clean Atmospheric Lime Depth (Controlled & Restrained) */}
-      <div className="absolute top-1/4 right-[5%] w-[650px] h-[650px] rounded-full bg-radial-hero pointer-events-none opacity-40 blur-3xl" />
+      {/* Clean Ambient Atmospheric Lighting (Controlled & Soft) */}
+      <div className="absolute top-1/3 right-[8%] w-[580px] h-[580px] rounded-full bg-radial-hero pointer-events-none opacity-30 blur-3xl" />
 
-      {/* Subtle Architectural Grid Axis Line */}
-      <div className="hidden lg:block absolute left-[56%] top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[#1E2638]/40 to-transparent pointer-events-none" />
-
-      {/* Main Content Area */}
+      {/* Main Hero Content Stage */}
       <div className="grow flex items-center">
         <Container size="wide" className="relative z-10 py-12 sm:py-16 lg:py-20 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -60,21 +57,21 @@ export const Hero: React.FC = () => {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="lg:col-span-7 flex flex-col justify-center space-y-7"
+              className="lg:col-span-7 flex flex-col justify-center space-y-6 sm:space-y-7"
             >
               {/* Editorial Eyebrow */}
               <motion.div variants={itemVariants} className="inline-flex items-center gap-3">
-                <div className="w-6 h-px bg-[#BAF247]" />
-                <span className="text-[11px] sm:text-xs font-mono font-medium tracking-[0.24em] uppercase text-[#BAF247]">
+                <span className="w-5 h-px bg-[#BAF247]" />
+                <span className="text-[11px] sm:text-xs font-mono font-medium tracking-[0.22em] uppercase text-[#BAF247]">
                   Digital Solutions & Technology
                 </span>
               </motion.div>
 
-              {/* Large Confident Editorial Headline */}
+              {/* Large Confident Editorial Headline with Refined Leading and Line Breaks */}
               <motion.div variants={itemVariants}>
-                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-[4.35rem] xl:text-[5.1rem] 2xl:text-[5.5rem] font-bold tracking-[-0.038em] text-white leading-[1.03]">
+                <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[4.15rem] xl:text-[4.75rem] font-bold tracking-[-0.04em] text-white leading-[1.0] max-w-2xl">
                   We turn complex challenges into{" "}
-                  <span className="text-[#BAF247] inline-block font-bold">
+                  <span className="text-[#BAF247] font-bold inline">
                     powerful digital solutions.
                   </span>
                 </h1>
@@ -82,7 +79,7 @@ export const Hero: React.FC = () => {
 
               {/* Supporting Description with Controlled Line Length */}
               <motion.div variants={itemVariants}>
-                <p className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed max-w-xl font-normal">
+                <p className="text-base sm:text-lg md:text-[1.125rem] text-[#A1A1AA] leading-relaxed max-w-xl font-normal">
                   We design, engineer and deliver technology that helps businesses operate smarter, scale faster and move forward.
                 </p>
               </motion.div>
@@ -97,7 +94,7 @@ export const Hero: React.FC = () => {
                   size="lg"
                   href="#contact"
                   iconRight={<ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />}
-                  className="group shadow-[0_4px_28px_rgba(186,242,71,0.24)]"
+                  className="group shadow-[0_4px_24px_rgba(186,242,71,0.22)]"
                 >
                   Start a project
                 </Button>
@@ -128,9 +125,9 @@ export const Hero: React.FC = () => {
 
             {/* Right Column: Monumental Brand Visual */}
             <motion.div
-              initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.96 }}
+              initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.97 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
               className="lg:col-span-5 flex items-center justify-center pt-4 lg:pt-0"
             >
               <HeroVisual />
@@ -139,25 +136,27 @@ export const Hero: React.FC = () => {
         </Container>
       </div>
 
-      {/* Bottom Capabilities Strip (Meaningful Architectural Bar) */}
-      <div className="w-full border-t border-[#1E2638] bg-[#050915]/80 backdrop-blur-sm z-20">
+      {/* Bottom Capabilities Strip (Refined Readability & Balanced Spacing) */}
+      <div className="w-full border-t border-[#1E2638] bg-[#050915]/90 backdrop-blur-sm z-20">
         <Container size="wide" className="px-0 sm:px-4">
           <div className="grid grid-cols-2 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x divide-[#1E2638]">
-            {CAPABILITY_ITEMS.map((item) => (
+            {CAPABILITY_ITEMS.map((item, index) => (
               <Link
                 key={item.id}
                 href={item.href}
-                className="group py-4 px-4 sm:px-5 flex items-center justify-between gap-3 hover:bg-[#101522]/60 transition-colors"
+                className={`group py-4 sm:py-5 px-4 sm:px-5 flex items-center justify-between gap-3 hover:bg-[#101522] transition-colors ${
+                  index === 4 ? "col-span-2 md:col-span-1 border-t md:border-t-0" : ""
+                }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="text-[10px] font-mono tracking-wider text-[#71717A] group-hover:text-[#BAF247] transition-colors font-medium">
+                  <span className="text-[11px] font-mono tracking-wider text-[#BAF247]/80 group-hover:text-[#BAF247] transition-colors font-semibold">
                     {item.index}
                   </span>
-                  <span className="text-xs font-mono uppercase tracking-[0.14em] text-[#A1A1AA] group-hover:text-white transition-colors">
+                  <span className="text-xs sm:text-[13px] font-mono uppercase tracking-[0.12em] text-[#E4E4E7] group-hover:text-white transition-colors font-medium">
                     {item.title}
                   </span>
                 </div>
-                <ArrowUpRight className="w-3.5 h-3.5 text-[#71717A] opacity-0 group-hover:opacity-100 group-hover:text-[#BAF247] transition-all transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 text-[#71717A] opacity-60 group-hover:opacity-100 group-hover:text-[#BAF247] transition-all transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 shrink-0" />
               </Link>
             ))}
           </div>
