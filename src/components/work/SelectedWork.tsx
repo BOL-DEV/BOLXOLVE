@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, Check, Sparkles, GraduationCap } from "lucide-react";
+import { ArrowRight, Check, GraduationCap } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { PROJECTS } from "./types";
@@ -17,11 +17,13 @@ export const SelectedWork: React.FC = () => {
 
   return (
     <section
-      id="work"
+      id="solutions"
       className="relative w-full py-20 sm:py-28 lg:py-36 bg-[#050915] border-b border-[#1E2638] overflow-hidden"
     >
       {/* Target anchor aliases for external/hash navigation */}
+      <span id="work" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="portfolio" className="relative -top-28 pointer-events-none block h-0 w-0" />
+      <span id="selected-solutions" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="selected-work" className="relative -top-28 pointer-events-none block h-0 w-0" />
 
       {/* Controlled Radial Background Glow */}
@@ -34,7 +36,7 @@ export const SelectedWork: React.FC = () => {
           <div className="inline-flex items-center space-x-3">
             <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
             <span className="text-xs font-mono font-medium tracking-[0.2em] uppercase text-[#BAF247]">
-              SELECTED WORK / OUR PORTFOLIO
+              SELECTED SOLUTIONS
             </span>
             <span className="text-[#1E2638] font-mono text-xs">/</span>
             <span className="text-[11px] font-mono tracking-widest text-[#71717A] uppercase">
@@ -50,12 +52,12 @@ export const SelectedWork: React.FC = () => {
 
           {/* Supporting Text */}
           <p className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed font-normal">
-            A look at the digital experiences, enterprise systems and emerging solutions we&apos;ve brought to life.
+            A look at the digital solutions, enterprise systems and emerging platforms we&apos;ve brought to life.
           </p>
         </div>
 
         {/* =========================================================================
-            ASYMMETRIC EDITORIAL PORTFOLIO GRID
+            ASYMMETRIC EDITORIAL SOLUTIONS GRID
            ========================================================================= */}
         <div className="space-y-10 sm:space-y-12">
           {/* =======================================================================
@@ -71,16 +73,21 @@ export const SelectedWork: React.FC = () => {
                 <div className="space-y-3">
                   <div className="flex items-center space-x-3">
                     <span className="text-xs font-mono text-[#BAF247] font-bold">
-                      {zentra.number} // FEATURED BUILD
+                      {zentra.number} // FEATURED SOLUTION
                     </span>
                     <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A]">
                       {zentra.tag}
                     </span>
                   </div>
 
-                  <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
-                    Category: {zentra.category}
-                  </span>
+                  <div className="flex items-center gap-3">
+                    <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
+                      Category: {zentra.category}
+                    </span>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#050915] border border-[#1E2638] text-[#BAF247]">
+                      {zentra.status.toUpperCase()}
+                    </span>
+                  </div>
 
                   <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
                     {zentra.title}
@@ -117,7 +124,7 @@ export const SelectedWork: React.FC = () => {
                     href={zentra.route}
                     iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                   >
-                    View Case Study
+                    View Solution
                   </Button>
 
                   <Button
@@ -132,7 +139,7 @@ export const SelectedWork: React.FC = () => {
 
               {/* Right Column (7 Cols): Visual Preview */}
               <div className="lg:col-span-7">
-                <Link href={zentra.route} className="block group/preview cursor-pointer" aria-label={`View ${zentra.title} Case Study`}>
+                <Link href={zentra.route} className="block group/preview cursor-pointer" aria-label={`View ${zentra.title} Solution`}>
                   <ZentraPreview />
                 </Link>
               </div>
@@ -153,8 +160,8 @@ export const SelectedWork: React.FC = () => {
                   <span className="text-xs font-mono text-[#BAF247] font-bold">
                     {invoice.number} // BUSINESS SYSTEMS
                   </span>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#71717A]">
-                    {invoice.tag}
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#050915] border border-[#1E2638] text-[#BAF247]">
+                    {invoice.status.toUpperCase()}
                   </span>
                 </div>
 
@@ -174,7 +181,7 @@ export const SelectedWork: React.FC = () => {
 
               {/* Visual Preview */}
               <div className="py-2">
-                <Link href={invoice.route} className="block group/preview cursor-pointer" aria-label={`View ${invoice.title} Case Study`}>
+                <Link href={invoice.route} className="block group/preview cursor-pointer" aria-label={`View ${invoice.title} Solution`}>
                   <ReceiptSystemPreview />
                 </Link>
               </div>
@@ -198,7 +205,7 @@ export const SelectedWork: React.FC = () => {
                     className="w-full justify-between"
                     iconRight={<ArrowRight className="w-3.5 h-3.5" />}
                   >
-                    <span>View Case Study</span>
+                    <span>View Solution</span>
                   </Button>
                 </div>
               </div>
@@ -214,8 +221,8 @@ export const SelectedWork: React.FC = () => {
                   <span className="text-xs font-mono text-[#BAF247] font-bold">
                     {bolmeet.number} // ARTIFICIAL INTELLIGENCE
                   </span>
-                  <span className="text-[10px] font-mono uppercase tracking-wider text-[#71717A]">
-                    {bolmeet.tag}
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#050915] border border-[#1E2638] text-[#BAF247]">
+                    {bolmeet.status.toUpperCase()}
                   </span>
                 </div>
 
@@ -235,7 +242,7 @@ export const SelectedWork: React.FC = () => {
 
               {/* Visual Preview */}
               <div className="py-2">
-                <Link href={bolmeet.route} className="block group/preview cursor-pointer" aria-label={`View ${bolmeet.title} Case Study`}>
+                <Link href={bolmeet.route} className="block group/preview cursor-pointer" aria-label={`View ${bolmeet.title} Solution`}>
                   <BolmeetPreview />
                 </Link>
               </div>
@@ -259,7 +266,7 @@ export const SelectedWork: React.FC = () => {
                     className="w-full justify-between"
                     iconRight={<ArrowRight className="w-3.5 h-3.5" />}
                   >
-                    <span>View Case Study</span>
+                    <span>View Solution</span>
                   </Button>
                 </div>
               </div>
@@ -351,7 +358,7 @@ export const SelectedWork: React.FC = () => {
                       <GraduationCap className="w-4 h-4 text-[#BAF247]" />
                       EDTECH OPERATING SYSTEM
                     </span>
-                    <span className="text-[#BAF247] font-semibold">IN DEVELOPMENT</span>
+                    <span className="text-[#BAF247] font-semibold">UPCOMING</span>
                   </div>
 
                   <div className="space-y-3 text-xs font-mono">

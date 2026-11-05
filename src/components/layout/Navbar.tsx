@@ -73,7 +73,7 @@ export const Navbar: React.FC = () => {
             <Logo variant="clean" size="sm" href="/" priority />
           </div>
 
-          {/* Desktop Navigation Links (Refined Readability & Multi-Page Routing) */}
+          {/* Desktop Navigation Links (Refined Readability & Multi-Page Solutions Routing) */}
           <nav className="hidden md:flex items-center space-x-8" aria-label="Main Navigation">
             {/* Services Dropdown */}
             <div
@@ -140,11 +140,12 @@ export const Navbar: React.FC = () => {
               </AnimatePresence>
             </div>
 
+            {/* Standardized "Solutions" Navigation Label */}
             <Link
-              href="/#work"
+              href="/#solutions"
               className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
-              Work
+              Solutions
             </Link>
 
             <Link
@@ -228,11 +229,11 @@ export const Navbar: React.FC = () => {
 
                 <div className="pt-2 border-t border-[#1E2638]/60 space-y-1">
                   <Link
-                    href="/#work"
+                    href="/#solutions"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >
-                    Work
+                    Solutions
                   </Link>
                   <Link
                     href="/#services"

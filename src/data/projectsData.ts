@@ -25,7 +25,7 @@ export interface ProjectCaseStudy {
   title: string;
   category: string;
   tag: string;
-  status: string;
+  status: "Available" | "In Development" | "Upcoming";
   statusBadgeVariant: "success" | "neutral" | "accent";
   year: string;
   discipline: string;
@@ -56,7 +56,7 @@ export const CASE_STUDIES: Record<string, ProjectCaseStudy> = {
     title: "ZENTRA",
     category: "SaaS / Event Technology",
     tag: "WHITE-LABEL SAAS PLATFORM",
-    status: "Live in Production / Active Deployments",
+    status: "Available",
     statusBadgeVariant: "success",
     year: "2024",
     discipline: "Full-Stack Web Architecture & Platform Engineering",
@@ -177,7 +177,7 @@ export const CASE_STUDIES: Record<string, ProjectCaseStudy> = {
     title: "Invoice Management System",
     category: "Business Software / Automation",
     tag: "WORKFLOW DIGITISATION",
-    status: "Active Enterprise Deployment",
+    status: "Available",
     statusBadgeVariant: "success",
     year: "2024",
     discipline: "Custom Enterprise Software & Automated Document Engineering",
@@ -298,7 +298,7 @@ export const CASE_STUDIES: Record<string, ProjectCaseStudy> = {
     title: "BOLMEET AI",
     category: "Artificial Intelligence / Collaboration",
     tag: "COGNITIVE WORKSPACE",
-    status: "Active Beta / Cognitive Workspace Platform",
+    status: "In Development",
     statusBadgeVariant: "neutral",
     year: "2024",
     discipline: "Real-Time WebRTC Media Streaming & Generative AI Pipelines",
@@ -419,4 +419,3 @@ export const PROJECTS_LIST = [
   CASE_STUDIES["invoice-management"],
   CASE_STUDIES["bolmeet-ai"],
 ];
-

@@ -102,11 +102,11 @@ export const Hero: React.FC = () => {
                 <Button
                   variant="secondary"
                   size="lg"
-                  href="#work"
+                  href="#solutions"
                   iconRight={<ArrowUpRight className="w-4 h-4 text-[#71717A] group-hover:text-white transition-colors" />}
                   className="group"
                 >
-                  Explore our work
+                  Explore our solutions
                 </Button>
               </motion.div>
 

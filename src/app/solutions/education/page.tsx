@@ -28,11 +28,11 @@ export default function EducationSolutionPage() {
         <Container size="wide">
           <div className="h-14 flex items-center justify-between text-xs font-mono">
             <Link
-              href="/#work"
+              href="/#solutions"
               className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors group"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-              <span>Back to Overview</span>
+              <span>Back to Selected Solutions</span>
             </Link>
 
             <div className="hidden sm:flex items-center gap-2 text-[#71717A]">
@@ -332,8 +332,8 @@ export default function EducationSolutionPage() {
             <Button variant="primary" size="lg" href="/#contact">
               Register School for Pilot Access
             </Button>
-            <Button variant="secondary" size="lg" href="/#work">
-              Return to Selected Work
+            <Button variant="secondary" size="lg" href="/#solutions">
+              Return to Selected Solutions
             </Button>
           </div>
         </div>

@@ -2,7 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight, Check, Sparkles, Layers, Cpu, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Cpu } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { ProjectCaseStudy, PROJECTS_LIST } from "@/data/projectsData";
@@ -30,20 +30,20 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
       <div className="w-full border-b border-[#1E2638] bg-[#050915]/80 backdrop-blur-md sticky top-20 z-40">
         <Container size="wide">
           <div className="h-14 flex items-center justify-between text-xs font-mono">
-            {/* Back to Work Link */}
+            {/* Back to Selected Solutions Link */}
             <Link
-              href="/#work"
+              href="/#solutions"
               className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors group"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-              <span>Back to Selected Work</span>
+              <span>Back to Selected Solutions</span>
             </Link>
 
             {/* Breadcrumb Path */}
             <div className="hidden sm:flex items-center gap-2 text-[#71717A]">
               <Link href="/" className="hover:text-white transition-colors">Home</Link>
               <span>/</span>
-              <Link href="/#work" className="hover:text-white transition-colors">Work</Link>
+              <Link href="/#solutions" className="hover:text-white transition-colors">Solutions</Link>
               <span>/</span>
               <span className="text-white font-medium">{project.title}</span>
             </div>
@@ -59,7 +59,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
           {/* Eyebrow & Status Badge */}
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-xs font-mono text-[#BAF247] font-bold">
-              CASE STUDY // {project.number}
+              SOLUTION ARCHITECTURE // {project.number}
             </span>
             <span className="text-[#1E2638] font-mono text-xs">/</span>
             <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA]">
@@ -67,7 +67,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#101522] border border-[#1E2638] text-[11px] font-mono text-[#BAF247]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] animate-pulse" />
-              {project.status}
+              STATUS: {project.status.toUpperCase()}
             </span>
           </div>
 
@@ -84,7 +84,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
           {/* Metadata Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-[#1E2638] text-xs font-mono">
             <div>
-              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Sector</span>
+              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Target Sector</span>
               <span className="text-white font-medium">{project.clientType}</span>
             </div>
             <div>
@@ -92,7 +92,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
               <span className="text-white font-medium">{project.discipline}</span>
             </div>
             <div>
-              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Year</span>
+              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Delivery Year</span>
               <span className="text-white font-medium">{project.year}</span>
             </div>
             <div>
@@ -133,14 +133,14 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
         )}
 
         {/* =====================================================================
-            3. PROBLEM STATEMENT & SOLUTION APPROACH (Two Column Editorial Deep Dive)
+            3. PROBLEM STATEMENT & SOLUTION APPROACH
            ===================================================================== */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 py-12 border-t border-[#1E2638]">
           {/* Problem Statement */}
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#71717A]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444]" />
-              01 // THE CHALLENGE
+              01 // THE OPERATIONAL CHALLENGE
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Problem Statement
@@ -162,7 +162,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#BAF247]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
-              02 // THE ENGINEERING APPROACH
+              02 // THE ENGINEERING SOLUTION
             </div>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Solution Approach
@@ -292,19 +292,19 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
             <Button variant="primary" size="lg" href="/#contact">
               Start a project
             </Button>
-            <Button variant="secondary" size="lg" href="/#work">
-              Explore other work
+            <Button variant="secondary" size="lg" href="/#solutions">
+              Explore other solutions
             </Button>
           </div>
         </div>
 
         {/* =====================================================================
-            7. PREVIOUS / NEXT CASE STUDY NAVIGATION
+            7. PREVIOUS / NEXT SOLUTION NAVIGATION
            ===================================================================== */}
         <div className="pt-8 border-t border-[#1E2638] flex items-center justify-between text-xs font-mono">
           {prevProject ? (
             <Link
-              href={`/work/${prevProject.slug}`}
+              href={`/solutions/${prevProject.slug}`}
               className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
@@ -316,7 +316,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
 
           {nextProject ? (
             <Link
-              href={`/work/${nextProject.slug}`}
+              href={`/solutions/${nextProject.slug}`}
               className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors"
             >
               <span>Next: {nextProject.title}</span>
@@ -332,4 +332,3 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
 };
 
 export default CaseStudyLayout;
-

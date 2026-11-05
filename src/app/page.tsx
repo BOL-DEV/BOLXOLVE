@@ -12,7 +12,7 @@ export default function Home() {
       {/* Phase 3: Services & Capabilities Section */}
       <Services />
 
-      {/* Phase 4: Selected Work / Portfolio Section */}
+      {/* Phase 4: Selected Solutions Section */}
       <SelectedWork />
     </main>
   );

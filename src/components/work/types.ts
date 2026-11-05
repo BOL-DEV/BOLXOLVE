@@ -8,6 +8,7 @@ export interface Project {
   description: string;
   capabilities: string[];
   route: string;
+  status: "Available" | "In Development" | "Upcoming";
   isFeatured?: boolean;
 }
 
@@ -19,6 +20,7 @@ export const PROJECTS: Project[] = [
     title: "ZENTRA",
     category: "SaaS / Event Technology",
     tag: "WHITE-LABEL SAAS PLATFORM",
+    status: "Available",
     description:
       "A white-label event ticketing and management platform that empowers organisers to manage events, sell tickets and verify attendees through a unified digital experience.",
     capabilities: [
@@ -27,7 +29,7 @@ export const PROJECTS: Project[] = [
       "Attendee QR verification",
       "Unified event operations",
     ],
-    route: "/work/zentra",
+    route: "/solutions/zentra",
     isFeatured: true,
   },
   {
@@ -37,6 +39,7 @@ export const PROJECTS: Project[] = [
     title: "Invoice Management System",
     category: "Business Software / Automation",
     tag: "WORKFLOW DIGITISATION",
+    status: "Available",
     description:
       "A custom business solution that digitises receipt creation, transaction records, invoice dispatch, and automated financial document generation.",
     capabilities: [
@@ -45,7 +48,7 @@ export const PROJECTS: Project[] = [
       "Automated document creation & export",
       "Audit trail & chronological ledgers",
     ],
-    route: "/work/invoice-management",
+    route: "/solutions/invoice-management",
   },
   {
     id: "bolmeet-ai",
@@ -54,6 +57,7 @@ export const PROJECTS: Project[] = [
     title: "BOLMEET AI",
     category: "Artificial Intelligence / Collaboration",
     tag: "COGNITIVE WORKSPACE",
+    status: "In Development",
     description:
       "An AI-powered meeting workspace combining real-time communication, transcription, intelligent summaries and actionable task generation.",
     capabilities: [
@@ -62,6 +66,6 @@ export const PROJECTS: Project[] = [
       "Intelligent executive summaries",
       "Actionable task generation & sync",
     ],
-    route: "/work/bolmeet-ai",
+    route: "/solutions/bolmeet-ai",
   },
 ];

@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!project) {
     return {
-      title: "Case Study Not Found | BOLXOLVE LTD",
+      title: "Solution Not Found | BOLXOLVE LTD",
     };
   }
 
@@ -28,14 +28,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     title: `${project.title} — ${project.category}`,
     description: project.overview,
     openGraph: {
-      title: `${project.title} | BOLXOLVE Case Study`,
+      title: `${project.title} | BOLXOLVE Solutions`,
       description: project.overview,
       type: "article",
     },
   };
 }
 
-export default async function CaseStudyPage({ params }: PageProps) {
+export default async function SolutionCaseStudyPage({ params }: PageProps) {
   const { slug } = await params;
   const project = CASE_STUDIES[slug];
 
@@ -45,4 +45,3 @@ export default async function CaseStudyPage({ params }: PageProps) {
 
   return <CaseStudyLayout project={project} />;
 }
-
