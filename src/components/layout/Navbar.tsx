@@ -70,7 +70,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           {/* Official Brand Logo */}
           <div className="flex items-center">
-            <Logo variant="clean" size="sm" href="/" priority />
+            <Logo variant="clean" size="lg" href="/" priority />
           </div>
 
           {/* Desktop Navigation Links (Refined Readability & Multi-Page Solutions Routing) */}

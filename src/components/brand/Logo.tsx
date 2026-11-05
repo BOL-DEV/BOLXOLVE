@@ -12,6 +12,7 @@ interface LogoProps {
   theme?: LogoTheme;
   size?: LogoSize;
   className?: string;
+  imageClassName?: string;
   href?: string;
   priority?: boolean;
 }
@@ -21,27 +22,27 @@ const SIZE_MAP: Record<LogoVariant, Record<LogoSize, { height: number; width: nu
     xs: { height: 24, width: 48, styleClass: "h-6 w-auto" },
     sm: { height: 32, width: 64, styleClass: "h-8 w-auto" },
     md: { height: 40, width: 80, styleClass: "h-10 w-auto" },
-    lg: { height: 52, width: 104, styleClass: "h-13 w-auto" },
+    lg: { height: 52, width: 104, styleClass: "h-[46px] sm:h-[52px] w-auto" },
     xl: { height: 64, width: 128, styleClass: "h-16 w-auto" },
   },
   full: {
     xs: { height: 26, width: 52, styleClass: "h-[26px] w-auto" },
     sm: { height: 36, width: 72, styleClass: "h-9 w-auto" },
     md: { height: 46, width: 92, styleClass: "h-11 w-auto" },
-    lg: { height: 58, width: 116, styleClass: "h-14 w-auto" },
-    xl: { height: 72, width: 144, styleClass: "h-18 w-auto" },
+    lg: { height: 58, width: 116, styleClass: "h-[58px] w-auto" },
+    xl: { height: 72, width: 144, styleClass: "h-[72px] w-auto" },
   },
   mark: {
     xs: { height: 24, width: 18, styleClass: "h-6 w-auto" },
     sm: { height: 32, width: 24, styleClass: "h-8 w-auto" },
     md: { height: 40, width: 31, styleClass: "h-10 w-auto" },
-    lg: { height: 52, width: 40, styleClass: "h-13 w-auto" },
+    lg: { height: 52, width: 40, styleClass: "h-[52px] w-auto" },
     xl: { height: 64, width: 49, styleClass: "h-16 w-auto" },
   },
   stacked: {
     xs: { height: 40, width: 40, styleClass: "h-10 w-10" },
     sm: { height: 56, width: 56, styleClass: "h-14 w-14" },
-    md: { height: 72, width: 72, styleClass: "h-18 w-18" },
+    md: { height: 72, width: 72, styleClass: "h-[72px] w-[72px]" },
     lg: { height: 96, width: 96, styleClass: "h-24 w-24" },
     xl: { height: 128, width: 128, styleClass: "h-32 w-32" },
   },
@@ -75,6 +76,7 @@ export const Logo: React.FC<LogoProps> = ({
   theme = "dark",
   size = "md",
   className,
+  imageClassName,
   href,
   priority = false,
 }) => {
@@ -91,6 +93,7 @@ export const Logo: React.FC<LogoProps> = ({
       className={cn(
         sizeConfig.styleClass,
         "object-contain select-none transition-opacity duration-200",
+        imageClassName,
         extraClass
       )}
     />
