@@ -100,19 +100,17 @@ export const BuildingMaterialsApp: React.FC = () => {
                     setActiveTab(item.id);
                     if (item.id === "sales") setIsNewSaleDirectOpen(false);
                   }}
-                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
-                    isActive
+                  className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${isActive
                       ? "bg-slate-900 text-white shadow-xs"
                       : "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
-                  }`}
+                    }`}
                 >
                   <Icon className="w-4 h-4 shrink-0" />
                   <span>{item.label}</span>
                   {item.badge && (
                     <span
-                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${
-                        item.badgeColor || "bg-slate-200 text-slate-800"
-                      }`}
+                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-mono font-bold ${item.badgeColor || "bg-slate-200 text-slate-800"
+                        }`}
                     >
                       {item.badge}
                     </span>

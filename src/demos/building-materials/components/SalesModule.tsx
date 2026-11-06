@@ -143,11 +143,10 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
               setActiveSubTab("new");
               setSaleSuccessTxn(null);
             }}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
-              activeSubTab === "new"
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${activeSubTab === "new"
                 ? "bg-slate-900 text-white shadow-xs"
                 : "bg-slate-100 hover:bg-slate-200 text-slate-700"
-            }`}
+              }`}
           >
             <ShoppingCart className="w-3.5 h-3.5" />
             <span>Create Sales Order (POS)</span>
@@ -155,11 +154,10 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
           <button
             type="button"
             onClick={() => setActiveSubTab("history")}
-            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${
-              activeSubTab === "history"
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-medium transition-colors flex items-center gap-1.5 ${activeSubTab === "history"
                 ? "bg-slate-900 text-white shadow-xs"
                 : "bg-slate-100 hover:bg-slate-200 text-slate-700"
-            }`}
+              }`}
           >
             <History className="w-3.5 h-3.5" />
             <span>Sales &amp; Transaction History ({state.transactions.length})</span>
@@ -245,11 +243,10 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
                   return (
                     <div
                       key={idx}
-                      className={`p-3 rounded-lg border text-xs transition-colors ${
-                        isStockShortage
+                      className={`p-3 rounded-lg border text-xs transition-colors ${isStockShortage
                           ? "border-red-300 bg-red-50/40"
                           : "border-slate-200 bg-slate-50/60"
-                      }`}
+                        }`}
                     >
                       <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-center">
                         {/* Product Picker (7 cols) */}
@@ -278,9 +275,8 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
                             </label>
                             {product && (
                               <span
-                                className={`text-[10px] font-mono ${
-                                  isStockShortage ? "text-red-600 font-bold" : "text-slate-400"
-                                }`}
+                                className={`text-[10px] font-mono ${isStockShortage ? "text-red-600 font-bold" : "text-slate-400"
+                                  }`}
                               >
                                 Max: {product.stock}
                               </span>
@@ -292,11 +288,10 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
                             max={product?.stock || 9999}
                             value={item.quantity}
                             onChange={(e) => handleUpdateRow(idx, "quantity", e.target.value)}
-                            className={`w-full p-2 bg-white border rounded-lg text-xs font-mono font-bold text-slate-900 ${
-                              isStockShortage
+                            className={`w-full p-2 bg-white border rounded-lg text-xs font-mono font-bold text-slate-900 ${isStockShortage
                                 ? "border-red-400 focus:ring-red-400"
                                 : "border-slate-300 focus:ring-emerald-500"
-                            }`}
+                              }`}
                           />
                         </div>
 
@@ -389,11 +384,10 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
                       key={method}
                       type="button"
                       onClick={() => setPaymentMethod(method)}
-                      className={`p-2 rounded-lg border text-center transition-colors font-medium text-[11px] ${
-                        paymentMethod === method
+                      className={`p-2 rounded-lg border text-center transition-colors font-medium text-[11px] ${paymentMethod === method
                           ? "bg-emerald-50 border-emerald-500 text-emerald-800 font-bold"
                           : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50"
-                      }`}
+                        }`}
                     >
                       {method}
                     </button>
@@ -426,11 +420,10 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
                 type="button"
                 disabled={hasStockErrors || orderTotal <= 0}
                 onClick={handleSubmitSale}
-                className={`w-full py-2.5 rounded-lg text-white font-medium text-xs transition-colors shadow-sm flex items-center justify-center gap-2 ${
-                  hasStockErrors || orderTotal <= 0
+                className={`w-full py-2.5 rounded-lg text-white font-medium text-xs transition-colors shadow-sm flex items-center justify-center gap-2 ${hasStockErrors || orderTotal <= 0
                     ? "bg-slate-300 cursor-not-allowed"
                     : "bg-emerald-600 hover:bg-emerald-500"
-                }`}
+                  }`}
               >
                 <CheckCircle className="w-4 h-4" />
                 <span>Confirm Sale &amp; Deduct Stock</span>
@@ -498,11 +491,10 @@ export const SalesModule: React.FC<Props> = ({ isNewSaleOpenInitially = false })
                     </td>
                     <td className="py-3 px-4 text-center">
                       <span
-                        className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium ${
-                          txn.status === "Completed"
+                        className={`inline-block px-2 py-0.5 rounded text-[10px] font-medium ${txn.status === "Completed"
                             ? "bg-emerald-50 text-emerald-700 border border-emerald-200"
                             : "bg-blue-50 text-blue-700 border border-blue-200"
-                        }`}
+                          }`}
                       >
                         {txn.status}
                       </span>

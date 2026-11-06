@@ -266,6 +266,16 @@ export const Services: React.FC = () => {
                         <ExternalLink className="w-4 h-4" />
                       </Link>
                     )}
+
+                    {activeCategory.id === "automation" && (
+                      <Link
+                        href="/demos/business-automation"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#BAF247]/40 bg-[#BAF247]/10 hover:bg-[#BAF247]/20 text-[#BAF247] text-sm font-semibold transition-colors"
+                      >
+                        <span>Launch Workflow Simulator</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </Link>
+                    )}
                   </div>
 
                   <span className="text-xs font-mono text-[#71717A]">
@@ -399,6 +409,16 @@ export const Services: React.FC = () => {
                             className="w-full py-2 px-3 rounded-lg border border-[#BAF247]/40 bg-[#BAF247]/10 hover:bg-[#BAF247]/20 text-[#BAF247] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
                           >
                             <span>Launch Full Interactive Demo</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </Link>
+                        )}
+
+                        {category.id === "automation" && (
+                          <Link
+                            href="/demos/business-automation"
+                            className="w-full py-2 px-3 rounded-lg border border-[#BAF247]/40 bg-[#BAF247]/10 hover:bg-[#BAF247]/20 text-[#BAF247] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                          >
+                            <span>Launch Workflow Simulator</span>
                             <ExternalLink className="w-3.5 h-3.5" />
                           </Link>
                         )}

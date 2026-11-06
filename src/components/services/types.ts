@@ -84,7 +84,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "Approval and record-keeping workflows",
     ],
     example:
-      "An online store that automatically records customer orders, sends confirmation emails, notifies the business, updates stock and prepares orders for processing.",
+      "An automated order processing workflow that captures purchases, generates branded customer emails, alerts fulfillment teams, decrements stock across ledgers, and queues dispatches without manual intervention.",
     slugs: ["automation", "workflow-automation", "business-automation"],
   },
   {
