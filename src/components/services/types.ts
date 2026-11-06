@@ -76,15 +76,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description:
       "We connect the tools a business already uses and automate repetitive tasks, so employees spend less time doing the same things manually.",
     deliverables: [
-      "Automatic email notifications",
-      "Customer follow-ups",
-      "Connecting business applications",
-      "Automated reports",
-      "Order and payment notifications",
-      "Approval and record-keeping workflows",
+      "Automated invoicing & digital billing",
+      "Multi-branch depot & sales management",
+      "Payment approvals & audit trail logs",
+      "Automated ledger & revenue reconciliation",
+      "Customer payment alerts & receipts",
+      "Custom business workflow integrations",
     ],
     example:
-      "An automated order processing workflow that captures purchases, generates branded customer emails, alerts fulfillment teams, decrements stock across ledgers, and queues dispatches without manual intervention.",
+      "Production platforms such as BOLXOLVE Invoice (multi-depot invoicing, consolidated sales breakdown, and branch cashier management system at invoice.bolxolve.com).",
     slugs: ["automation", "workflow-automation", "business-automation"],
   },
   {
