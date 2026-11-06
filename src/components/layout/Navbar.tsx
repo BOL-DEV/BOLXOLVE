@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Menu, X, ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
 import Logo from "@/components/brand/Logo";
@@ -17,6 +17,7 @@ export const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +54,10 @@ export const Navbar: React.FC = () => {
     setServicesOpen(false);
     router.push("/#services");
   };
+
+  if (pathname?.startsWith("/demos")) {
+    return null;
+  }
 
   return (
     <motion.header

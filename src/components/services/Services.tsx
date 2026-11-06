@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ArrowRight, ArrowUpRight, ChevronDown, Check, Lightbulb } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, Check, Lightbulb, ExternalLink } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { SERVICE_CATEGORIES, ServiceCategory } from "./types";
@@ -244,16 +245,28 @@ export const Services: React.FC = () => {
                 </div>
 
                 {/* 5. Clear Inquiry CTA Button */}
-                <div className="pt-2 flex items-center justify-between">
-                  <Button
-                    variant="primary"
-                    size="md"
-                    href="/#contact"
-                    iconRight={<ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />}
-                    className="shadow-[0_4px_24px_rgba(186,242,71,0.22)]"
-                  >
-                    Inquire about {activeCategory.title.split("&")[0].trim()}
-                  </Button>
+                <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Button
+                      variant="primary"
+                      size="md"
+                      href="/#contact"
+                      iconRight={<ArrowRight className="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" />}
+                      className="shadow-[0_4px_24px_rgba(186,242,71,0.22)]"
+                    >
+                      Inquire about {activeCategory.title.split("&")[0].trim()}
+                    </Button>
+
+                    {activeCategory.id === "custom-software" && (
+                      <Link
+                        href="/demos/building-materials"
+                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#BAF247]/40 bg-[#BAF247]/10 hover:bg-[#BAF247]/20 text-[#BAF247] text-sm font-semibold transition-colors"
+                      >
+                        <span>Launch Interactive Demo</span>
+                        <ExternalLink className="w-4 h-4" />
+                      </Link>
+                    )}
+                  </div>
 
                   <span className="text-xs font-mono text-[#71717A]">
                     Everyday Solutions // Built Around Your Business
@@ -369,7 +382,7 @@ export const Services: React.FC = () => {
                       </div>
 
                       {/* Inquiry CTA */}
-                      <div className="pt-2">
+                      <div className="pt-2 space-y-2">
                         <Button
                           variant="primary"
                           size="sm"
@@ -379,6 +392,16 @@ export const Services: React.FC = () => {
                         >
                           Inquire about {category.title.split("&")[0].trim()}
                         </Button>
+
+                        {category.id === "custom-software" && (
+                          <Link
+                            href="/demos/building-materials"
+                            className="w-full py-2 px-3 rounded-lg border border-[#BAF247]/40 bg-[#BAF247]/10 hover:bg-[#BAF247]/20 text-[#BAF247] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                          >
+                            <span>Launch Full Interactive Demo</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </Link>
+                        )}
                       </div>
                     </motion.div>
                   )}

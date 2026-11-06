@@ -1,5 +1,8 @@
+"use client";
+
 import React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Logo from "@/components/brand/Logo";
 import Container from "@/components/ui/Container";
 import Badge from "@/components/ui/Badge";
@@ -7,7 +10,12 @@ import { Small } from "@/components/ui/Typography";
 import { COMPANY_INFO } from "@/lib/tokens";
 
 export const Footer: React.FC = () => {
+  const pathname = usePathname();
   const currentYear = new Date().getFullYear();
+
+  if (pathname?.startsWith("/demos")) {
+    return null;
+  }
 
   return (
     <footer className="w-full bg-[#050915] border-t border-[#1E2638] text-white pt-16 pb-12">

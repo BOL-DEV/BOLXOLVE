@@ -1,21 +1,22 @@
 "use client";
 
 import React, { useState } from "react";
-import { Package, Users, Truck, ArrowRight, BarChart3, Layers } from "lucide-react";
+import Link from "next/link";
+import { Package, Truck, ArrowRight, BarChart3, Layers, ExternalLink } from "lucide-react";
 
 export const BuildingMaterialsConceptPreview: React.FC = () => {
   const [activeTab, setActiveTab] = useState<"stock" | "orders" | "suppliers">("stock");
 
   const INVENTORY = [
-    { item: "Portland Cement (50kg bags)", category: "Masonry", stock: 480, threshold: 100, status: "Healthy" },
-    { item: "High-Tensile Rebar (12mm x 12m)", category: "Structural Steel", stock: 120, threshold: 50, status: "Healthy" },
-    { item: "Standard Plasterboard (12.5mm)", category: "Drylining", stock: 45, threshold: 60, status: "Low Stock" },
-    { item: "Treated Timber Battens (25x50mm)", category: "Carpentry", stock: 320, threshold: 80, status: "Healthy" },
+    { item: "Elephant Portland Cement (50kg)", category: "Cement", stock: 420, threshold: 100, price: "₦8,500", status: "Healthy" },
+    { item: "High-Yield TMT Rebar 12mm (12m)", category: "Reinforcement", stock: 180, threshold: 50, price: "₦13,500", status: "Healthy" },
+    { item: "Dulux Trade Emulsion Paint (20L)", category: "Paint & Finishes", stock: 18, threshold: 30, price: "₦34,500", status: "Low Stock" },
+    { item: "6-inch Solid Vibrated Blocks", category: "Blocks & Masonry", stock: 1450, threshold: 500, price: "₦480", status: "Healthy" },
   ];
 
   const ORDERS = [
-    { id: "ORD-1048", customer: "Apex Construction Co.", items: "120 Bags Cement, 40 Rebar", total: "£4,850.00", status: "Prepared for Dispatch" },
-    { id: "ORD-1047", customer: "Kestrel Commercial Build", items: "80 Plasterboards, 160 Timber", total: "£2,640.00", status: "Delivered & Logged" },
+    { id: "TXN-2025-001", customer: "Engr. Tunde Adeleke", items: "100 Bags Cement, 40 Rebar", total: "₦1,390,000", status: "Completed" },
+    { id: "TXN-2025-002", customer: "Alhaji Musa Danjuma", items: "500 Blocks, 50 Bags Cement", total: "₦675,000", status: "Completed" },
   ];
 
   return (
@@ -84,6 +85,7 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
                 <tr className="border-b border-[#1E2638] bg-[#0A0F1D] text-[10px] font-mono text-[#71717A] uppercase">
                   <th className="py-2 px-3">Product Name</th>
                   <th className="py-2 px-3">Category</th>
+                  <th className="py-2 px-3 text-right">Selling Price</th>
                   <th className="py-2 px-3 text-right">In Stock</th>
                   <th className="py-2 px-3 text-center">Status</th>
                 </tr>
@@ -93,6 +95,7 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
                   <tr key={i} className="hover:bg-[#151B2B]/40">
                     <td className="py-2.5 px-3 font-medium text-white">{row.item}</td>
                     <td className="py-2.5 px-3 text-[#A1A1AA]">{row.category}</td>
+                    <td className="py-2.5 px-3 text-right text-[#BAF247]">{row.price}</td>
                     <td className="py-2.5 px-3 text-right text-white font-bold">{row.stock} units</td>
                     <td className="py-2.5 px-3 text-center">
                       <span
@@ -142,43 +145,59 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
               </span>
               <div className="space-y-1.5 text-[11px] text-[#D4D4D8]">
                 <div className="flex justify-between border-b border-[#1E2638] pb-1">
-                  <span>National Cement Depot</span>
-                  <span className="text-[#A1A1AA]">Weekly delivery</span>
+                  <span>West Coast Cement Mills</span>
+                  <span className="text-[#A1A1AA]">Active supplier</span>
                 </div>
                 <div className="flex justify-between border-b border-[#1E2638] pb-1">
-                  <span>Midland Steel Producers</span>
-                  <span className="text-[#A1A1AA]">Order in transit</span>
+                  <span>Apex Steel &amp; Rebar Rolling</span>
+                  <span className="text-[#A1A1AA]">Active supplier</span>
                 </div>
               </div>
             </div>
 
             <div className="p-3 rounded-lg bg-[#0E1322] border border-[#1E2638] space-y-2">
               <span className="text-[10px] uppercase text-[#BAF247] tracking-wider block font-bold">
-                Staff &amp; Role Permissions
+                Role Permissions &amp; Audit
               </span>
               <div className="space-y-1.5 text-[11px] text-[#D4D4D8]">
                 <div className="flex justify-between border-b border-[#1E2638] pb-1">
-                  <span>Warehouse Operators (4)</span>
+                  <span>Depot Operators (4)</span>
                   <span className="text-[#A1A1AA]">Stock &amp; Dispatch</span>
                 </div>
                 <div className="flex justify-between border-b border-[#1E2638] pb-1">
-                  <span>Sales Managers (2)</span>
-                  <span className="text-[#A1A1AA]">Invoicing &amp; Orders</span>
+                  <span>Sales &amp; Invoicing (2)</span>
+                  <span className="text-[#A1A1AA]">POS &amp; Accounts</span>
                 </div>
               </div>
             </div>
           </div>
         )}
+
+        {/* Interactive Demo Callout Banner */}
+        <div className="p-3 bg-gradient-to-r from-[#0E1322] to-[#121A2F] border border-[#BAF247]/30 rounded-lg flex flex-wrap items-center justify-between gap-3 text-xs">
+          <div>
+            <span className="font-semibold text-white block">Full Interactive Operational Prototype</span>
+            <span className="text-[11px] text-[#A1A1AA]">
+              Explore the complete system with live stock deduction, receipt generation, and contractor accounts.
+            </span>
+          </div>
+          <Link
+            href="/demos/building-materials"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#BAF247] hover:bg-[#cbf95c] text-[#050915] font-semibold text-xs transition-colors shrink-0"
+          >
+            <span>Launch Interactive Demo</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </Link>
+        </div>
       </div>
 
       {/* Concept Footer Bar */}
       <div className="px-4 py-2 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-[10px] font-mono text-[#71717A]">
         <span>SERVICE 02 // CUSTOM SOFTWARE &amp; BUSINESS SYSTEMS</span>
-        <span className="text-white">TAILORED OPERATIONAL SOFTWARE</span>
+        <span className="text-[#BAF247]">INTERACTIVE DEMONSTRATION AVAILABLE</span>
       </div>
     </div>
   );
 };
 
 export default BuildingMaterialsConceptPreview;
-
