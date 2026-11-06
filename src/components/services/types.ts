@@ -57,15 +57,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description:
       "We help businesses sell their products online. From displaying products to receiving orders and accepting payments, we build online stores that make buying easier for customers.",
     deliverables: [
-      "Online stores",
-      "Product catalogues",
-      "Shopping carts and checkout",
-      "Online payment integration",
-      "Order management",
-      "Inventory connections",
+      "Custom online storefronts",
+      "Product catalogues for apparel, footwear & accessories",
+      "Shopping bag & multi-step checkout",
+      "Instant card & online payment integration",
+      "Order tracking & customer accounts",
+      "Automated stock & inventory management",
     ],
     example:
-      "An online fashion and footwear store where customers can browse products, select sizes and colours, add items to their cart, pay online and track orders.",
+      "An online fashion boutique where customers browse curated collections of clothes, shoes, and luxury bags, select sizes and colours, pay securely online, and track orders to delivery.",
     slugs: ["ecommerce", "ecommerce-platforms", "ecommerce-solutions"],
   },
   {
