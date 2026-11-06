@@ -37,15 +37,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description:
       "Sometimes ordinary apps and spreadsheets are not enough to run a business. We build software around the way your business works, helping you manage daily activities, keep records and reduce unnecessary manual work.",
     deliverables: [
-      "Bespoke operational systems",
-      "Table QR ordering & point-of-sale",
-      "Kitchen order displays & ticket routing",
+      "Bespoke business platforms",
+      "Table QR ordering & digital menus",
+      "Live order & transaction tracking",
       "Inventory & stock management",
       "Custom dashboards & real-time analytics",
-      "Internal staff workflows",
+      "Internal staff & manager workflows",
     ],
     example:
-      "A restaurant management solution where diners scan table QR codes to order food directly from their phones, while kitchen and floor staff receive and track tickets in real time.",
+      "A custom restaurant management system where diners scan table QR codes to order food directly from their phones, while managers monitor live floor activity, orders, and daily revenue from a unified dashboard.",
     note: "Custom software built specifically for your unique operational needs.",
     slugs: ["custom-software", "custom-web-apps", "business-management", "business-systems"],
   },
