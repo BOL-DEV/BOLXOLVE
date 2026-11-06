@@ -5,67 +5,87 @@ export interface Project {
   title: string;
   category: string;
   tag: string;
+  status: "Available" | "In Development" | "Upcoming";
+  commercialModel: string;
   description: string;
   capabilities: string[];
   route: string;
-  status: "Available" | "In Development" | "Upcoming";
+  ctaText: string;
+  externalUrl?: string;
   isFeatured?: boolean;
 }
 
 export const PROJECTS: Project[] = [
   {
-    id: "zentra",
-    slug: "zentra",
+    id: "invoice-management",
+    slug: "invoice-management",
     number: "01",
-    title: "ZENTRA",
-    category: "SaaS / Event Technology",
-    tag: "WHITE-LABEL SAAS PLATFORM",
+    title: "Invoice Management System",
+    category: "Business Management / Document Automation",
+    tag: "PROPRIETARY BUSINESS SOFTWARE",
     status: "Available",
+    commercialModel: "Subscription-based",
     description:
-      "A white-label event ticketing and management platform that empowers organisers to manage events, sell tickets and verify attendees through a unified digital experience.",
+      "A practical business tool that helps businesses create invoices and receipts, manage transactions and keep their business records organised.",
     capabilities: [
-      "White-label organizer portals",
-      "Ticket inventory & checkout",
-      "Attendee QR verification",
-      "Unified event operations",
+      "Invoice and receipt generation",
+      "Transaction records",
+      "Business document management",
+      "PDF or image exports",
+      "Spreadsheet exports",
+      "Staff access and approval workflows",
     ],
-    route: "/solutions/zentra",
+    route: "/solutions/invoice-management",
+    ctaText: "Explore Invoice Management",
+    externalUrl: "https://invoice.bolxolve.com",
     isFeatured: true,
   },
   {
-    id: "invoice-management",
-    slug: "invoice-management",
+    id: "zentra",
+    slug: "zentra",
     number: "02",
-    title: "Invoice Management System",
-    category: "Business Software / Automation",
-    tag: "WORKFLOW DIGITISATION",
+    title: "ZENTRA",
+    category: "Event Technology / Ticketing",
+    tag: "WHITE-LABEL SAAS PLATFORM",
     status: "Available",
+    commercialModel: "Per-event / platform pricing",
     description:
-      "A custom business solution that digitises receipt creation, transaction records, invoice dispatch, and automated financial document generation.",
+      "A white-label event ticketing platform that helps event organisers create events, sell tickets, manage attendees and verify entry.",
     capabilities: [
-      "Digital receipt & invoice generation",
-      "Multi-rate tax calculation engine",
-      "Automated document creation & export",
-      "Audit trail & chronological ledgers",
+      "Event creation",
+      "Organiser-branded event pages",
+      "Ticket types",
+      "Online payments",
+      "Ticket delivery",
+      "QR ticket verification",
+      "Staff verification workflows",
     ],
-    route: "/solutions/invoice-management",
+    route: "/solutions/zentra",
+    ctaText: "Explore ZENTRA",
+    isFeatured: false,
   },
   {
-    id: "bolmeet-ai",
-    slug: "bolmeet-ai",
+    id: "education-solutions",
+    slug: "education",
     number: "03",
-    title: "BOLMEET AI",
-    category: "Artificial Intelligence / Collaboration",
-    tag: "COGNITIVE WORKSPACE",
-    status: "In Development",
+    title: "Education Management Solutions",
+    category: "Education Technology",
+    tag: "PLANNED EDTECH SOLUTION",
+    status: "Upcoming",
+    commercialModel: "Commercial model to be determined",
     description:
-      "An AI-powered meeting workspace combining real-time communication, transcription, intelligent summaries and actionable task generation.",
+      "We are developing digital tools to help primary and secondary schools manage student records, academic activities, fees and everyday administration.",
     capabilities: [
-      "Real-time audio communication",
-      "Neural speech transcription",
-      "Intelligent executive summaries",
-      "Actionable task generation & sync",
+      "Student records",
+      "Attendance",
+      "Fee management",
+      "Results and academic records",
+      "Teacher and staff management",
+      "Parent communication",
+      "School administration",
     ],
-    route: "/solutions/bolmeet-ai",
+    route: "/solutions/education",
+    ctaText: "Discuss Education Solutions",
+    isFeatured: false,
   },
 ];

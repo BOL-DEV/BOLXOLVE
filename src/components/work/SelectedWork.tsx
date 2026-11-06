@@ -2,18 +2,17 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowRight, Check, GraduationCap } from "lucide-react";
+import Image from "next/image";
+import { ArrowRight, ExternalLink, Check, GraduationCap, Clock, Sparkles } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { PROJECTS } from "./types";
 import ZentraPreview from "./previews/ZentraPreview";
-import BolmeetPreview from "./previews/BolmeetPreview";
-import ReceiptSystemPreview from "./previews/ReceiptSystemPreview";
 
 export const SelectedWork: React.FC = () => {
-  const zentra = PROJECTS[0];
-  const invoice = PROJECTS[1];
-  const bolmeet = PROJECTS[2];
+  const invoice = PROJECTS[0];
+  const zentra = PROJECTS[1];
+  const education = PROJECTS[2];
 
   return (
     <section
@@ -21,93 +20,93 @@ export const SelectedWork: React.FC = () => {
       className="relative w-full py-20 sm:py-28 lg:py-36 bg-[#050915] border-b border-[#1E2638] overflow-hidden"
     >
       {/* Target anchor aliases for external/hash navigation */}
+      <span id="products" className="relative -top-28 pointer-events-none block h-0 w-0" />
+      <span id="solutions" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="work" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="portfolio" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="selected-solutions" className="relative -top-28 pointer-events-none block h-0 w-0" />
-      <span id="selected-work" className="relative -top-28 pointer-events-none block h-0 w-0" />
 
       {/* Controlled Radial Background Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-radial-hero pointer-events-none opacity-25" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-radial-hero pointer-events-none opacity-20" />
 
       <Container size="wide" className="relative z-10">
-        {/* Section Header */}
+        {/* =========================================================================
+            SECTION INTRODUCTION
+           ========================================================================= */}
         <div className="max-w-3xl mb-16 sm:mb-20 space-y-5">
           {/* Eyebrow */}
           <div className="inline-flex items-center space-x-3">
             <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
             <span className="text-xs font-mono font-medium tracking-[0.2em] uppercase text-[#BAF247]">
-              SELECTED SOLUTIONS
-            </span>
-            <span className="text-[#1E2638] font-mono text-xs">/</span>
-            <span className="text-[11px] font-mono tracking-widest text-[#71717A] uppercase">
-              PROVEN EXECUTION
+              OUR PRODUCTS / SOLUTIONS
             </span>
           </div>
 
           {/* Headline */}
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.1]">
-            Ideas are good.{" "}
-            <span className="text-[#BAF247]">Execution is better.</span>
+            Tools we&apos;ve built.{" "}
+            <span className="text-[#BAF247]">Solutions ready to work.</span>
           </h2>
 
           {/* Supporting Text */}
           <p className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed font-normal">
-            A look at the digital solutions, enterprise systems and emerging platforms we&apos;ve brought to life.
+            We develop practical software products that help organisations manage their operations, serve customers and work more efficiently.
           </p>
         </div>
 
         {/* =========================================================================
-            ASYMMETRIC EDITORIAL SOLUTIONS GRID
+            PRODUCTS & SOLUTIONS EDITORIAL SHOWCASE
            ========================================================================= */}
         <div className="space-y-10 sm:space-y-12">
           {/* =======================================================================
-              01. FEATURED FLAGSHIP: ZENTRA (Full Width Asymmetric Card)
+              01. FEATURED PRODUCT: INVOICE MANAGEMENT SYSTEM (Full-Width Asymmetric)
              ======================================================================= */}
           <div
-            id={zentra.id}
+            id={invoice.id}
             className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Left Column (5 Cols): Editorial Information & Capabilities */}
+              {/* Left Column (5 Cols): Editorial Information, Status & Model */}
               <div className="lg:col-span-5 space-y-6">
                 <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-xs font-mono text-[#BAF247] font-bold">
-                      {zentra.number} // FEATURED SOLUTION
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
+                    <span className="text-[#BAF247] font-bold">
+                      {invoice.number} &bull; FEATURED PRODUCT
                     </span>
-                    <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A]">
-                      {zentra.tag}
+                    <span className="text-[#71717A]">&bull;</span>
+                    <span className="text-[10px] uppercase tracking-widest text-[#71717A]">
+                      {invoice.category}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
-                      Category: {zentra.category}
+                  <div className="flex flex-wrap items-center gap-2 pt-1">
+                    <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 font-semibold uppercase tracking-wider">
+                      {invoice.status}
                     </span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#050915] border border-[#1E2638] text-[#BAF247]">
-                      {zentra.status.toUpperCase()}
+                    <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#050915] border border-[#1E2638] text-[#A1A1AA]">
+                      Commercial Model: {invoice.commercialModel}
                     </span>
                   </div>
 
                   <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-                    {zentra.title}
+                    {invoice.title}
                   </h3>
                 </div>
 
-                <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
-                  {zentra.description}
+                <p className="text-sm sm:text-base text-[#D4D4D8] leading-relaxed">
+                  {invoice.description}
                 </p>
 
-                {/* Core Capabilities Chips */}
+                {/* Verified Capabilities */}
                 <div className="space-y-2 pt-2 border-t border-[#1E2638]">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block">
-                    ENGINEERED ARCHITECTURE
+                    VERIFIED CORE FUNCTIONALITY
                   </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {zentra.capabilities.map((cap) => (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#D4D4D8]">
+                    {invoice.capabilities.map((cap) => (
                       <div
                         key={cap}
-                        className="p-2 rounded bg-[#050915] border border-[#1E2638] text-xs text-white flex items-center space-x-2"
+                        className="p-2 rounded bg-[#050915] border border-[#1E2638] flex items-center space-x-2"
                       >
                         <Check className="w-3.5 h-3.5 text-[#BAF247] shrink-0" />
                         <span className="truncate">{cap}</span>
@@ -121,268 +120,227 @@ export const SelectedWork: React.FC = () => {
                   <Button
                     variant="primary"
                     size="md"
-                    href={zentra.route}
+                    href={invoice.route}
                     iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
                   >
-                    View Solution
+                    {invoice.ctaText}
                   </Button>
 
-                  <Button
-                    variant="secondary"
-                    size="md"
-                    href="/#contact"
-                  >
-                    Inquire Similar Architecture
-                  </Button>
+                  {invoice.externalUrl && (
+                    <a
+                      href={invoice.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-[#1E2638] bg-[#050915] hover:bg-[#1E2638] text-white text-sm font-semibold transition-colors"
+                    >
+                      <span>Visit Live Platform</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#71717A]" />
+                    </a>
+                  )}
                 </div>
               </div>
 
-              {/* Right Column (7 Cols): Visual Preview */}
+              {/* Right Column (7 Cols): Authentic Production Screenshot */}
               <div className="lg:col-span-7">
-                <Link href={zentra.route} className="block group/preview cursor-pointer" aria-label={`View ${zentra.title} Solution`}>
+                <Link
+                  href={invoice.route}
+                  className="block group/preview cursor-pointer rounded-xl bg-[#080D1A] border border-[#1E2638] overflow-hidden shadow-2xl transition-all duration-300 hover:border-[#BAF247]/40"
+                  aria-label={`Explore ${invoice.title}`}
+                >
+                  {/* Top Bar matching live screenshot styling */}
+                  <div className="px-4 py-2.5 bg-[#090D1A] border-b border-[#1E2638] flex items-center justify-between text-xs font-mono">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
+                      <span className="text-white font-medium">invoice.bolxolve.com</span>
+                      <span className="text-[#71717A] hidden sm:inline">&bull; Multi-Branch Enterprise Billing</span>
+                    </div>
+                    <span className="text-[10px] text-[#BAF247] flex items-center gap-1 font-semibold">
+                      Live Platform <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </div>
+
+                  {/* Screenshot Viewport */}
+                  <div className="relative w-full aspect-[16/9] bg-[#050915] overflow-hidden">
+                    <Image
+                      src="/showcase/invoice-bolxolve-screenshot.jpg"
+                      alt="BOLXOLVE Invoicing and multi-branch enterprise billing platform screenshot"
+                      fill
+                      priority
+                      sizes="(max-width: 1024px) 100vw, 60vw"
+                      className="object-cover object-top transition-transform duration-700 group-hover/preview:scale-[1.01]"
+                    />
+                  </div>
+
+                  {/* Minimal Caption Strip */}
+                  <div className="px-4 py-3 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-xs">
+                    <span className="font-bold text-white tracking-tight">
+                      BOLXOLVE Invoice &bull; Multi-Branch Depot &amp; Revenue Overview
+                    </span>
+                    <span className="text-[11px] text-[#BAF247] font-mono">
+                      Production Platform
+                    </span>
+                  </div>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* =======================================================================
+              MID-GRID PAIR: 02. ZENTRA & 03. EDUCATION MANAGEMENT SOLUTIONS
+             ======================================================================= */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+            {/* =====================================================================
+                02. PRODUCT: ZENTRA (Event Technology / Ticketing)
+               ===================================================================== */}
+            <div
+              id={zentra.id}
+              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-[0_12px_36px_rgba(0,0,0,0.5)] group"
+            >
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-3 text-xs font-mono">
+                  <span className="text-[#BAF247] font-bold">
+                    {zentra.number} &bull; EVENT TECHNOLOGY
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 font-semibold">
+                      {zentra.status}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-1">
+                  <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
+                    Category: {zentra.category}
+                  </span>
+                  <span className="text-[11px] font-mono text-[#71717A] block">
+                    Commercial Model: {zentra.commercialModel}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white pt-1">
+                    {zentra.title}
+                  </h3>
+                </div>
+
+                <p className="text-sm text-[#D4D4D8] leading-relaxed">
+                  {zentra.description}
+                </p>
+              </div>
+
+              {/* Visual Preview */}
+              <div className="py-2">
+                <Link
+                  href={zentra.route}
+                  className="block group/preview cursor-pointer"
+                  aria-label={`Explore ${zentra.title}`}
+                >
                   <ZentraPreview />
                 </Link>
               </div>
-            </div>
-          </div>
 
-          {/* =======================================================================
-              02 & 03. MID-GRID ASYMMETRIC PAIR: INVOICE MANAGEMENT & BOLMEET AI
-             ======================================================================= */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-            {/* 02. INVOICE MANAGEMENT SYSTEM */}
-            <div
-              id={invoice.id}
-              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-[0_12px_36px_rgba(0,0,0,0.5)] group"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-[#1E2638] pb-3">
-                  <span className="text-xs font-mono text-[#BAF247] font-bold">
-                    {invoice.number} // BUSINESS SYSTEMS
-                  </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#050915] border border-[#1E2638] text-[#BAF247]">
-                    {invoice.status.toUpperCase()}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-xs font-mono text-[#A1A1AA] block mb-1 uppercase tracking-wider">
-                    Category: {invoice.category}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                    {invoice.title}
-                  </h3>
-                </div>
-
-                <p className="text-sm text-[#A1A1AA] leading-relaxed">
-                  {invoice.description}
-                </p>
-              </div>
-
-              {/* Visual Preview */}
-              <div className="py-2">
-                <Link href={invoice.route} className="block group/preview cursor-pointer" aria-label={`View ${invoice.title} Solution`}>
-                  <ReceiptSystemPreview />
-                </Link>
-              </div>
-
-              {/* Capabilities & Link */}
+              {/* Verified Features & CTA */}
               <div className="space-y-4 pt-2 border-t border-[#1E2638]">
-                <div className="grid grid-cols-2 gap-2 text-xs font-mono text-[#A1A1AA]">
-                  {invoice.capabilities.map((cap) => (
-                    <span key={cap} className="flex items-center gap-1.5 truncate">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] shrink-0" />
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="pt-2">
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    href={invoice.route}
-                    className="w-full justify-between"
-                    iconRight={<ArrowRight className="w-3.5 h-3.5" />}
-                  >
-                    <span>View Solution</span>
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            {/* 03. BOLMEET AI */}
-            <div
-              id={bolmeet.id}
-              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-[0_12px_36px_rgba(0,0,0,0.5)] group"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between border-b border-[#1E2638] pb-3">
-                  <span className="text-xs font-mono text-[#BAF247] font-bold">
-                    {bolmeet.number} // ARTIFICIAL INTELLIGENCE
+                <div className="space-y-1.5">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block">
+                    VERIFIED FUNCTIONALITY
                   </span>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-[#050915] border border-[#1E2638] text-[#BAF247]">
-                    {bolmeet.status.toUpperCase()}
-                  </span>
-                </div>
-
-                <div>
-                  <span className="text-xs font-mono text-[#A1A1AA] block mb-1 uppercase tracking-wider">
-                    Category: {bolmeet.category}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
-                    {bolmeet.title}
-                  </h3>
-                </div>
-
-                <p className="text-sm text-[#A1A1AA] leading-relaxed">
-                  {bolmeet.description}
-                </p>
-              </div>
-
-              {/* Visual Preview */}
-              <div className="py-2">
-                <Link href={bolmeet.route} className="block group/preview cursor-pointer" aria-label={`View ${bolmeet.title} Solution`}>
-                  <BolmeetPreview />
-                </Link>
-              </div>
-
-              {/* Capabilities & Link */}
-              <div className="space-y-4 pt-2 border-t border-[#1E2638]">
-                <div className="grid grid-cols-2 gap-2 text-xs font-mono text-[#A1A1AA]">
-                  {bolmeet.capabilities.map((cap) => (
-                    <span key={cap} className="flex items-center gap-1.5 truncate">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] shrink-0" />
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="pt-2">
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    href={bolmeet.route}
-                    className="w-full justify-between"
-                    iconRight={<ArrowRight className="w-3.5 h-3.5" />}
-                  >
-                    <span>View Solution</span>
-                  </Button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* =======================================================================
-              04. UPCOMING SOLUTION PREVIEW: EDUCATION MANAGEMENT SOLUTIONS
-             ======================================================================= */}
-          <div
-            id="education-solution"
-            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/50 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] relative overflow-hidden group"
-          >
-            {/* Subtle Accent Glow */}
-            <div className="absolute top-0 right-0 w-96 h-96 bg-[#BAF247]/5 rounded-full blur-3xl pointer-events-none" />
-
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
-              {/* Left Column (7 Cols): Editorial Introduction */}
-              <div className="lg:col-span-7 space-y-6">
-                <div className="space-y-3">
-                  <div className="flex items-center space-x-3">
-                    <span className="text-xs font-mono text-[#BAF247] font-bold">
-                      04 // UPCOMING SOLUTION
-                    </span>
-                    <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#BAF247]/10 border border-[#BAF247]/30 text-[#BAF247] font-semibold uppercase tracking-wider">
-                      Planned for Primary &amp; Secondary Schools
-                    </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#D4D4D8]">
+                    {zentra.capabilities.map((cap) => (
+                      <span key={cap} className="flex items-center gap-1.5 truncate">
+                        <Check className="w-3.5 h-3.5 text-[#BAF247] shrink-0" />
+                        <span className="truncate">{cap}</span>
+                      </span>
+                    ))}
                   </div>
+                </div>
 
+                <div className="pt-2">
+                  <Button
+                    variant="primary"
+                    size="sm"
+                    href={zentra.route}
+                    className="w-full justify-between"
+                    iconRight={<ArrowRight className="w-3.5 h-3.5" />}
+                  >
+                    <span>{zentra.ctaText}</span>
+                  </Button>
+                </div>
+              </div>
+            </div>
+
+            {/* =====================================================================
+                03. PRODUCT: EDUCATION MANAGEMENT SOLUTIONS (Upcoming / Planned)
+               ===================================================================== */}
+            <div
+              id="education-solutions"
+              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-[0_12px_36px_rgba(0,0,0,0.5)] group relative overflow-hidden"
+            >
+              <div className="space-y-4">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-3 text-xs font-mono">
+                  <span className="text-[#BAF247] font-bold">
+                    {education.number} &bull; EDUCATION TECHNOLOGY
+                  </span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-semibold flex items-center gap-1">
+                    <Clock className="w-3 h-3 text-[#BAF247]" />
+                    {education.status} / Planned
+                  </span>
+                </div>
+
+                <div className="space-y-1">
                   <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
-                    Category: Institutional Software / EdTech Operations
+                    Category: {education.category}
                   </span>
-
-                  <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
-                    Education Management Platform
+                  <span className="text-[11px] font-mono text-[#71717A] block">
+                    Commercial Model: {education.commercialModel}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white pt-1">
+                    {education.title}
                   </h3>
                 </div>
 
-                <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
-                  We are engineering a next-generation administrative and academic operations platform purpose-built for primary and secondary school institutions. Designed to eliminate fragmented spreadsheets, paper attendance registers, and manual billing.
+                <p className="text-sm text-[#D4D4D8] leading-relaxed">
+                  {education.description}
                 </p>
+              </div>
 
-                {/* Core Modules in Development */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5 pt-2 border-t border-[#1E2638] text-xs font-mono">
-                  <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[#D4D4D8]">
-                    <span className="text-[#BAF247] block text-[10px] mb-0.5">MODULE 01</span>
-                    Student Lifecycle &amp; SIS
-                  </div>
-                  <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[#D4D4D8]">
-                    <span className="text-[#BAF247] block text-[10px] mb-0.5">MODULE 02</span>
-                    Digital Attendance &amp; Alerts
-                  </div>
-                  <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[#D4D4D8]">
-                    <span className="text-[#BAF247] block text-[10px] mb-0.5">MODULE 03</span>
-                    Continuous Grading &amp; Reports
-                  </div>
-                  <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[#D4D4D8]">
-                    <span className="text-[#BAF247] block text-[10px] mb-0.5">MODULE 04</span>
-                    Parent &amp; Guardian Portal
-                  </div>
-                  <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[#D4D4D8]">
-                    <span className="text-[#BAF247] block text-[10px] mb-0.5">MODULE 05</span>
-                    Facility &amp; Timetable Engine
-                  </div>
-                  <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[#D4D4D8]">
-                    <span className="text-[#BAF247] block text-[10px] mb-0.5">MODULE 06</span>
-                    Fee Billing &amp; Reconciliation
-                  </div>
+              {/* Architectural Roadmap Blueprint */}
+              <div className="p-4 rounded-xl bg-[#080D1A] border border-[#1E2638] space-y-3 font-mono text-xs">
+                <div className="flex items-center justify-between border-b border-[#1E2638] pb-2 text-[10px]">
+                  <span className="flex items-center gap-1.5 text-white font-medium">
+                    <GraduationCap className="w-3.5 h-3.5 text-[#BAF247]" />
+                    Planned Product Direction
+                  </span>
+                  <span className="text-[#BAF247]">Primary &amp; Secondary Schools</span>
                 </div>
 
-                {/* CTA Link to Dedicated Solution Route */}
-                <div className="pt-2">
-                  <Button
-                    variant="primary"
-                    size="md"
-                    href="/solutions/education"
-                    iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
-                  >
-                    Explore Solution Architecture &amp; Early Pilot
-                  </Button>
+                {/* Planned Direction Grid */}
+                <div className="grid grid-cols-2 gap-1.5 text-[11px] text-[#A1A1AA]">
+                  {education.capabilities.slice(0, 6).map((item) => (
+                    <div key={item} className="flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]/70 shrink-0" />
+                      <span className="truncate">{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Important Transparency Notice */}
+                <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[10px] text-[#71717A] leading-relaxed">
+                  <span className="text-[#BAF247] font-semibold block mb-0.5">
+                    Upcoming Solution Notice:
+                  </span>
+                  Currently in active planning and architectural development. Open for consultations with interested school boards.
                 </div>
               </div>
 
-              {/* Right Column (5 Cols): Architectural Blueprint Graphic */}
-              <div className="lg:col-span-5">
-                <div className="p-6 sm:p-8 rounded-xl bg-[#050915] border border-[#1E2638] space-y-5">
-                  <div className="flex items-center justify-between pb-3 border-b border-[#1E2638] text-[10px] font-mono">
-                    <span className="flex items-center gap-1.5 text-white font-medium">
-                      <GraduationCap className="w-4 h-4 text-[#BAF247]" />
-                      EDTECH OPERATING SYSTEM
-                    </span>
-                    <span className="text-[#BAF247] font-semibold">UPCOMING</span>
-                  </div>
-
-                  <div className="space-y-3 text-xs font-mono">
-                    <div className="p-3 rounded bg-[#101522] border border-[#1E2638] flex items-center justify-between">
-                      <span className="text-[#A1A1AA]">Target Institutions</span>
-                      <span className="text-white font-semibold">K-12 Primary &amp; Secondary</span>
-                    </div>
-                    <div className="p-3 rounded bg-[#101522] border border-[#1E2638] flex items-center justify-between">
-                      <span className="text-[#A1A1AA]">Deployment Model</span>
-                      <span className="text-[#BAF247]">Secure Cloud Tenant</span>
-                    </div>
-                    <div className="p-3 rounded bg-[#101522] border border-[#1E2638] flex items-center justify-between">
-                      <span className="text-[#A1A1AA]">Current Status</span>
-                      <span className="text-white">Active Architectural Build</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3 rounded bg-[#151B2B] border border-[#BAF247]/20 text-[11px] font-mono text-[#A1A1AA]">
-                    <span className="text-[#BAF247] font-semibold block mb-1 uppercase tracking-wider">
-                      Pilot Program Notice
-                    </span>
-                    We are currently collaborating with selected school boards for the 2025 academic year deployment.
-                  </div>
-                </div>
+              {/* CTA Link */}
+              <div className="space-y-4 pt-2 border-t border-[#1E2638]">
+                <Button
+                  variant="primary"
+                  size="sm"
+                  href={education.route}
+                  className="w-full justify-between"
+                  iconRight={<ArrowRight className="w-3.5 h-3.5" />}
+                >
+                  <span>{education.ctaText}</span>
+                </Button>
               </div>
             </div>
           </div>
