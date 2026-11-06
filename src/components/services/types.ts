@@ -95,15 +95,15 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
     description:
       "We use artificial intelligence to help businesses handle information, answer questions, process documents and complete certain tasks faster.",
     deliverables: [
-      "AI-powered assistants",
-      "Customer support assistants",
-      "Document reading and processing",
-      "AI integrations into existing software",
-      "Business information analysis",
-      "Intelligent search and reporting",
+      "AI meeting copilots & speech intelligence",
+      "Automated decision detection & task assignment",
+      "Conversational semantic search & memory",
+      "Executive summaries & report generation",
+      "AI-powered customer & internal assistants",
+      "Document reading & data extraction",
     ],
     example:
-      "An AI business assistant that can answer questions about company records, extract information from uploaded invoices and summarise sales using authorised business data.",
+      "Production platforms such as BOLMEET AI (active meeting intelligence platform featuring live transcript copilots, automated decision detection, and semantic conversation memory at bolmeet-ai.vercel.app).",
     slugs: ["ai-solutions", "ai-integrations", "ai-emerging"],
   },
   {
