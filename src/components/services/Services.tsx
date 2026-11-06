@@ -8,7 +8,7 @@ import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { SERVICE_CATEGORIES, ServiceCategory } from "./types";
 import RealEstateConceptPreview from "./visuals/RealEstateConceptPreview";
-import BuildingMaterialsConceptPreview from "./visuals/BuildingMaterialsConceptPreview";
+import RestaurantSolutionPreview from "./visuals/RestaurantSolutionPreview";
 import EcommerceConceptPreview from "./visuals/EcommerceConceptPreview";
 import OrderAutomationConceptPreview from "./visuals/OrderAutomationConceptPreview";
 import AiAssistantConceptPreview from "./visuals/AiAssistantConceptPreview";
@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 const CONCEPT_PREVIEWS: Record<string, React.FC> = {
   "web-digital": RealEstateConceptPreview,
-  "custom-software": BuildingMaterialsConceptPreview,
+  "custom-software": RestaurantSolutionPreview,
   ecommerce: EcommerceConceptPreview,
   automation: OrderAutomationConceptPreview,
   "ai-solutions": AiAssistantConceptPreview,
@@ -257,16 +257,6 @@ export const Services: React.FC = () => {
                       Inquire about {activeCategory.title.split("&")[0].trim()}
                     </Button>
 
-                    {activeCategory.id === "custom-software" && (
-                      <Link
-                        href="/demos/building-materials"
-                        className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#BAF247]/40 bg-[#BAF247]/10 hover:bg-[#BAF247]/20 text-[#BAF247] text-sm font-semibold transition-colors"
-                      >
-                        <span>Launch Interactive Demo</span>
-                        <ExternalLink className="w-4 h-4" />
-                      </Link>
-                    )}
-
                     {activeCategory.id === "automation" && (
                       <Link
                         href="/demos/business-automation"
@@ -402,16 +392,6 @@ export const Services: React.FC = () => {
                         >
                           Inquire about {category.title.split("&")[0].trim()}
                         </Button>
-
-                        {category.id === "custom-software" && (
-                          <Link
-                            href="/demos/building-materials"
-                            className="w-full py-2 px-3 rounded-lg border border-[#BAF247]/40 bg-[#BAF247]/10 hover:bg-[#BAF247]/20 text-[#BAF247] text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
-                          >
-                            <span>Launch Full Interactive Demo</span>
-                            <ExternalLink className="w-3.5 h-3.5" />
-                          </Link>
-                        )}
 
                         {category.id === "automation" && (
                           <Link

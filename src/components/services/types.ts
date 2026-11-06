@@ -32,20 +32,20 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
   {
     id: "custom-software",
     number: "02",
-    title: "Custom Software & Business Systems",
+    title: "Custom Software",
     categoryLabel: "CUSTOM SOFTWARE",
     description:
       "Sometimes ordinary apps and spreadsheets are not enough to run a business. We build software around the way your business works, helping you manage daily activities, keep records and reduce unnecessary manual work.",
     deliverables: [
-      "Business management systems",
-      "Inventory and stock management",
-      "Sales and transaction management",
-      "Staff and customer management",
-      "Custom dashboards and reporting",
-      "Internal business applications",
+      "Bespoke operational systems",
+      "Table QR ordering & point-of-sale",
+      "Kitchen order displays & ticket routing",
+      "Inventory & stock management",
+      "Custom dashboards & real-time analytics",
+      "Internal staff workflows",
     ],
     example:
-      "A building materials distribution company that needs to manage products, stock levels, sales, suppliers, customers and staff from one system.",
+      "A restaurant management solution where diners scan table QR codes to order food directly from their phones, while kitchen and floor staff receive and track tickets in real time.",
     note: "Custom software built specifically for your unique operational needs.",
     slugs: ["custom-software", "custom-web-apps", "business-management", "business-systems"],
   },
