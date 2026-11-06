@@ -252,16 +252,28 @@ export const SelectedWork: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
                   <Button
                     variant="primary"
                     size="sm"
                     href={zentra.route}
-                    className="w-full justify-between"
+                    className="grow justify-between"
                     iconRight={<ArrowRight className="w-3.5 h-3.5" />}
                   >
                     <span>{zentra.ctaText}</span>
                   </Button>
+
+                  {zentra.externalUrl && (
+                    <a
+                      href={zentra.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-[#1E2638] bg-[#050915] hover:bg-[#1E2638] text-white text-xs font-semibold transition-colors shrink-0"
+                    >
+                      <span>Visit Live Platform</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#71717A]" />
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

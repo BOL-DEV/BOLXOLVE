@@ -62,6 +62,7 @@ export const PROJECTS: Project[] = [
     ],
     route: "/solutions/zentra",
     ctaText: "Explore ZENTRA",
+    externalUrl: "https://zentra.bolxolve.com",
     isFeatured: false,
   },
   {
