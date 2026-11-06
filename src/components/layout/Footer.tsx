@@ -18,7 +18,14 @@ export const Footer: React.FC = () => {
   }
 
   return (
-    <footer className="w-full bg-[#050915] border-t border-[#1E2638] text-white pt-16 pb-12">
+    <footer
+      id="contact"
+      className="w-full bg-[#050915] border-t border-[#1E2638] text-white pt-16 pb-12 relative"
+    >
+      {/* Anchor targets for external & hash navigation */}
+      <span id="about" className="relative -top-28 pointer-events-none block h-0 w-0" />
+      <span id="company" className="relative -top-28 pointer-events-none block h-0 w-0" />
+      <span id="inquiries" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <Container size="wide">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 pb-16 border-b border-[#1E2638]">
           {/* Brand Column */}
