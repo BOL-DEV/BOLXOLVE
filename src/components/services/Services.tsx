@@ -144,7 +144,7 @@ export const Services: React.FC = () => {
                         isActive ? "text-[#BAF247] font-bold" : "text-[#71717A] group-hover:text-white"
                       )}
                     >
-                      {category.number} // {category.categoryLabel}
+                      {category.number} &bull; {category.categoryLabel}
                     </span>
                     <ArrowUpRight
                       className={cn(
@@ -279,7 +279,7 @@ export const Services: React.FC = () => {
                   </div>
 
                   <span className="text-xs font-mono text-[#71717A]">
-                    Everyday Solutions // Built Around Your Business
+                    Everyday Solutions &bull; Built Around Your Business
                   </span>
                 </div>
               </motion.div>

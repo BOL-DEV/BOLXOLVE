@@ -73,7 +73,7 @@ export const OrderAutomationConceptPreview: React.FC = () => {
         <div className="flex items-center gap-2">
           <Workflow className="w-3.5 h-3.5 text-[#BAF247]" />
           <span className="text-white font-medium">DEMONSTRATION CONCEPT</span>
-          <span className="text-[#71717A]">// 6-Stage Automated Order Pipeline</span>
+          <span className="text-[#71717A]">&bull; 6-Stage Automated Order Pipeline</span>
         </div>
         <span className="text-[11px] text-[#A1A1AA]">
           Multi-System Event Synchronization
@@ -154,7 +154,7 @@ export const OrderAutomationConceptPreview: React.FC = () => {
 
       {/* Concept Footer Bar */}
       <div className="px-4 py-2 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-[10px] font-mono text-[#71717A]">
-        <span>SERVICE 04 // BUSINESS AUTOMATION &amp; INTEGRATIONS</span>
+        <span>SERVICE 04 &bull; BUSINESS AUTOMATION &amp; INTEGRATIONS</span>
         <span className="text-[#BAF247]">FULL WORKFLOW SIMULATOR AVAILABLE</span>
       </div>
     </div>

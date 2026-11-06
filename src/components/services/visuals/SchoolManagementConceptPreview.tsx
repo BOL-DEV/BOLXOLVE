@@ -13,7 +13,7 @@ export const SchoolManagementConceptPreview: React.FC = () => {
         <div className="flex items-center gap-2">
           <GraduationCap className="w-3.5 h-3.5 text-[#BAF247]" />
           <span className="text-white font-medium">DEMONSTRATION CONCEPT</span>
-          <span className="text-[#71717A]">// School Management Platform</span>
+          <span className="text-[#71717A]">&bull; School Management Platform</span>
         </div>
         <span className="px-2 py-0.5 rounded bg-[#BAF247]/10 border border-[#BAF247]/30 text-[#BAF247] text-[10px] font-semibold">
           PLANNED SOLUTION DIRECTION
@@ -159,7 +159,7 @@ export const SchoolManagementConceptPreview: React.FC = () => {
 
       {/* Concept Footer Bar */}
       <div className="px-4 py-2 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-[10px] font-mono text-[#71717A]">
-        <span>SERVICE 06 // EDUCATION TECHNOLOGY SOLUTIONS</span>
+        <span>SERVICE 06 &bull; EDUCATION TECHNOLOGY SOLUTIONS</span>
         <span className="text-white">PLANNED SOLUTION ARCHITECTURE</span>
       </div>
     </div>

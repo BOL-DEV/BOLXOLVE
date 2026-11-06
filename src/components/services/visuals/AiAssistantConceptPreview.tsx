@@ -28,7 +28,7 @@ export const AiAssistantConceptPreview: React.FC = () => {
         <div className="flex items-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-[#BAF247]" />
           <span className="text-white font-medium">DEMONSTRATION CONCEPT</span>
-          <span className="text-[#71717A]">// Intelligent Business Assistant</span>
+          <span className="text-[#71717A]">&bull; Intelligent Business Assistant</span>
         </div>
         <span className="text-[11px] text-[#A1A1AA]">
           Document Extraction &amp; Q&amp;A
@@ -94,7 +94,7 @@ export const AiAssistantConceptPreview: React.FC = () => {
 
       {/* Concept Footer Bar */}
       <div className="px-4 py-2 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-[10px] font-mono text-[#71717A]">
-        <span>SERVICE 05 // AI &amp; INTELLIGENT SOLUTIONS</span>
+        <span>SERVICE 05 &bull; AI &amp; INTELLIGENT SOLUTIONS</span>
         <span className="text-white">PRACTICAL ASSISTANCE FOR ROUTINE TASKS</span>
       </div>
     </div>

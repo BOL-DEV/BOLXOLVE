@@ -58,7 +58,7 @@ export const AutomationHeader: React.FC = () => {
                 Automated Order Processing Engine
               </h1>
               <span className="px-2 py-0.5 rounded text-[11px] font-medium bg-lime-50 text-lime-800 border border-lime-200">
-                Service 04 // Automation
+                Service 04 &bull; Automation
               </span>
             </div>
             <p className="text-xs text-slate-500">

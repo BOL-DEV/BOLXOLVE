@@ -26,7 +26,7 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
         <div className="flex items-center gap-2">
           <Layers className="w-3.5 h-3.5 text-[#BAF247]" />
           <span className="text-white font-medium">DEMONSTRATION CONCEPT</span>
-          <span className="text-[#71717A]">// Building Materials Operations System</span>
+          <span className="text-[#71717A]">&bull; Building Materials Operations System</span>
         </div>
         <span className="text-[11px] text-[#A1A1AA]">
           Single System for Stock, Sales &amp; Staff
@@ -193,7 +193,7 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
 
       {/* Concept Footer Bar */}
       <div className="px-4 py-2 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-[10px] font-mono text-[#71717A]">
-        <span>SERVICE 02 // CUSTOM SOFTWARE &amp; BUSINESS SYSTEMS</span>
+        <span>SERVICE 02 &bull; CUSTOM SOFTWARE &amp; BUSINESS SYSTEMS</span>
         <span className="text-[#BAF247]">INTERACTIVE DEMONSTRATION AVAILABLE</span>
       </div>
     </div>
