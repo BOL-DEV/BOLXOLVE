@@ -89,13 +89,12 @@ export const WorkflowVisualizer: React.FC = () => {
           return (
             <div
               key={step.id}
-              className={`rounded-xl border p-3.5 transition-all duration-300 flex flex-col justify-between space-y-3 relative ${
-                isStepActive
+              className={`rounded-xl border p-3.5 transition-all duration-300 flex flex-col justify-between space-y-3 relative ${isStepActive
                   ? "bg-emerald-50/70 border-emerald-500 shadow-md ring-2 ring-emerald-500/20"
                   : isStepCompleted
-                  ? "bg-slate-50/80 border-slate-300 text-slate-800"
-                  : "bg-white border-slate-200 text-slate-400 opacity-70"
-              }`}
+                    ? "bg-slate-50/80 border-slate-300 text-slate-800"
+                    : "bg-white border-slate-200 text-slate-400 opacity-70"
+                }`}
             >
               {/* Card Header */}
               <div className="flex items-center justify-between">
@@ -114,13 +113,12 @@ export const WorkflowVisualizer: React.FC = () => {
               {/* Node Icon & Name */}
               <div className="space-y-1">
                 <div
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${
-                    isStepActive
+                  className={`w-8 h-8 rounded-lg flex items-center justify-center transition-colors ${isStepActive
                       ? "bg-emerald-600 text-white"
                       : isStepCompleted
-                      ? "bg-slate-900 text-[#BAF247]"
-                      : "bg-slate-100 text-slate-400"
-                  }`}
+                        ? "bg-slate-900 text-[#BAF247]"
+                        : "bg-slate-100 text-slate-400"
+                    }`}
                 >
                   <StepIcon className="w-4 h-4" />
                 </div>
@@ -144,8 +142,8 @@ export const WorkflowVisualizer: React.FC = () => {
                     isStepActive
                       ? "text-emerald-700 font-bold"
                       : isStepCompleted
-                      ? "text-slate-600"
-                      : "text-slate-400"
+                        ? "text-slate-600"
+                        : "text-slate-400"
                   }
                 >
                   {isStepActive ? "Executing..." : isStepCompleted ? "Completed" : "Queued"}

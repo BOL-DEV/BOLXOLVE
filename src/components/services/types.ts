@@ -26,7 +26,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
       "Interactive web platforms",
     ],
     example:
-      "A website for a real estate company where visitors can browse properties, view property details, search available listings and request inspections.",
+      "Production platforms such as HRH (cinematic cultural editorial and audio platform at hrhsession.vercel.app) and Dikonut Limited (corporate engineering and construction infrastructure flagship at dikonut.vercel.app).",
     slugs: ["web-digital", "business-websites", "web-digital-experiences"],
   },
   {
