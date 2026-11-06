@@ -147,18 +147,6 @@ export const SelectedWork: React.FC = () => {
                   className="block group/preview cursor-pointer rounded-xl bg-[#080D1A] border border-[#1E2638] overflow-hidden shadow-2xl transition-all duration-300 hover:border-[#BAF247]/40"
                   aria-label={`Explore ${invoice.title}`}
                 >
-                  {/* Top Bar matching live screenshot styling */}
-                  <div className="px-4 py-2.5 bg-[#090D1A] border-b border-[#1E2638] flex items-center justify-between text-xs font-mono">
-                    <div className="flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
-                      <span className="text-white font-medium">invoice.bolxolve.com</span>
-                      <span className="text-[#71717A] hidden sm:inline">&bull; Multi-Branch Enterprise Billing</span>
-                    </div>
-                    <span className="text-[10px] text-[#BAF247] flex items-center gap-1 font-semibold">
-                      Live Platform <ExternalLink className="w-3 h-3" />
-                    </span>
-                  </div>
-
                   {/* Screenshot Viewport */}
                   <div className="relative w-full aspect-[16/9] bg-[#050915] overflow-hidden">
                     <Image
@@ -186,18 +174,16 @@ export const SelectedWork: React.FC = () => {
           </div>
 
           {/* =======================================================================
-              MID-GRID PAIR: 02. ZENTRA & 03. EDUCATION MANAGEMENT SOLUTIONS
+              02. PRODUCT: ZENTRA (Event Technology / Ticketing) — Horizontal Showcase
              ======================================================================= */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
-            {/* =====================================================================
-                02. PRODUCT: ZENTRA (Event Technology / Ticketing)
-               ===================================================================== */}
-            <div
-              id={zentra.id}
-              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-[0_12px_36px_rgba(0,0,0,0.5)] group"
-            >
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-3 text-xs font-mono">
+          <div
+            id={zentra.id}
+            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column (5 Cols): Editorial & Commercial Context */}
+              <div className="lg:col-span-5 space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-4 text-xs font-mono">
                   <span className="text-[#BAF247] font-bold">
                     {zentra.number} &bull; EVENT TECHNOLOGY
                   </span>
@@ -208,25 +194,67 @@ export const SelectedWork: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-2">
                   <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
                     Category: {zentra.category}
                   </span>
-                  <span className="text-[11px] font-mono text-[#71717A] block">
+                  <span className="text-xs font-mono text-[#71717A] block">
                     Commercial Model: {zentra.commercialModel}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white pt-1">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white pt-1">
                     {zentra.title}
                   </h3>
                 </div>
 
-                <p className="text-sm text-[#D4D4D8] leading-relaxed">
+                <p className="text-sm sm:text-base text-[#D4D4D8] leading-relaxed">
                   {zentra.description}
                 </p>
+
+                {/* Verified Core Functionality */}
+                <div className="space-y-2 pt-2 border-t border-[#1E2638]">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block">
+                    VERIFIED CORE FUNCTIONALITY
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#D4D4D8]">
+                    {zentra.capabilities.map((cap) => (
+                      <div
+                        key={cap}
+                        className="p-2 rounded bg-[#050915] border border-[#1E2638] flex items-center space-x-2"
+                      >
+                        <Check className="w-3.5 h-3.5 text-[#BAF247] shrink-0" />
+                        <span className="truncate">{cap}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Links */}
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    href={zentra.route}
+                    iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+                  >
+                    {zentra.ctaText}
+                  </Button>
+
+                  {zentra.externalUrl && (
+                    <a
+                      href={zentra.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-[#1E2638] bg-[#050915] hover:bg-[#1E2638] text-white text-sm font-semibold transition-colors"
+                    >
+                      <span>Visit Live Platform</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#71717A]" />
+                    </a>
+                  )}
+                </div>
               </div>
 
-              {/* Visual Preview */}
-              <div className="py-2">
+              {/* Right Column (7 Cols): Authentic Production Screenshot */}
+              <div className="lg:col-span-7">
                 <Link
                   href={zentra.route}
                   className="block group/preview cursor-pointer"
@@ -235,58 +263,20 @@ export const SelectedWork: React.FC = () => {
                   <ZentraPreview />
                 </Link>
               </div>
-
-              {/* Verified Features & CTA */}
-              <div className="space-y-4 pt-2 border-t border-[#1E2638]">
-                <div className="space-y-1.5">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block">
-                    VERIFIED FUNCTIONALITY
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#D4D4D8]">
-                    {zentra.capabilities.map((cap) => (
-                      <span key={cap} className="flex items-center gap-1.5 truncate">
-                        <Check className="w-3.5 h-3.5 text-[#BAF247] shrink-0" />
-                        <span className="truncate">{cap}</span>
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                  <Button
-                    variant="primary"
-                    size="sm"
-                    href={zentra.route}
-                    className="grow justify-between"
-                    iconRight={<ArrowRight className="w-3.5 h-3.5" />}
-                  >
-                    <span>{zentra.ctaText}</span>
-                  </Button>
-
-                  {zentra.externalUrl && (
-                    <a
-                      href={zentra.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg border border-[#1E2638] bg-[#050915] hover:bg-[#1E2638] text-white text-xs font-semibold transition-colors shrink-0"
-                    >
-                      <span>Visit Live Platform</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-[#71717A]" />
-                    </a>
-                  )}
-                </div>
-              </div>
             </div>
+          </div>
 
-            {/* =====================================================================
-                03. PRODUCT: EDUCATION MANAGEMENT SOLUTIONS (Upcoming / Planned)
-               ===================================================================== */}
-            <div
-              id="education-solutions"
-              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-8 flex flex-col justify-between space-y-6 shadow-[0_12px_36px_rgba(0,0,0,0.5)] group relative overflow-hidden"
-            >
-              <div className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-3 text-xs font-mono">
+          {/* =======================================================================
+              03. PRODUCT: EDUCATION MANAGEMENT SOLUTIONS (Upcoming / Planned) — Horizontal Showcase
+             ======================================================================= */}
+          <div
+            id="education-solutions"
+            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group relative overflow-hidden"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column (5 Cols): Editorial & Upcoming Status */}
+              <div className="lg:col-span-5 space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-4 text-xs font-mono">
                   <span className="text-[#BAF247] font-bold">
                     {education.number} &bull; EDUCATION TECHNOLOGY
                   </span>
@@ -296,63 +286,89 @@ export const SelectedWork: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="space-y-1">
+                <div className="space-y-2">
                   <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
                     Category: {education.category}
                   </span>
-                  <span className="text-[11px] font-mono text-[#71717A] block">
+                  <span className="text-xs font-mono text-[#71717A] block">
                     Commercial Model: {education.commercialModel}
                   </span>
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white pt-1">
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white pt-1">
                     {education.title}
                   </h3>
                 </div>
 
-                <p className="text-sm text-[#D4D4D8] leading-relaxed">
+                <p className="text-sm sm:text-base text-[#D4D4D8] leading-relaxed">
                   {education.description}
                 </p>
-              </div>
 
-              {/* Architectural Roadmap Blueprint */}
-              <div className="p-4 rounded-xl bg-[#080D1A] border border-[#1E2638] space-y-3 font-mono text-xs">
-                <div className="flex items-center justify-between border-b border-[#1E2638] pb-2 text-[10px]">
-                  <span className="flex items-center gap-1.5 text-white font-medium">
-                    <GraduationCap className="w-3.5 h-3.5 text-[#BAF247]" />
-                    Planned Product Direction
+                {/* Primary & Secondary School Context */}
+                <div className="p-3.5 rounded-xl bg-[#080D1A] border border-[#1E2638] text-xs text-[#A1A1AA] leading-relaxed space-y-1">
+                  <span className="text-white font-medium flex items-center gap-1.5">
+                    <GraduationCap className="w-4 h-4 text-[#BAF247]" />
+                    Primary &amp; Secondary Institution Focus
                   </span>
-                  <span className="text-[#BAF247]">Primary &amp; Secondary Schools</span>
+                  <p className="text-[11px] text-[#71717A]">
+                    Designed specifically to meet the statutory grading, fee tracking, and administration workflows of primary and secondary schools.
+                  </p>
                 </div>
 
-                {/* Planned Direction Grid */}
-                <div className="grid grid-cols-2 gap-1.5 text-[11px] text-[#A1A1AA]">
-                  {education.capabilities.slice(0, 6).map((item) => (
-                    <div key={item} className="flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]/70 shrink-0" />
-                      <span className="truncate">{item}</span>
+                {/* Action CTA */}
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    href={education.route}
+                    iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+                  >
+                    {education.ctaText}
+                  </Button>
+                </div>
+              </div>
+
+              {/* Right Column (7 Cols): Architectural Roadmap & Blueprint Panel */}
+              <div className="lg:col-span-7">
+                <div className="rounded-xl bg-[#080D1A] border border-[#1E2638] overflow-hidden shadow-2xl p-6 sm:p-8 space-y-6">
+                  <div className="flex items-center justify-between border-b border-[#1E2638] pb-3 text-xs font-mono">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2 h-2 rounded-full bg-[#BAF247]/70" />
+                      <span className="text-white font-medium">Planned Product Architecture &amp; Modules</span>
                     </div>
-                  ))}
-                </div>
+                    <span className="text-[10px] px-2 py-0.5 rounded bg-[#101522] border border-[#1E2638] text-[#A1A1AA]">
+                      Architecture Blueprint
+                    </span>
+                  </div>
 
-                {/* Important Transparency Notice */}
-                <div className="p-2.5 rounded bg-[#050915] border border-[#1E2638] text-[10px] text-[#71717A] leading-relaxed">
-                  <span className="text-[#BAF247] font-semibold block mb-0.5">
-                    Upcoming Solution Notice:
-                  </span>
-                  Currently in active planning and architectural development. Open for consultations with interested school boards.
-                </div>
-              </div>
+                  {/* Planned Modules Grid */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {education.capabilities.map((item) => (
+                      <div
+                        key={item}
+                        className="p-3 rounded-lg bg-[#050915] border border-[#1E2638] flex items-start gap-2.5"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] mt-1.5 shrink-0" />
+                        <div>
+                          <span className="text-xs font-medium text-white block">{item}</span>
+                          <span className="text-[10px] text-[#71717A] font-mono">Specification in development</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
 
-              {/* CTA Link */}
-              <div className="space-y-4 pt-2 border-t border-[#1E2638]">
-                <Button
-                  variant="primary"
-                  size="sm"
-                  href={education.route}
-                  className="w-full justify-between"
-                  iconRight={<ArrowRight className="w-3.5 h-3.5" />}
-                >
-                  <span>{education.ctaText}</span>
-                </Button>
+                  {/* Anti-Hallucination & Transparency Notice */}
+                  <div className="p-4 rounded-lg bg-[#050915] border border-[#1E2638] text-xs text-[#71717A] leading-relaxed">
+                    <span className="text-[#BAF247] font-semibold block mb-1">
+                      Upcoming Solution Notice:
+                    </span>
+                    This product is currently in active planning and architectural development. It is not represented as an operational or commercially available platform. Open for discovery consultations with school administrators and education boards.
+                  </div>
+
+                  {/* Footer status strip */}
+                  <div className="pt-2 border-t border-[#1E2638] flex items-center justify-between text-xs font-mono text-[#71717A]">
+                    <span>Status: Upcoming / Planned</span>
+                    <span className="text-[#BAF247]">Open For Inquiries</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
