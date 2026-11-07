@@ -1,421 +1,329 @@
-export interface KeyCapability {
+export interface SolutionCapability {
   title: string;
   description: string;
 }
 
-export interface ArchitectureHighlight {
-  label: string;
-  detail: string;
-}
-
-export interface TechStackGroup {
-  category: string;
-  technologies: string[];
-}
-
-export interface ProjectMetric {
-  label: string;
-  value: string;
-  subtext: string;
-}
-
-export interface ProjectCaseStudy {
+export interface SolutionProject {
   slug: string;
   number: string;
   title: string;
-  category: string;
-  tag: string;
-  status: "Available" | "In Development" | "Upcoming";
-  statusBadgeVariant: "success" | "neutral" | "accent";
-  year: string;
-  discipline: string;
-  clientType: string;
-  overview: string;
-  problemStatement: {
-    summary: string;
-    points: string[];
+  eyebrow: string;
+  headline: string;
+  introText: string[];
+  primaryCta: {
+    text: string;
+    href: string;
+    external?: boolean;
   };
-  solutionApproach: {
-    summary: string;
-    points: string[];
+  secondaryCta: {
+    text: string;
+    href: string;
+    external?: boolean;
   };
-  keyCapabilities: KeyCapability[];
-  technicalArchitecture: {
-    summary: string;
-    highlights: ArchitectureHighlight[];
+  liveUrl?: string;
+  productWebsite?: string;
+  screenshot: {
+    src: string;
+    alt: string;
+    captionTitle: string;
+    captionStatus: string;
   };
-  techStack: TechStackGroup[];
-  metrics: ProjectMetric[];
-  previewComponentId: "zentra" | "invoice-management" | "bolmeet-ai";
+  problemSection: {
+    title: string;
+    paragraphs: string[];
+  };
+  capabilitiesSection: {
+    title: string;
+    items: SolutionCapability[];
+  };
+  audienceSection: {
+    title: string;
+    intro: string;
+    suitableFor: string[];
+  };
+  closingSection: {
+    title: string;
+    description: string;
+    ctaText: string;
+    ctaHref: string;
+    external?: boolean;
+    note?: string;
+    productWebsite?: string;
+  };
 }
 
-export const CASE_STUDIES: Record<string, ProjectCaseStudy> = {
-  zentra: {
-    slug: "zentra",
-    number: "01",
-    title: "ZENTRA",
-    category: "SaaS / Event Technology",
-    tag: "WHITE-LABEL SAAS PLATFORM",
-    status: "Available",
-    statusBadgeVariant: "success",
-    year: "2024",
-    discipline: "Full-Stack Web Architecture & Platform Engineering",
-    clientType: "Commercial Event Organizers & Entertainment Promoters",
-    overview:
-      "ZENTRA is a white-label event ticketing and operations platform that empowers organizers to publish branded event storefronts, manage ticket inventory, process multi-currency payments, and verify attendee admissions through cryptographically signed QR scanning.",
-    problemStatement: {
-      summary:
-        "Commercial event organizers face steep friction when relying on conventional ticketing aggregators. Heavy platform fees (often exceeding 10–15% per ticket), locked-down customer data, and fragile admission verification during peak entry times create severe operational and financial vulnerabilities.",
-      points: [
-        "Extortionate commission fees draining organizer margins on high-volume ticket sales.",
-        "Zero customer data retention, preventing organizers from building lasting direct-to-consumer brand relationships.",
-        "Unreliable check-in scanners that stall or fail when cellular networks congest at event entrances.",
-        "Overselling risks during high-demand on-sale drops due to distributed database race conditions.",
-      ],
-    },
-    solutionApproach: {
-      summary:
-        "BOLXOLVE engineered a multi-tenant, white-label ticketing infrastructure allowing organizers to deploy custom domains and retain 100% of attendee relationships. We designed atomic reservation locks to eliminate overselling and implemented offline-capable cryptographic QR verification for sub-second door admission.",
-      points: [
-        "Architected multi-tenant isolation ensuring individual organizers control custom styling, email templates, and pricing tiers.",
-        "Deployed atomic Redis reservation counters to lock inventory for 10 minutes during active checkout, eliminating double-selling.",
-        "Built cryptographic offline-first QR ticket validation capable of verifying authenticity even during complete cellular outage.",
-        "Integrated direct Stripe Connect payouts so revenues settle directly to organizer accounts with zero intermediary hold periods.",
-      ],
-    },
-    keyCapabilities: [
-      {
-        title: "White-Label Storefront Portals",
-        description:
-          "Organizers configure custom domain event portals with bespoke brand typography, logos, and custom checkout flows.",
-      },
-      {
-        title: "Atomic Tiered Inventory Control",
-        description:
-          "Support for early bird, VIP, table packages, and general admission with millisecond-accurate seat and tier allocations.",
-      },
-      {
-        title: "Offline-Resilient QR Admission",
-        description:
-          "High-speed door scanner progressive web application that verifies cryptographically signed ticket payloads with or without internet.",
-      },
-      {
-        title: "Automated Document Dispatch",
-        description:
-          "Asynchronous headless PDF ticket generation with high-resolution 2D barcodes and automated email delivery upon settlement.",
-      },
-      {
-        title: "Real-Time Operational Analytics",
-        description:
-          "Live dashboard metrics showing sales velocity, revenue breakdown, admission check-in percentages, and gate throughput.",
-      },
-      {
-        title: "Direct Gateway Payouts",
-        description:
-          "Zero-delay financial routing with Stripe Connect, Apple Pay, Google Pay, and international payment support.",
-      },
-    ],
-    technicalArchitecture: {
-      summary:
-        "A distributed, high-concurrency architecture engineered for extreme traffic spikes during public ticket release moments.",
-      highlights: [
-        {
-          label: "Frontend & Edge Delivery",
-          detail: "Next.js App Router deployed at the edge with dynamic server-side rendering and client-side progressive caching.",
-        },
-        {
-          label: "Concurrency & Inventory Locking",
-          detail: "Redis cluster utilizing Lua scripts to ensure ACID-compliant inventory decrements under simultaneous user load.",
-        },
-        {
-          label: "Data Layer & Isolation",
-          detail: "PostgreSQL database with multi-tenant row-level security (RLS) policies guaranteeing tenant privacy.",
-        },
-        {
-          label: "Async Ticket Pipeline",
-          detail: "AWS SQS worker queue powering serverless PDF ticket rendering and instantaneous transactional dispatch.",
-        },
-      ],
-    },
-    techStack: [
-      {
-        category: "Frontend & UI",
-        technologies: ["Next.js (App Router)", "TypeScript", "Tailwind CSS", "Framer Motion", "Lucide Icons"],
-      },
-      {
-        category: "Backend & Systems",
-        technologies: ["Node.js", "Redis Cluster (Atomic Locking)", "PostgreSQL", "Prisma ORM", "AWS Lambda"],
-      },
-      {
-        category: "Payments & Verification",
-        technologies: ["Stripe Connect", "Apple Pay / Google Pay", "Cryptographic Ed25519 QR Signing", "PWA Scanner"],
-      },
-    ],
-    metrics: [
-      {
-        label: "Peak Concurrency",
-        value: "99.98%",
-        subtext: "Uptime maintained across high-demand on-sale drops",
-      },
-      {
-        label: "Door Admission Latency",
-        value: "<0.4s",
-        subtext: "Sub-second verification per ticket at entrance gates",
-      },
-      {
-        label: "Customer Data Retention",
-        value: "100%",
-        subtext: "Full attendee ownership directly transferred to organizers",
-      },
-    ],
-    previewComponentId: "zentra",
-  },
+export type ProjectCaseStudy = SolutionProject;
 
+export const CASE_STUDIES: Record<string, SolutionProject> = {
   "invoice-management": {
     slug: "invoice-management",
-    number: "02",
+    number: "01",
     title: "Invoice Management System",
-    category: "Business Software / Automation",
-    tag: "WORKFLOW DIGITISATION",
-    status: "Available",
-    statusBadgeVariant: "success",
-    year: "2024",
-    discipline: "Custom Enterprise Software & Automated Document Engineering",
-    clientType: "Commercial Service Enterprises & Mid-Market Corporations",
-    overview:
-      "The Invoice Management System is a bespoke enterprise tool that digitises transaction record keeping, commercial billing, tax calculation, and automated invoice and receipt voucher generation.",
-    problemStatement: {
-      summary:
-        "Growing mid-market businesses frequently depend on disconnected tools: physical paper receipts, manual Excel ledgers, and fragmented billing portals. This leads to invoice reconciliation bottlenecks, lost receipts, VAT calculation errors, and painful month-end audit preparation.",
-      points: [
-        "Laborious manual entry causing billing delays and invoice discrepancies across departments.",
-        "Lack of chronological immutability, exposing corporate accounting to regulatory and audit risks.",
-        "Uncollected receivables and unpaid invoice aging due to missing automated notification workflows.",
-        "High staff overhead spent formatting and dispatching PDF vouchers and transaction summaries.",
-      ],
-    },
-    solutionApproach: {
-      summary:
-        "BOLXOLVE engineered a centralized web platform that automates invoice creation, tax compliance calculations, customer billing histories, and instantaneous PDF generation with chronological audit tracking.",
-      points: [
-        "Created an intuitive billing interface allowing staff to generate itemized commercial invoices and receipts in under 30 seconds.",
-        "Engineered an automated tax computation engine accommodating variable VAT rates, client exemptions, and withholding calculations.",
-        "Built a headless document rendering pipeline producing secure, printable, branded PDF vouchers with verifiable audit stamps.",
-        "Established role-based access controls (RBAC) ensuring cashiers, accountants, and executives have calibrated system permissions.",
-      ],
-    },
-    keyCapabilities: [
-      {
-        title: "Dynamic Receipt & Invoice Generation",
-        description:
-          "Fast itemized invoice generation with automated line-item calculations, discount rates, and corporate customer profiles.",
-      },
-      {
-        title: "Automated Multi-Rate Tax Engine",
-        description:
-          "Systematic VAT, sales tax, and withholding tax calculations eliminating human accounting errors during checkout.",
-      },
-      {
-        title: "Chronological Audit Trail",
-        description:
-          "Every generated voucher and edited ledger record receives an immutable timestamp and cryptographic author signature.",
-      },
-      {
-        title: "Automated Document Dispatch",
-        description:
-          "Instant delivery of audit-ready PDF invoices to client email addresses with customizable corporate payment reminders.",
-      },
-      {
-        title: "One-Click Accounting Exports",
-        description:
-          "Instant generation of CSV, Excel, and structured PDF ledger packages ready for external auditors and corporate accountants.",
-      },
-      {
-        title: "Role-Based Staff Access (RBAC)",
-        description:
-          "Dedicated permission tiers distinguishing front-desk operators, accounting managers, and executive directors.",
-      },
+    eyebrow: "BUSINESS MANAGEMENT SOLUTION",
+    headline: "Take control of your business records.",
+    introText: [
+      "Create professional invoices and receipts, keep track of transactions, and organise your business records in one place. Spend less time handling paperwork and more time running your business.",
     ],
-    technicalArchitecture: {
-      summary:
-        "An enterprise-grade, data-integrity-first architecture focused on transactional precision, document security, and automated worker pipelines.",
-      highlights: [
+    primaryCta: {
+      text: "Request a Demo",
+      href: "/#contact",
+    },
+    secondaryCta: {
+      text: "Talk to Our Team",
+      href: "/#contact",
+    },
+    liveUrl: "https://invoice.bolxolve.com",
+    productWebsite: "invoice.bolxolve.com",
+    screenshot: {
+      src: "/showcase/invoice-bolxolve-screenshot.jpg",
+      alt: "BOLXOLVE Invoicing and Multi-Branch Enterprise Billing Dashboard",
+      captionTitle: "BOLXOLVE Invoice \u2022 Multi-Branch Depot & Revenue Overview",
+      captionStatus: "Production Platform",
+    },
+    problemSection: {
+      title: "The problem we're solving",
+      paragraphs: [
+        "Managing business transactions manually can become difficult as a business grows.",
+        "Paper receipts get misplaced. Transaction records become scattered. Preparing documents takes time, and keeping track of staff activities can become unnecessarily complicated.",
+        "Our Invoice Management System helps businesses bring these everyday operations into a more organised digital workflow.",
+      ],
+    },
+    capabilitiesSection: {
+      title: "What you can do with it",
+      items: [
         {
-          label: "Frontend Client Architecture",
-          detail: "Responsive React and Next.js interface with optimistic state updates and live calculation engines.",
+          title: "Create professional business documents",
+          description:
+            "Generate invoices and receipts for business transactions without having to prepare every document manually.",
         },
         {
-          label: "Document Pipeline",
-          detail: "Headless Chromium rendering microservice outputting standardized vector-crisp PDF documents.",
+          title: "Keep transaction records organised",
+          description:
+            "Maintain a structured record of business transactions, making it easier to retrieve and review past records.",
         },
         {
-          label: "Relational Ledger Database",
-          detail: "PostgreSQL with strict foreign key constraints, temporal change tables, and point-in-time recovery.",
+          title: "Manage staff activities",
+          description:
+            "Give staff access to relevant operations while keeping important actions within an approval workflow.",
         },
         {
-          label: "Authentication & Security",
-          detail: "JWT session handling with secure HTTP-only cookies, granular scope-based permissions, and audit event logs.",
+          title: "Export and share documents",
+          description:
+            "Generate business documents in formats suitable for sharing, printing, and record keeping, including PDF and image formats.",
+        },
+        {
+          title: "Keep business information accessible",
+          description:
+            "Make business records easier to manage and retrieve instead of depending entirely on scattered paper documents.",
         },
       ],
     },
-    techStack: [
-      {
-        category: "Client Application",
-        technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Zod Validation"],
-      },
-      {
-        category: "Backend & Document Engine",
-        technologies: ["Node.js API", "PostgreSQL", "Prisma ORM", "Puppeteer PDF Engine", "AWS S3 Document Storage"],
-      },
-      {
-        category: "Security & Operations",
-        technologies: ["Role-Based Access Control (RBAC)", "Audit Logging", "Docker", "Nginx"],
-      },
+    audienceSection: {
+      title: "Designed around real business operations",
+      intro:
+        "The system is intended for businesses that regularly issue invoices and receipts and need a more organised way to manage their transactions.",
+      suitableFor: [
+        "Building materials and supply businesses",
+        "Retail and wholesale businesses",
+        "Small and growing businesses",
+        "Businesses with multiple staff handling transactions",
+      ],
+    },
+    closingSection: {
+      title: "A better way to manage everyday transactions",
+      description:
+        "Move away from scattered paperwork and build a more organised process for handling business documents and transaction records.",
+      ctaText: "Discuss Your Business Needs",
+      ctaHref: "/#contact",
+      note: "*Note: Feature availability and implementation may vary depending on the final product configuration.*",
+    },
+  },
+
+  zentra: {
+    slug: "zentra",
+    number: "02",
+    title: "ZENTRA \u2014 Event Ticketing Platform",
+    eyebrow: "EVENT MANAGEMENT & TICKETING",
+    headline: "Your event. Your brand. Your ticketing experience.",
+    introText: [
+      "ZENTRA gives event organisers the tools to create branded event pages, sell tickets online, and manage ticket verification \u2014 all through one platform.",
+      "Instead of sending attendees through a generic event marketplace, give your event its own dedicated online presence.",
     ],
-    metrics: [
-      {
-        label: "Administrative Time Saved",
-        value: "78%",
-        subtext: "Reduction in manual billing and invoice preparation hours",
-      },
-      {
-        label: "Tax Discrepancy Rate",
-        value: "0.0%",
-        subtext: "Zero automated calculation errors across deployed ledgers",
-      },
-      {
-        label: "Voucher Generation Speed",
-        value: "<1.2s",
-        subtext: "Instantaneous compilation of branded PDF documentation",
-      },
-    ],
-    previewComponentId: "invoice-management",
+    primaryCta: {
+      text: "Explore ZENTRA",
+      href: "https://zentra.bolxolve.com",
+      external: true,
+    },
+    secondaryCta: {
+      text: "Talk to Us",
+      href: "/#contact",
+    },
+    liveUrl: "https://zentra.bolxolve.com",
+    productWebsite: "zentrahq.app",
+    screenshot: {
+      src: "/showcase/zentra-screenshot.jpg",
+      alt: "ZENTRA live event management and ticketing platform screenshot",
+      captionTitle: "ZENTRA \u2022 Dynamic Ticketing & Holographic QR Verification",
+      captionStatus: "Production Platform",
+    },
+    problemSection: {
+      title: "More than just selling tickets",
+      paragraphs: [
+        "Running an event involves more than collecting payments. Organisers need a place to present their events, manage ticket categories, receive orders, and verify attendees at the entrance.",
+        "ZENTRA brings these parts of the ticketing process together in one organised platform.",
+      ],
+    },
+    capabilitiesSection: {
+      title: "What ZENTRA makes possible",
+      items: [
+        {
+          title: "Your own branded event page",
+          description:
+            "Create a dedicated event page where attendees can discover event information, explore event details, and purchase tickets.",
+        },
+        {
+          title: "Flexible ticket categories",
+          description:
+            "Set up different ticket types and prices to suit your event, whether you offer regular admission, VIP access, or other ticket categories.",
+        },
+        {
+          title: "Online ticket purchases",
+          description:
+            "Allow attendees to purchase tickets online through an integrated payment process.",
+        },
+        {
+          title: "Digital ticket delivery",
+          description:
+            "Give attendees access to their purchased tickets without requiring them to create an account on the platform.",
+        },
+        {
+          title: "QR code ticket verification",
+          description:
+            "Verify tickets at the event entrance using QR codes, helping organisers manage attendee entry more efficiently.",
+        },
+        {
+          title: "Staff-assisted event check-in",
+          description:
+            "Give authorised event staff access to ticket verification so entry management does not have to depend on one person.",
+        },
+        {
+          title: "Organiser dashboard",
+          description:
+            "Manage event information, ticket categories, and ticketing activities from an organiser-focused dashboard.",
+        },
+      ],
+    },
+    audienceSection: {
+      title: "Built for event organisers",
+      intro:
+        "ZENTRA is designed for organisers who want more control over how their events are presented and how attendees purchase and access tickets.",
+      suitableFor: [
+        "Concerts and music events",
+        "Conferences and business events",
+        "University and campus events",
+        "Workshops and seminars",
+        "Private and public gatherings",
+      ],
+    },
+    closingSection: {
+      title: "Give your next event a better ticketing experience",
+      description:
+        "Create your event presence, sell tickets, and manage entry with a platform designed around the needs of organisers.",
+      ctaText: "Get Started with ZENTRA",
+      ctaHref: "https://zentra.bolxolve.com",
+      external: true,
+      productWebsite: "zentrahq.app",
+    },
   },
 
   "bolmeet-ai": {
     slug: "bolmeet-ai",
     number: "03",
-    title: "BOLMEET AI",
-    category: "Artificial Intelligence / Collaboration",
-    tag: "COGNITIVE WORKSPACE",
-    status: "In Development",
-    statusBadgeVariant: "neutral",
-    year: "2024",
-    discipline: "Real-Time WebRTC Media Streaming & Generative AI Pipelines",
-    clientType: "Distributed Engineering Teams & High-Velocity Technology Startups",
-    overview:
-      "BOLMEET AI is an intelligent meeting workspace that fuses real-time audio/video communication with neural transcription, executive synthesis, and automatic task generation.",
-    problemStatement: {
-      summary:
-        "Distributed technology teams spend hours in virtual meetings, but critical architectural decisions, requirements, and assigned responsibilities are routinely lost or miscommunicated in manual note-taking.",
-      points: [
-        "Valuable meeting discussions vanish immediately after calls end, leaving non-attendees with zero contextual awareness.",
-        "Manual note-taking distracts team members from participating actively in strategic engineering discussions.",
-        "Action items fall through the cracks because notes are rarely translated into actionable backlog tickets.",
-        "Locating historical decisions requires scrubbing through hours of unindexed, unwieldy video recordings.",
-      ],
-    },
-    solutionApproach: {
-      summary:
-        "BOLXOLVE built an intelligent meeting platform that streams audio directly into neural transcription pipelines, separates speakers via acoustic diarization, extracts key decisions using structured LLM reasoning, and exports tasks to team management platforms.",
-      points: [
-        "Engineered an ultralow-latency WebRTC conferencing runtime with adaptive bitrate streaming.",
-        "Implemented real-time audio chunking sending voice streams to Whisper models for multilingual transcript generation.",
-        "Applied LLM reasoning agents with strict JSON schemas to distill 60-minute calls into 2-minute actionable executive summaries.",
-        "Built one-click bi-directional integrations syncing extracted tasks directly into Jira, Linear, Slack, and Notion.",
-      ],
-    },
-    keyCapabilities: [
-      {
-        title: "Real-Time WebRTC Conferencing",
-        description:
-          "Low-latency audio and video conferencing with automatic noise suppression, echo cancellation, and screen sharing.",
-      },
-      {
-        title: "Multi-Speaker Neural Transcription",
-        description:
-          "Continuous speaker diarization identifying participants and delivering timestamped, searchable transcripts.",
-      },
-      {
-        title: "Executive Synthesis & Topic Extraction",
-        description:
-          "Automated distillation of lengthy meeting recordings into concise decision memos, key topics, and consensus points.",
-      },
-      {
-        title: "Action Item & Assignee Detection",
-        description:
-          "Automatic identification of commitments, deadlines, and assigned individuals formatted directly as actionable tasks.",
-      },
-      {
-        title: "Searchable Semantic Knowledge Base",
-        description:
-          "Vector-indexed meeting repository allowing team members to ask natural language questions about past discussions.",
-      },
-      {
-        title: "Direct Workflow Backlog Sync",
-        description:
-          "Native webhooks and API integrations exporting extracted tasks straight to Linear, Jira, Notion, and Slack.",
-      },
+    title: "BOLMEET AI \u2014 Intelligent Meeting Workspace",
+    eyebrow: "AI & COLLABORATION SOLUTION",
+    headline: "Meetings, Transformed by Active Intelligence.",
+    introText: [
+      "Conduct standard meeting calls with a built-in AI teammate. Detect key decisions, automatically compile and assign tasks, construct reports, and query past conversations with semantic memory.",
     ],
-    technicalArchitecture: {
-      summary:
-        "A hybrid media-streaming and asynchronous AI worker architecture designed for high availability and low-latency audio processing.",
-      highlights: [
+    primaryCta: {
+      text: "Explore BOLMEET AI",
+      href: "https://bolmeet-ai.vercel.app/",
+      external: true,
+    },
+    secondaryCta: {
+      text: "Talk to Our Team",
+      href: "/#contact",
+    },
+    liveUrl: "https://bolmeet-ai.vercel.app/",
+    productWebsite: "bolmeet-ai.vercel.app",
+    screenshot: {
+      src: "/showcase/bolmeet-ai-screenshot.png",
+      alt: "BOLMEET AI Meeting Workspace Screenshot",
+      captionTitle: "BOLMEET AI \u2022 Active Intelligence & Neural Synthesis",
+      captionStatus: "In Development",
+    },
+    problemSection: {
+      title: "The problem we're solving",
+      paragraphs: [
+        "Distributed technology teams spend hours in virtual meetings, but critical decisions, requirements, and assigned responsibilities are routinely lost or miscommunicated in manual note-taking.",
+        "Valuable discussions vanish immediately after calls end, leaving non-attendees with zero contextual awareness and heavy manual follow-up burdens.",
+      ],
+    },
+    capabilitiesSection: {
+      title: "What BOLMEET AI makes possible",
+      items: [
         {
-          label: "Media Streaming Runtime",
-          detail: "Selective Forwarding Unit (SFU) WebRTC architecture delivering low-latency peer media distribution.",
+          title: "Real-Time Intelligent Workspace",
+          description:
+            "Conferencing runtime paired with real-time meeting synthesis and an interactive AI co-pilot.",
         },
         {
-          label: "Audio Ingestion & Diarization",
-          detail: "Asynchronous worker queue partitioning audio streams into optimal segments for neural speech-to-text inference.",
+          title: "Multi-Speaker Neural Transcription",
+          description:
+            "Automated speaker diarization that identifies participants and provides searchable, timestamped transcripts.",
         },
         {
-          label: "Cognitive Synthesis Engine",
-          detail: "LLM pipeline enforcing deterministic JSON schema responses to ensure predictable task and summary formats.",
+          title: "Executive Synthesis & Decision Records",
+          description:
+            "Automated distillation of lengthy meeting calls into structured decision memos and consensus points.",
         },
         {
-          label: "Vector Semantic Storage",
-          detail: "Pinecone vector database holding transcript embeddings for contextual conversational retrieval.",
+          title: "Action Item & Assignee Detection",
+          description:
+            "Automatic identification of commitments, deadlines, and assigned individuals formatted directly as actionable tasks.",
+        },
+        {
+          title: "Searchable Semantic Knowledge Base",
+          description:
+            "Vector-indexed meeting repository allowing team members to query past conversations in natural language.",
         },
       ],
     },
-    techStack: [
-      {
-        category: "Real-Time Media & Frontend",
-        technologies: ["Next.js", "React", "TypeScript", "WebRTC Media Pipeline", "Tailwind CSS"],
-      },
-      {
-        category: "AI & Neural Processing",
-        technologies: ["OpenAI Whisper", "GPT-4o Reasoning API", "LangChain", "Pinecone Vector DB"],
-      },
-      {
-        category: "Backend & Message Queue",
-        technologies: ["Node.js", "Redis Pub/Sub", "PostgreSQL", "Docker Microservices"],
-      },
-    ],
-    metrics: [
-      {
-        label: "Documentation Time Reduced",
-        value: "94%",
-        subtext: "Less manual hours spent drafting post-call meeting memos",
-      },
-      {
-        label: "Action Item Capture Rate",
-        value: "100%",
-        subtext: "All conversational commitments converted into structured tickets",
-      },
-      {
-        label: "Summary Turnaround Latency",
-        value: "<2s",
-        subtext: "Executive synthesis generated immediately upon call conclusion",
-      },
-    ],
-    previewComponentId: "bolmeet-ai",
+    audienceSection: {
+      title: "Built for distributed teams",
+      intro:
+        "BOLMEET AI is designed for organizations that want clarity and zero information loss across their remote discussions.",
+      suitableFor: [
+        "Distributed engineering and product teams",
+        "High-velocity technology startups",
+        "Remote consultancies and agency teams",
+        "Cross-functional executive committees",
+      ],
+    },
+    closingSection: {
+      title: "Transform your team meetings into actionable execution",
+      description:
+        "Capture decisions, assign tasks automatically, and keep your entire team aligned without manual meeting minutes.",
+      ctaText: "Get Started with BOLMEET AI",
+      ctaHref: "https://bolmeet-ai.vercel.app/",
+      external: true,
+      productWebsite: "bolmeet-ai.vercel.app",
+    },
   },
 };
 
-export const PROJECTS_LIST = [
-  CASE_STUDIES.zentra,
+export const PROJECTS_LIST: SolutionProject[] = [
   CASE_STUDIES["invoice-management"],
+  CASE_STUDIES.zentra,
   CASE_STUDIES["bolmeet-ai"],
 ];

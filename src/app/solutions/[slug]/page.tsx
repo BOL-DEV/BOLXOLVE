@@ -25,11 +25,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   return {
-    title: `${project.title} — ${project.category}`,
-    description: project.overview,
+    title: `${project.title} — ${project.eyebrow}`,
+    description: project.introText[0],
     openGraph: {
       title: `${project.title} | BOLXOLVE Solutions`,
-      description: project.overview,
+      description: project.introText[0],
       type: "article",
     },
   };

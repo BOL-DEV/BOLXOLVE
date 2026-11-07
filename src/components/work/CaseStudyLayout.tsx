@@ -2,16 +2,14 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, Cpu } from "lucide-react";
+import Image from "next/image";
+import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { ProjectCaseStudy, PROJECTS_LIST } from "@/data/projectsData";
-import ZentraPreview from "./previews/ZentraPreview";
-import BolmeetPreview from "./previews/BolmeetPreview";
-import ReceiptSystemPreview from "./previews/ReceiptSystemPreview";
+import { SolutionProject, PROJECTS_LIST } from "@/data/projectsData";
 
 interface CaseStudyLayoutProps {
-  project: ProjectCaseStudy;
+  project: SolutionProject;
 }
 
 export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => {
@@ -26,26 +24,40 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
       <div className="absolute top-20 right-1/4 w-[600px] h-[600px] bg-radial-hero pointer-events-none opacity-25" />
 
-      {/* Top Breadcrumb & Navigation Bar */}
+      {/* Top Clean Breadcrumb & Navigation Bar */}
       <div className="w-full border-b border-[#1E2638] bg-[#050915]/80 backdrop-blur-md sticky top-20 z-40">
         <Container size="wide">
           <div className="h-14 flex items-center justify-between text-xs font-mono">
-            {/* Back to Selected Solutions Link */}
+            {/* Back to Products & Solutions */}
             <Link
               href="/#solutions"
               className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors group"
             >
               <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-              <span>Back to Selected Solutions</span>
+              <span>Back to Products &amp; Solutions</span>
             </Link>
 
-            {/* Breadcrumb Path */}
-            <div className="hidden sm:flex items-center gap-2 text-[#71717A]">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span>/</span>
-              <Link href="/#solutions" className="hover:text-white transition-colors">Solutions</Link>
-              <span>/</span>
-              <span className="text-white font-medium">{project.title}</span>
+            {/* Clean Breadcrumb & Live Link */}
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:flex items-center gap-2 text-[#71717A]">
+                <Link href="/" className="hover:text-white transition-colors">Home</Link>
+                <span>/</span>
+                <Link href="/#solutions" className="hover:text-white transition-colors">Solutions</Link>
+                <span>/</span>
+                <span className="text-white font-medium">{project.title.split(" — ")[0]}</span>
+              </div>
+
+              {project.liveUrl && (
+                <a
+                  href={project.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 text-[11px] text-[#BAF247] transition-colors"
+                >
+                  <span>{project.productWebsite || "Live Platform"}</span>
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
             </div>
           </div>
         </Container>
@@ -53,161 +65,155 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
 
       <Container size="wide" className="relative z-10 pt-12 sm:pt-16 lg:pt-20">
         {/* =====================================================================
-            1. PROJECT HERO & METADATA HEADER
+            1. PRODUCT HERO & HEADLINE
            ===================================================================== */}
-        <div className="space-y-8 max-w-4xl pb-16 border-b border-[#1E2638]">
-          {/* Eyebrow & Status Badge */}
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="text-xs font-mono text-[#BAF247] font-bold">
-              SOLUTION ARCHITECTURE // {project.number}
-            </span>
-            <span className="text-[#1E2638] font-mono text-xs">/</span>
-            <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA]">
-              {project.category}
-            </span>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#101522] border border-[#1E2638] text-[11px] font-mono text-[#BAF247]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] animate-pulse" />
-              STATUS: {project.status.toUpperCase()}
+        <div className="space-y-6 max-w-4xl pb-14 border-b border-[#1E2638]">
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2">
+            <span className="text-xs font-mono text-[#BAF247] font-bold tracking-widest uppercase">
+              {project.eyebrow}
             </span>
           </div>
 
-          {/* Project Title */}
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white leading-[1.05]">
-            {project.title}
+          {/* Headline */}
+          <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+            {project.headline}
           </h1>
 
-          {/* Project Summary / Overview */}
-          <p className="text-lg sm:text-xl text-[#A1A1AA] leading-relaxed font-normal">
-            {project.overview}
+          {/* Product Name Subtitle */}
+          <p className="text-base sm:text-lg font-mono text-[#BAF247]/90 font-medium">
+            {project.title}
           </p>
 
-          {/* Metadata Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-[#1E2638] text-xs font-mono">
-            <div>
-              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Target Sector</span>
-              <span className="text-white font-medium">{project.clientType}</span>
-            </div>
-            <div>
-              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Discipline</span>
-              <span className="text-white font-medium">{project.discipline}</span>
-            </div>
-            <div>
-              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Delivery Year</span>
-              <span className="text-white font-medium">{project.year}</span>
-            </div>
-            <div>
-              <span className="text-[#71717A] uppercase tracking-wider block mb-1">Architecture</span>
-              <span className="text-[#BAF247] font-semibold">{project.tag}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* =====================================================================
-            2. PRODUCT SCREENSHOT / VISUAL PREVIEW STAGE
-           ===================================================================== */}
-        <div className="py-12 sm:py-16">
-          <div className="p-3 sm:p-5 rounded-2xl bg-[#101522] border border-[#1E2638] shadow-[0_24px_64px_rgba(0,0,0,0.6)]">
-            {project.previewComponentId === "zentra" && <ZentraPreview />}
-            {project.previewComponentId === "invoice-management" && <ReceiptSystemPreview />}
-            {project.previewComponentId === "bolmeet-ai" && <BolmeetPreview />}
-          </div>
-        </div>
-
-        {/* Key Metrics Strip (If Available) */}
-        {project.metrics && project.metrics.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20 p-6 sm:p-8 rounded-2xl bg-[#101522] border border-[#1E2638]">
-            {project.metrics.map((metric) => (
-              <div key={metric.label} className="space-y-1 text-center sm:text-left border-b md:border-b-0 md:border-r border-[#1E2638] last:border-r-0 pb-4 md:pb-0">
-                <span className="text-3xl sm:text-4xl font-bold font-mono text-[#BAF247]">
-                  {metric.value}
-                </span>
-                <span className="block text-xs font-mono uppercase tracking-wider text-white font-medium">
-                  {metric.label}
-                </span>
-                <span className="block text-xs text-[#71717A]">
-                  {metric.subtext}
-                </span>
-              </div>
+          {/* Intro Paragraphs */}
+          <div className="space-y-4 pt-2">
+            {project.introText.map((paragraph, idx) => (
+              <p key={idx} className="text-base sm:text-lg text-[#D4D4D8] leading-relaxed">
+                {paragraph}
+              </p>
             ))}
           </div>
-        )}
 
-        {/* =====================================================================
-            3. PROBLEM STATEMENT & SOLUTION APPROACH
-           ===================================================================== */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 py-12 border-t border-[#1E2638]">
-          {/* Problem Statement */}
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#71717A]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#EF4444]" />
-              01 // THE OPERATIONAL CHALLENGE
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Problem Statement
-            </h2>
-            <p className="text-base text-[#A1A1AA] leading-relaxed">
-              {project.problemStatement.summary}
-            </p>
-            <ul className="space-y-3 pt-2">
-              {project.problemStatement.points.map((pt, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-[#D4D4D8]">
-                  <span className="text-[#EF4444] font-mono font-bold mt-0.5">&times;</span>
-                  <span>{pt}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Action CTAs */}
+          <div className="pt-4 flex flex-wrap items-center gap-4">
+            {project.primaryCta.external ? (
+              <Button
+                variant="primary"
+                size="md"
+                href={project.primaryCta.href}
+                iconRight={<ExternalLink className="w-4 h-4" />}
+              >
+                {project.primaryCta.text}
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                size="md"
+                href={project.primaryCta.href}
+                iconRight={<ArrowRight className="w-4 h-4" />}
+              >
+                {project.primaryCta.text}
+              </Button>
+            )}
 
-          {/* Solution Approach */}
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#BAF247]">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
-              02 // THE ENGINEERING SOLUTION
-            </div>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Solution Approach
-            </h2>
-            <p className="text-base text-[#A1A1AA] leading-relaxed">
-              {project.solutionApproach.summary}
-            </p>
-            <ul className="space-y-3 pt-2">
-              {project.solutionApproach.points.map((pt, i) => (
-                <li key={i} className="flex items-start gap-3 text-sm text-[#D4D4D8]">
-                  <Check className="w-4 h-4 text-[#BAF247] shrink-0 mt-0.5" />
-                  <span>{pt}</span>
-                </li>
-              ))}
-            </ul>
+            <Button
+              variant="secondary"
+              size="md"
+              href={project.secondaryCta.href}
+            >
+              {project.secondaryCta.text}
+            </Button>
+
+            {project.liveUrl && !project.primaryCta.external && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg border border-[#1E2638] bg-[#101522] hover:bg-[#1E2638] text-white text-sm font-semibold transition-colors"
+              >
+                <span>Visit Live Platform</span>
+                <ExternalLink className="w-3.5 h-3.5 text-[#71717A]" />
+              </a>
+            )}
           </div>
         </div>
 
         {/* =====================================================================
-            4. KEY CAPABILITIES GRID
+            2. PRODUCT SCREENSHOT / AUTHENTIC VIEWPORT
+           ===================================================================== */}
+        <div className="py-12 sm:py-16">
+          <div className="rounded-2xl bg-[#080D1A] border border-[#1E2638] overflow-hidden shadow-[0_24px_64px_rgba(0,0,0,0.6)]">
+            {/* Clean Screenshot Viewport */}
+            <div className="relative w-full aspect-[16/9] bg-[#050915] overflow-hidden">
+              <Image
+                src={project.screenshot.src}
+                alt={project.screenshot.alt}
+                fill
+                priority
+                sizes="(max-width: 1200px) 100vw, 1200px"
+                className="object-cover object-top"
+              />
+            </div>
+
+            {/* Minimal Caption Strip */}
+            <div className="px-5 py-3.5 bg-[#090D1A] border-t border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-xs">
+              <span className="font-bold text-white tracking-tight">
+                {project.screenshot.captionTitle}
+              </span>
+              <span className="text-[11px] text-[#BAF247] font-mono">
+                {project.screenshot.captionStatus}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* =====================================================================
+            3. THE PROBLEM WE'RE SOLVING
+           ===================================================================== */}
+        <div className="py-12 border-t border-[#1E2638] space-y-6 max-w-3xl">
+          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#BAF247]">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
+            THE CONTEXT
+          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            {project.problemSection.title}
+          </h2>
+          <div className="space-y-4">
+            {project.problemSection.paragraphs.map((p, idx) => (
+              <p key={idx} className="text-base text-[#D4D4D8] leading-relaxed">
+                {p}
+              </p>
+            ))}
+          </div>
+        </div>
+
+        {/* =====================================================================
+            4. WHAT YOU CAN DO WITH IT / WHAT ZENTRA MAKES POSSIBLE
            ===================================================================== */}
         <div className="py-16 border-t border-[#1E2638] space-y-10">
-          <div className="max-w-2xl space-y-3">
+          <div className="max-w-2xl space-y-2">
             <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247]">
-              03 // FUNCTIONAL CAPABILITIES
+              CORE FUNCTIONALITY
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Key Capabilities Delivered
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
+              {project.capabilitiesSection.title}
             </h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {project.keyCapabilities.map((cap) => (
+            {project.capabilitiesSection.items.map((item) => (
               <div
-                key={cap.title}
+                key={item.title}
                 className="p-6 rounded-xl bg-[#101522] border border-[#1E2638] space-y-3 hover:border-[#BAF247]/30 transition-colors"
               >
                 <div className="w-8 h-8 rounded-lg bg-[#050915] border border-[#1E2638] flex items-center justify-center">
                   <Check className="w-4 h-4 text-[#BAF247]" />
                 </div>
-                <h3 className="text-lg font-bold text-white">
-                  {cap.title}
+                <h3 className="text-base sm:text-lg font-bold text-white tracking-tight">
+                  {item.title}
                 </h3>
                 <p className="text-sm text-[#A1A1AA] leading-relaxed">
-                  {cap.description}
+                  {item.description}
                 </p>
               </div>
             ))}
@@ -215,87 +221,105 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
         </div>
 
         {/* =====================================================================
-            5. TECHNICAL ARCHITECTURE & STACK
+            5. DESIGNED AROUND REAL BUSINESS OPERATIONS / SUITABLE FOR
            ===================================================================== */}
-        <div className="py-16 border-t border-[#1E2638] space-y-12">
-          <div className="max-w-2xl space-y-3">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247]">
-              04 // UNDER THE HOOD
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Technical Architecture &amp; Stack
-            </h2>
-            <p className="text-[#A1A1AA] leading-relaxed">
-              {project.technicalArchitecture.summary}
-            </p>
-          </div>
+        <div className="py-16 border-t border-[#1E2638]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left 6 cols: Context & Narrative */}
+            <div className="lg:col-span-6 space-y-4">
+              <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247]">
+                OPERATIONAL FIT
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+                {project.audienceSection.title}
+              </h2>
+              <p className="text-base text-[#D4D4D8] leading-relaxed">
+                {project.audienceSection.intro}
+              </p>
+            </div>
 
-          {/* Architecture Highlights */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {project.technicalArchitecture.highlights.map((item) => (
-              <div key={item.label} className="p-6 rounded-xl bg-[#101522] border border-[#1E2638] space-y-2">
-                <span className="text-xs font-mono uppercase text-[#BAF247] font-semibold flex items-center gap-2">
-                  <Cpu className="w-3.5 h-3.5" />
-                  {item.label}
+            {/* Right 6 cols: Suitable For Box */}
+            <div className="lg:col-span-6">
+              <div className="p-6 sm:p-8 rounded-2xl bg-[#101522] border border-[#1E2638] space-y-4">
+                <span className="text-xs font-mono uppercase tracking-widest text-white font-semibold block border-b border-[#1E2638] pb-3">
+                  SUITABLE FOR:
                 </span>
-                <p className="text-sm text-[#A1A1AA] leading-relaxed">
-                  {item.detail}
-                </p>
+                <ul className="space-y-3">
+                  {project.audienceSection.suitableFor.map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-sm text-[#D4D4D8]">
+                      <div className="w-5 h-5 rounded bg-[#050915] border border-[#1E2638] flex items-center justify-center shrink-0 mt-0.5">
+                        <Check className="w-3.5 h-3.5 text-[#BAF247]" />
+                      </div>
+                      <span className="font-medium">{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
-          </div>
-
-          {/* Technology Stack Categories */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-[#101522] border border-[#1E2638] space-y-6">
-            <span className="text-xs font-mono uppercase tracking-widest text-white font-semibold block border-b border-[#1E2638] pb-3">
-              TECHNOLOGY INVENTORY
-            </span>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {project.techStack.map((group) => (
-                <div key={group.category} className="space-y-3">
-                  <span className="text-xs font-mono text-[#71717A] uppercase tracking-wider block">
-                    {group.category}
-                  </span>
-                  <div className="flex flex-wrap gap-2">
-                    {group.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-2.5 py-1 rounded bg-[#050915] border border-[#1E2638] text-xs font-mono text-white"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
 
         {/* =====================================================================
-            6. CONTACT CTA
+            6. CLOSING CTA SECTION
            ===================================================================== */}
-        <div className="my-16 p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-[#101522] to-[#050915] border border-[#1E2638] text-center space-y-6">
+        <div className="my-12 p-8 sm:p-12 rounded-2xl bg-gradient-to-br from-[#101522] to-[#050915] border border-[#1E2638] text-center space-y-6">
           <div className="max-w-2xl mx-auto space-y-3">
-            <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247]">
-              LET&apos;S ENGINEER YOUR NEXT PLATFORM
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
-              Interested in similar architecture?
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white">
+              {project.closingSection.title}
             </h2>
             <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
-              We design, engineer, and deploy high-concurrency custom platforms and digital solutions tailored to your operational requirements.
+              {project.closingSection.description}
             </p>
           </div>
 
           <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="primary" size="lg" href="/#contact">
-              Start a project
-            </Button>
-            <Button variant="secondary" size="lg" href="/#solutions">
-              Explore other solutions
+            {project.closingSection.external ? (
+              <Button
+                variant="primary"
+                size="lg"
+                href={project.closingSection.ctaHref}
+                iconRight={<ExternalLink className="w-4 h-4" />}
+              >
+                {project.closingSection.ctaText}
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                size="lg"
+                href={project.closingSection.ctaHref}
+                iconRight={<ArrowRight className="w-4 h-4" />}
+              >
+                {project.closingSection.ctaText}
+              </Button>
+            )}
+
+            <Button variant="secondary" size="lg" href="/#contact">
+              Talk to Our Team
             </Button>
           </div>
+
+          {/* Note or Product Website */}
+          {project.closingSection.note && (
+            <p className="text-xs text-[#71717A] italic pt-2">
+              {project.closingSection.note}
+            </p>
+          )}
+
+          {project.closingSection.productWebsite && (
+            <div className="pt-2">
+              <span className="text-xs font-mono text-[#A1A1AA]">
+                Product website:{" "}
+                <a
+                  href={`https://${project.closingSection.productWebsite}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#BAF247] hover:underline font-semibold"
+                >
+                  {project.closingSection.productWebsite}
+                </a>
+              </span>
+            </div>
+          )}
         </div>
 
         {/* =====================================================================
@@ -308,7 +332,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
               className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors"
             >
               <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Previous: {prevProject.title}</span>
+              <span>Previous: {prevProject.title.split(" — ")[0]}</span>
             </Link>
           ) : (
             <div />
@@ -319,7 +343,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
               href={`/solutions/${nextProject.slug}`}
               className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors"
             >
-              <span>Next: {nextProject.title}</span>
+              <span>Next: {nextProject.title.split(" — ")[0]}</span>
               <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           ) : (
