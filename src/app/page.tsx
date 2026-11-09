@@ -4,6 +4,7 @@ import Services from "@/components/services/Services";
 import SelectedWork from "@/components/work/SelectedWork";
 import Technology from "@/components/technology/Technology";
 import About from "@/components/about/About";
+import Contact from "@/components/contact/Contact";
 
 export default function Home() {
   return (
@@ -22,6 +23,9 @@ export default function Home() {
 
       {/* About / Company Section */}
       <About />
+
+      {/* Contact / Start a Project Section */}
+      <Contact />
     </main>
   );
 }

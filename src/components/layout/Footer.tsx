@@ -19,7 +19,6 @@ export const Footer: React.FC = () => {
 
   return (
     <footer
-      id="contact"
       className="w-full bg-[#050915] border-t border-[#1E2638] text-white pt-16 pb-12 relative"
     >
       {/* Anchor targets for external & hash navigation */}
