@@ -3,15 +3,15 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight, ExternalLink, Check, GraduationCap, Clock, Sparkles } from "lucide-react";
+import { ArrowRight, ExternalLink, Check, GraduationCap, Clock } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
 import { PROJECTS } from "./types";
 import ZentraPreview from "./previews/ZentraPreview";
 
 export const SelectedWork: React.FC = () => {
-  const invoice = PROJECTS[0];
-  const zentra = PROJECTS[1];
+  const zentra = PROJECTS[0];
+  const invoice = PROJECTS[1];
   const education = PROJECTS[2];
 
   return (
@@ -59,10 +59,10 @@ export const SelectedWork: React.FC = () => {
            ========================================================================= */}
         <div className="space-y-10 sm:space-y-12">
           {/* =======================================================================
-              01. FEATURED PRODUCT: INVOICE MANAGEMENT SYSTEM (Full-Width Asymmetric)
+              01. FEATURED HERO PRODUCT: ZENTRA (Comes First)
              ======================================================================= */}
           <div
-            id={invoice.id}
+            id={zentra.id}
             className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group"
           >
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -71,24 +71,117 @@ export const SelectedWork: React.FC = () => {
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
                     <span className="text-[#BAF247] font-bold">
-                      {invoice.number} &bull; FEATURED PRODUCT
+                      {zentra.number} &bull; FEATURED PRODUCT
                     </span>
                     <span className="text-[#71717A]">&bull;</span>
                     <span className="text-[10px] uppercase tracking-widest text-[#71717A]">
-                      {invoice.category}
+                      {zentra.category}
                     </span>
                   </div>
 
                   <div className="flex flex-wrap items-center gap-2 pt-1">
                     <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 font-semibold uppercase tracking-wider">
-                      {invoice.status}
+                      {zentra.status}
                     </span>
                     <span className="text-[10px] font-mono px-2.5 py-0.5 rounded-full bg-[#050915] border border-[#1E2638] text-[#A1A1AA]">
-                      Commercial Model: {invoice.commercialModel}
+                      Commercial Model: {zentra.commercialModel}
                     </span>
                   </div>
 
                   <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+                    {zentra.title}
+                  </h3>
+                </div>
+
+                <p className="text-sm sm:text-base text-[#D4D4D8] leading-relaxed">
+                  {zentra.description}
+                </p>
+
+                {/* Verified Core Functionality */}
+                <div className="space-y-2 pt-2 border-t border-[#1E2638]">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block">
+                    VERIFIED CORE FUNCTIONALITY
+                  </span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#D4D4D8]">
+                    {zentra.capabilities.map((cap) => (
+                      <div
+                        key={cap}
+                        className="p-2 rounded bg-[#050915] border border-[#1E2638] flex items-center space-x-2"
+                      >
+                        <Check className="w-3.5 h-3.5 text-[#BAF247] shrink-0" />
+                        <span className="truncate">{cap}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Action Links */}
+                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                  <Button
+                    variant="primary"
+                    size="md"
+                    href={zentra.route}
+                    iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+                  >
+                    {zentra.ctaText}
+                  </Button>
+
+                  {zentra.externalUrl && (
+                    <a
+                      href={zentra.externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-[#1E2638] bg-[#050915] hover:bg-[#1E2638] text-white text-sm font-semibold transition-colors"
+                    >
+                      <span>Visit Live Platform</span>
+                      <ExternalLink className="w-3.5 h-3.5 text-[#71717A]" />
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Right Column (7 Cols): Authentic Production Screenshot */}
+              <div className="lg:col-span-7">
+                <Link
+                  href={zentra.route}
+                  className="block group/preview cursor-pointer"
+                  aria-label={`Explore ${zentra.title}`}
+                >
+                  <ZentraPreview />
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* =======================================================================
+              02. PRODUCT: INVOICE MANAGEMENT SYSTEM (Horizontal Showcase)
+             ======================================================================= */}
+          <div
+            id={invoice.id}
+            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* Left Column (5 Cols): Editorial & Commercial Context */}
+              <div className="lg:col-span-5 space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-4 text-xs font-mono">
+                  <span className="text-[#BAF247] font-bold">
+                    {invoice.number} &bull; BUSINESS MANAGEMENT
+                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 font-semibold">
+                      {invoice.status}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
+                    Category: {invoice.category}
+                  </span>
+                  <span className="text-xs font-mono text-[#71717A] block">
+                    Commercial Model: {invoice.commercialModel}
+                  </span>
+                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white pt-1">
                     {invoice.title}
                   </h3>
                 </div>
@@ -97,7 +190,7 @@ export const SelectedWork: React.FC = () => {
                   {invoice.description}
                 </p>
 
-                {/* Verified Capabilities */}
+                {/* Verified Core Functionality */}
                 <div className="space-y-2 pt-2 border-t border-[#1E2638]">
                   <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block">
                     VERIFIED CORE FUNCTIONALITY
@@ -168,99 +261,6 @@ export const SelectedWork: React.FC = () => {
                       Production Platform
                     </span>
                   </div>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* =======================================================================
-              02. PRODUCT: ZENTRA (Event Technology / Ticketing) — Horizontal Showcase
-             ======================================================================= */}
-          <div
-            id={zentra.id}
-            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-              {/* Left Column (5 Cols): Editorial & Commercial Context */}
-              <div className="lg:col-span-5 space-y-6">
-                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-4 text-xs font-mono">
-                  <span className="text-[#BAF247] font-bold">
-                    {zentra.number} &bull; EVENT TECHNOLOGY
-                  </span>
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 font-semibold">
-                      {zentra.status}
-                    </span>
-                  </div>
-                </div>
-
-                <div className="space-y-2">
-                  <span className="text-xs font-mono text-[#A1A1AA] block uppercase tracking-wider">
-                    Category: {zentra.category}
-                  </span>
-                  <span className="text-xs font-mono text-[#71717A] block">
-                    Commercial Model: {zentra.commercialModel}
-                  </span>
-                  <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white pt-1">
-                    {zentra.title}
-                  </h3>
-                </div>
-
-                <p className="text-sm sm:text-base text-[#D4D4D8] leading-relaxed">
-                  {zentra.description}
-                </p>
-
-                {/* Verified Core Functionality */}
-                <div className="space-y-2 pt-2 border-t border-[#1E2638]">
-                  <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block">
-                    VERIFIED CORE FUNCTIONALITY
-                  </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs font-mono text-[#D4D4D8]">
-                    {zentra.capabilities.map((cap) => (
-                      <div
-                        key={cap}
-                        className="p-2 rounded bg-[#050915] border border-[#1E2638] flex items-center space-x-2"
-                      >
-                        <Check className="w-3.5 h-3.5 text-[#BAF247] shrink-0" />
-                        <span className="truncate">{cap}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Action Links */}
-                <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-                  <Button
-                    variant="primary"
-                    size="md"
-                    href={zentra.route}
-                    iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
-                  >
-                    {zentra.ctaText}
-                  </Button>
-
-                  {zentra.externalUrl && (
-                    <a
-                      href={zentra.externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-[#1E2638] bg-[#050915] hover:bg-[#1E2638] text-white text-sm font-semibold transition-colors"
-                    >
-                      <span>Visit Live Platform</span>
-                      <ExternalLink className="w-3.5 h-3.5 text-[#71717A]" />
-                    </a>
-                  )}
-                </div>
-              </div>
-
-              {/* Right Column (7 Cols): Authentic Production Screenshot */}
-              <div className="lg:col-span-7">
-                <Link
-                  href={zentra.route}
-                  className="block group/preview cursor-pointer"
-                  aria-label={`Explore ${zentra.title}`}
-                >
-                  <ZentraPreview />
                 </Link>
               </div>
             </div>
