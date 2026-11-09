@@ -154,7 +154,7 @@ export const Navbar: React.FC = () => {
             </Link>
 
             <Link
-              href="/#services"
+              href="/#technology"
               className="text-[13px] font-mono uppercase tracking-[0.14em] text-[#D4D4D8] hover:text-white transition-colors duration-150 font-medium"
             >
               Technology
@@ -241,7 +241,7 @@ export const Navbar: React.FC = () => {
                     Solutions
                   </Link>
                   <Link
-                    href="/#services"
+                    href="/#technology"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block px-3 py-2 text-sm text-[#D4D4D8] hover:text-white hover:bg-[#101522] rounded-md transition-colors"
                   >

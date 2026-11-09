@@ -2,18 +2,22 @@ import React from "react";
 import Hero from "@/components/hero/Hero";
 import Services from "@/components/services/Services";
 import SelectedWork from "@/components/work/SelectedWork";
+import Technology from "@/components/technology/Technology";
 
 export default function Home() {
   return (
     <main className="grow flex flex-col">
-      {/* Phase 2: Hero Section */}
+      {/* Hero Section */}
       <Hero />
 
-      {/* Phase 3: Services & Capabilities Section */}
+      {/* Services & Capabilities Section */}
       <Services />
 
-      {/* Phase 4: Selected Solutions Section */}
+      {/* Selected Solutions Section */}
       <SelectedWork />
+
+      {/* Technology & Engineering / How We Work Section */}
+      <Technology />
     </main>
   );
 }
