@@ -3,6 +3,7 @@ import Hero from "@/components/hero/Hero";
 import Services from "@/components/services/Services";
 import SelectedWork from "@/components/work/SelectedWork";
 import Technology from "@/components/technology/Technology";
+import About from "@/components/about/About";
 
 export default function Home() {
   return (
@@ -18,6 +19,9 @@ export default function Home() {
 
       {/* Technology & Engineering / How We Work Section */}
       <Technology />
+
+      {/* About / Company Section */}
+      <About />
     </main>
   );
 }
