@@ -12,7 +12,7 @@ export const AiAssistantConceptPreview: React.FC = () => {
         <div className="flex items-center gap-2">
           <Sparkles className="w-3.5 h-3.5 text-[#BAF247]" />
           <span className="font-semibold text-white">
-            BOLMEET AI &bull; Active Meeting Intelligence &amp; AI Copilot
+            BOLMEET AI Active Meeting Intelligence &amp; AI Copilot
           </span>
         </div>
 
@@ -47,11 +47,11 @@ export const AiAssistantConceptPreview: React.FC = () => {
           {/* Clean Minimal Caption Strip */}
           <div className="px-4 py-3 bg-[#090D1A] border-t border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="space-y-0.5">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h4 className="font-bold text-white text-sm tracking-tight">
-                  BOLMEET AI &bull; Next-Generation Meeting Intelligence
+                  BOLMEET AI Next-Generation Meeting Intelligence
                 </h4>
-                <span className="text-[11px] text-[#BAF247] font-mono">&bull; Production AI Platform</span>
+                <span className="text-[11px] text-[#BAF247] font-mono">Production AI Platform</span>
               </div>
               <p className="text-[11px] text-[#A1A1AA]">
                 Built-in AI teammate that detects decisions, auto-compiles action items, generates executive reports, and queries conversational memory.

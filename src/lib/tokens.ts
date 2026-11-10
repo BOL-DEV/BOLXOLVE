@@ -87,18 +87,37 @@ export const ANIMATION = {
   },
 } as const;
 
+export const SOCIAL_LINKS = [
+  {
+    id: "instagram",
+    label: "Instagram",
+    href: "https://www.instagram.com/bolxolve/",
+  },
+  {
+    id: "linkedin",
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/company/bolxolve-ltd",
+  },
+  {
+    id: "facebook",
+    label: "Facebook",
+    href: "https://web.facebook.com/bolxolve/",
+  },
+] as const;
+
 export const COMPANY_INFO = {
   name: "BOLXOLVE LTD",
   shortName: "BOLXOLVE",
   descriptor: "Hybrid Digital Solutions & Technology",
   registered: "BOLXOLVE LTD. All rights reserved.",
+  social: SOCIAL_LINKS,
   services: [
-    { title: "Business Websites", slug: "business-websites" },
-    { title: "E-Commerce Platforms", slug: "ecommerce-platforms" },
-    { title: "Custom Web Applications", slug: "custom-web-apps" },
-    { title: "Business Management Systems", slug: "business-management" },
-    { title: "Workflow Automation", slug: "workflow-automation" },
-    { title: "AI Integrations", slug: "ai-integrations" },
+    { number: "01", categoryLabel: "WEB & PLATFORMS", title: "Web & Digital Experiences", slug: "web-digital" },
+    { number: "02", categoryLabel: "CUSTOM SOFTWARE", title: "Custom Software", slug: "custom-software" },
+    { number: "03", categoryLabel: "ONLINE STORES", title: "E-commerce Solutions", slug: "ecommerce" },
+    { number: "04", categoryLabel: "WORKFLOW AUTOMATION", title: "Business Automation & Integrations", slug: "automation" },
+    { number: "05", categoryLabel: "PRACTICAL AI", title: "AI & Intelligent Solutions", slug: "ai-solutions" },
+    { number: "06", categoryLabel: "PLANNED SOLUTION", title: "Education Technology Solutions", slug: "education-solutions" },
   ],
 } as const;
 

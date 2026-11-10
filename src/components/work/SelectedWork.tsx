@@ -3,9 +3,12 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, ExternalLink, Check, GraduationCap, Clock } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import SpotlightCard from "@/components/ui/SpotlightCard";
+import ScrollReveal from "@/components/ui/ScrollReveal";
 import { PROJECTS } from "./types";
 import ZentraPreview from "./previews/ZentraPreview";
 
@@ -13,6 +16,7 @@ export const SelectedWork: React.FC = () => {
   const zentra = PROJECTS[0];
   const invoice = PROJECTS[1];
   const education = PROJECTS[2];
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section
@@ -26,33 +30,56 @@ export const SelectedWork: React.FC = () => {
       <span id="portfolio" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="selected-solutions" className="relative -top-28 pointer-events-none block h-0 w-0" />
 
-      {/* Controlled Radial Background Glow */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-radial-hero pointer-events-none opacity-20" />
+      {/* Controlled Radial Background Glow — Breathing Motion */}
+      <motion.div
+        animate={shouldReduceMotion ? { opacity: 0.2 } : {
+          opacity: [0.15, 0.25, 0.15],
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-radial-hero pointer-events-none"
+      />
 
       <Container size="wide" className="relative z-10">
         {/* =========================================================================
             SECTION INTRODUCTION
            ========================================================================= */}
-        <div className="max-w-3xl mb-16 sm:mb-20 space-y-5">
-          {/* Eyebrow */}
-          <div className="inline-flex items-center space-x-3">
-            <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
-            <span className="text-xs font-mono font-medium tracking-[0.2em] uppercase text-[#BAF247]">
-              OUR PRODUCTS / SOLUTIONS
-            </span>
+        <ScrollReveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 sm:mb-20">
+          <div className="max-w-3xl space-y-5">
+            {/* Eyebrow */}
+            <div>
+              <span className="text-xs font-mono font-medium tracking-[0.2em] uppercase text-[#BAF247]">
+                OUR PRODUCTS  SOLUTIONS
+              </span>
+            </div>
+
+            {/* Headline */}
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+              Tools we&apos;ve built.{" "}
+              <span className="text-[#BAF247]">Solutions ready to work.</span>
+            </h2>
+
+            {/* Supporting Text */}
+            <p className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed font-normal">
+              We develop practical software products that help organisations manage their operations, serve customers and work more efficiently.
+            </p>
           </div>
 
-          {/* Headline */}
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-[1.1]">
-            Tools we&apos;ve built.{" "}
-            <span className="text-[#BAF247]">Solutions ready to work.</span>
-          </h2>
-
-          {/* Supporting Text */}
-          <p className="text-base sm:text-lg md:text-xl text-[#A1A1AA] leading-relaxed font-normal">
-            We develop practical software products that help organisations manage their operations, serve customers and work more efficiently.
-          </p>
-        </div>
+          <div className="shrink-0 md:pb-2">
+            <Button
+              variant="secondary"
+              size="md"
+              href="/solutions"
+              iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+            >
+              Explore All Solutions
+            </Button>
+          </div>
+        </ScrollReveal>
 
         {/* =========================================================================
             PRODUCTS & SOLUTIONS EDITORIAL SHOWCASE
@@ -61,19 +88,19 @@ export const SelectedWork: React.FC = () => {
           {/* =======================================================================
               01. FEATURED HERO PRODUCT: ZENTRA (Comes First)
              ======================================================================= */}
-          <div
-            id={zentra.id}
-            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <ScrollReveal>
+            <SpotlightCard
+              id={zentra.id}
+              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column (5 Cols): Editorial Information, Status & Model */}
               <div className="lg:col-span-5 space-y-6">
                 <div className="space-y-3">
                   <div className="flex flex-wrap items-center gap-2 text-xs font-mono">
                     <span className="text-[#BAF247] font-bold">
-                      {zentra.number} &bull; FEATURED PRODUCT
+                      {zentra.number} FEATURED PRODUCT
                     </span>
-                    <span className="text-[#71717A]">&bull;</span>
                     <span className="text-[10px] uppercase tracking-widest text-[#71717A]">
                       {zentra.category}
                     </span>
@@ -91,6 +118,17 @@ export const SelectedWork: React.FC = () => {
                   <h3 className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-white">
                     {zentra.title}
                   </h3>
+                </div>
+
+                {/* Mobile Preview right after title */}
+                <div className="lg:hidden my-4">
+                  <Link
+                    href={zentra.route}
+                    className="block group/preview cursor-pointer"
+                    aria-label={`Explore ${zentra.title}`}
+                  >
+                    <ZentraPreview />
+                  </Link>
                 </div>
 
                 <p className="text-sm sm:text-base text-[#D4D4D8] leading-relaxed">
@@ -141,7 +179,7 @@ export const SelectedWork: React.FC = () => {
               </div>
 
               {/* Right Column (7 Cols): Authentic Production Screenshot */}
-              <div className="lg:col-span-7">
+              <div className="hidden lg:block lg:col-span-7">
                 <Link
                   href={zentra.route}
                   className="block group/preview cursor-pointer"
@@ -151,21 +189,23 @@ export const SelectedWork: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
+        </ScrollReveal>
 
           {/* =======================================================================
               02. PRODUCT: INVOICE MANAGEMENT SYSTEM (Horizontal Showcase)
              ======================================================================= */}
-          <div
-            id={invoice.id}
-            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <ScrollReveal delay={0.1}>
+            <SpotlightCard
+              id={invoice.id}
+              className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)]"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column (5 Cols): Editorial & Commercial Context */}
               <div className="lg:col-span-5 space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-4 text-xs font-mono">
                   <span className="text-[#BAF247] font-bold">
-                    {invoice.number} &bull; BUSINESS MANAGEMENT
+                    {invoice.number} BUSINESS MANAGEMENT
                   </span>
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] px-2 py-0.5 rounded-full bg-emerald-950/40 border border-emerald-500/30 text-emerald-400 font-semibold">
@@ -184,6 +224,33 @@ export const SelectedWork: React.FC = () => {
                   <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white pt-1">
                     {invoice.title}
                   </h3>
+                </div>
+
+                {/* Mobile Preview right after title */}
+                <div className="lg:hidden my-4">
+                  <Link
+                    href={invoice.route}
+                    className="block group/preview cursor-pointer rounded-xl bg-[#080D1A] border border-[#1E2638] overflow-hidden shadow-2xl transition-all duration-300 hover:border-[#BAF247]/40"
+                    aria-label={`Explore ${invoice.title}`}
+                  >
+                    <div className="relative w-full aspect-[16/10] bg-[#050915] overflow-hidden">
+                      <Image
+                        src="/showcase/invoice-bolxolve-screenshot.jpg"
+                        alt="BOLXOLVE Invoicing and Multi-Branch Enterprise Billing Dashboard"
+                        fill
+                        sizes="100vw"
+                        className="object-cover object-top"
+                      />
+                    </div>
+                    <div className="px-4 py-3 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-xs">
+                      <span className="font-bold text-white tracking-tight">
+                        BOLXOLVE Invoice Multi-Branch Billing
+                      </span>
+                      <span className="text-[11px] text-[#BAF247] font-mono">
+                        Production Platform
+                      </span>
+                    </div>
+                  </Link>
                 </div>
 
                 <p className="text-sm sm:text-base text-[#D4D4D8] leading-relaxed">
@@ -234,7 +301,7 @@ export const SelectedWork: React.FC = () => {
               </div>
 
               {/* Right Column (7 Cols): Authentic Production Screenshot */}
-              <div className="lg:col-span-7">
+              <div className="hidden lg:block lg:col-span-7">
                 <Link
                   href={invoice.route}
                   className="block group/preview cursor-pointer rounded-xl bg-[#080D1A] border border-[#1E2638] overflow-hidden shadow-2xl transition-all duration-300 hover:border-[#BAF247]/40"
@@ -255,7 +322,7 @@ export const SelectedWork: React.FC = () => {
                   {/* Minimal Caption Strip */}
                   <div className="px-4 py-3 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-xs">
                     <span className="font-bold text-white tracking-tight">
-                      BOLXOLVE Invoice &bull; Multi-Branch Depot &amp; Revenue Overview
+                      BOLXOLVE Invoice Multi-Branch Depot &amp; Revenue Overview
                     </span>
                     <span className="text-[11px] text-[#BAF247] font-mono">
                       Production Platform
@@ -264,21 +331,23 @@ export const SelectedWork: React.FC = () => {
                 </Link>
               </div>
             </div>
-          </div>
+          </SpotlightCard>
+        </ScrollReveal>
 
           {/* =======================================================================
               03. PRODUCT: EDUCATION MANAGEMENT SOLUTIONS (Upcoming / Planned) — Horizontal Showcase
              ======================================================================= */}
-          <div
-            id="education-solutions"
-            className="rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] group relative overflow-hidden"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <ScrollReveal delay={0.15}>
+            <SpotlightCard
+              id="education-solutions"
+              className="hidden md:block rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 transition-all duration-300 p-6 sm:p-10 lg:p-12 shadow-[0_16px_48px_rgba(0,0,0,0.5)] relative overflow-hidden"
+            >
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
               {/* Left Column (5 Cols): Editorial & Upcoming Status */}
               <div className="lg:col-span-5 space-y-6">
                 <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#1E2638] pb-4 text-xs font-mono">
                   <span className="text-[#BAF247] font-bold">
-                    {education.number} &bull; EDUCATION TECHNOLOGY
+                    {education.number} EDUCATION TECHNOLOGY
                   </span>
                   <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 font-semibold flex items-center gap-1">
                     <Clock className="w-3 h-3 text-[#BAF247]" />
@@ -371,8 +440,40 @@ export const SelectedWork: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </SpotlightCard>
+        </ScrollReveal>
+      </div>
+
+        {/* =========================================================================
+            BOTTOM CALL-TO-ACTION: SOLUTIONS HUB
+           ========================================================================= */}
+        <ScrollReveal delay={0.1}>
+          <SpotlightCard className="mt-12 sm:mt-16 rounded-2xl bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/30 transition-all duration-300 p-6 sm:p-8 lg:p-10 flex flex-col md:flex-row items-center justify-between gap-6 shadow-[0_16px_48px_rgba(0,0,0,0.4)]">
+            <div className="space-y-2 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-2 text-xs font-mono text-[#BAF247]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
+                <span>EXPANDING SOFTWARE ECOSYSTEM</span>
+              </div>
+              <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
+                Discover our complete suite of digital solutions.
+              </h3>
+              <p className="text-sm sm:text-base text-[#A1A1AA] max-w-2xl">
+                From live platforms like ZENTRA and Invoice Management to BOLMEET AI and upcoming educational suites, explore our full catalog or discuss custom builds.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap items-center gap-3 shrink-0">
+              <Button
+                variant="primary"
+                size="lg"
+                href="/solutions"
+                iconRight={<ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />}
+              >
+                View More Solutions
+              </Button>
+            </div>
+          </SpotlightCard>
+        </ScrollReveal>
       </Container>
     </section>
   );

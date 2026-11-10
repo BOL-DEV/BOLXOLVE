@@ -15,7 +15,6 @@ export const BolmeetPreview: React.FC = () => {
       {/* Top Header */}
       <div className="relative z-10 flex items-center justify-between pb-2.5 border-b border-[#1E2638] text-[10px] font-mono">
         <div className="flex items-center space-x-2">
-          <span className="w-2 h-2 rounded-full bg-[#BAF247] animate-pulse" />
           <span className="text-white font-semibold">BOLMEET AI // WORKSPACE</span>
         </div>
         <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#101522] border border-[#1E2638] text-[#71717A]">
@@ -85,7 +84,7 @@ export const BolmeetPreview: React.FC = () => {
 
       {/* Telemetry Footer */}
       <div className="relative z-10 pt-2 border-t border-[#1E2638] flex items-center justify-between text-[9px] font-mono text-[#71717A]">
-        <span>WHISPER &bull; LLM EXTRACTION &bull; WEBRTC</span>
+        <span>WHISPER  LLM EXTRACTION  WEBRTC</span>
         <span className="text-[#BAF247]">REAL-TIME LATENCY: 85ms</span>
       </div>
     </div>

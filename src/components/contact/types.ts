@@ -29,3 +29,4 @@ export const CONTACT_DETAILS = {
   phone: "07087035189",
   website: "https://bolxolve.com",
 } as const;
+

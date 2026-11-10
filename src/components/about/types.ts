@@ -24,3 +24,4 @@ export const COMPANY_VALUES: CompanyValue[] = [
       "Technology and business needs change. We believe good solutions should be maintained, refined and improved over time.",
   },
 ];
+

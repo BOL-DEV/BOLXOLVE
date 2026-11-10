@@ -1,15 +1,17 @@
 import type { Metadata, Viewport } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { SITE_CONFIG, SITE_URL } from "@/lib/seo";
+import { SOCIAL_LINKS } from "@/lib/tokens";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "BOLXOLVE LTD — Hybrid Digital Solutions & Technology",
+    default: SITE_CONFIG.defaultTitle,
     template: "%s | BOLXOLVE LTD",
   },
-  description:
-    "BOLXOLVE LTD is a technology-driven digital solutions company delivering business websites, e-commerce platforms, custom web applications, business management systems, workflow automation, and AI integrations.",
+  description: SITE_CONFIG.defaultDescription,
   keywords: [
     "BOLXOLVE",
     "BOLXOLVE LTD",
@@ -24,30 +26,89 @@ export const metadata: Metadata = {
     "BOLMEET AI",
     "Invoice Management",
   ],
-  authors: [{ name: "BOLXOLVE LTD" }],
-  creator: "BOLXOLVE LTD",
+  authors: [{ name: SITE_CONFIG.name, url: SITE_URL }],
+  creator: SITE_CONFIG.name,
+  publisher: SITE_CONFIG.name,
+  alternates: {
+    canonical: "/",
+  },
+  manifest: "/manifest.webmanifest",
   icons: {
     icon: "/brand/logo_icon_hi_res.png",
     apple: "/brand/logo_icon_hi_res.png",
   },
   openGraph: {
-    title: "BOLXOLVE LTD — Hybrid Digital Solutions & Technology",
+    title: SITE_CONFIG.defaultTitle,
     description:
       "Engineering next-generation web applications, intelligent automation, and scalable digital infrastructure.",
-    siteName: "BOLXOLVE LTD",
+    url: SITE_URL,
+    siteName: SITE_CONFIG.name,
     type: "website",
-    locale: "en_GB",
+    locale: SITE_CONFIG.locale,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_CONFIG.defaultTitle,
+    description:
+      "Engineering next-generation web applications, intelligent automation, and scalable digital infrastructure.",
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#050915",
+  themeColor: SITE_CONFIG.themeColor,
   width: "device-width",
   initialScale: 1,
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${SITE_URL}/#organization`,
+      name: SITE_CONFIG.name,
+      legalName: SITE_CONFIG.name,
+      alternateName: SITE_CONFIG.shortName,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/brand/logo_icon_hi_res.png`,
+      },
+      description: SITE_CONFIG.defaultDescription,
+      email: SITE_CONFIG.email,
+      telephone: SITE_CONFIG.phone,
+      sameAs: SOCIAL_LINKS.map((social) => social.href),
+      contactPoint: {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        email: SITE_CONFIG.email,
+        telephone: SITE_CONFIG.phone,
+        url: `${SITE_URL}/#contact`,
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      name: SITE_CONFIG.name,
+      url: SITE_URL,
+      description: SITE_CONFIG.defaultDescription,
+      publisher: {
+        "@id": `${SITE_URL}/#organization`,
+      },
+      inLanguage: "en",
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -58,6 +119,11 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className="min-h-screen bg-[#050915] text-white antialiased font-sans flex flex-col selection:bg-[#BAF247] selection:text-[#050915]">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+
         {/* Global Navigation across all routes */}
         <Navbar />
 

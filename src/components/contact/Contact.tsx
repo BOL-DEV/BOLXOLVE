@@ -1,8 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
-import { Mail, Phone, Globe, ArrowRight, CheckCircle2, AlertCircle, ExternalLink } from "lucide-react";
+import { Mail, Phone, Globe, ArrowRight, CheckCircle2, AlertCircle, ExternalLink, Loader2, RotateCcw } from "lucide-react";
 import Container from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
+import SocialLinks from "@/components/ui/SocialLinks";
 import { ContactFormData, FormErrors, SERVICE_OPTIONS, CONTACT_DETAILS } from "./types";
 
 export const Contact: React.FC = () => {
@@ -15,8 +18,11 @@ export const Contact: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<FormErrors>({});
+  const [companyWebsite, setCompanyWebsite] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submittedLink, setSubmittedLink] = useState<string | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [serverMessage, setServerMessage] = useState<string | null>(null);
+  const [fallbackMailto, setFallbackMailto] = useState<string | null>(null);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -61,7 +67,22 @@ export const Contact: React.FC = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleReset = () => {
+    setFormData({
+      fullName: "",
+      email: "",
+      business: "",
+      service: "",
+      projectDetails: "",
+    });
+    setErrors({});
+    setCompanyWebsite("");
+    setSubmitStatus("idle");
+    setServerMessage(null);
+    setFallbackMailto(null);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validate()) {
@@ -69,8 +90,10 @@ export const Contact: React.FC = () => {
     }
 
     setIsSubmitting(true);
+    setSubmitStatus("loading");
+    setServerMessage(null);
 
-    // Construct structured mailto draft for honest, transparent client-side dispatch
+    // Prepare direct mailto fallback link in case server dispatch encounters an issue
     const subject = encodeURIComponent(
       `Project Enquiry: ${formData.service} — ${formData.fullName.trim()}${
         formData.business.trim() ? ` (${formData.business.trim()})` : ""
@@ -91,16 +114,38 @@ export const Contact: React.FC = () => {
     );
 
     const mailtoUrl = `mailto:${CONTACT_DETAILS.email}?subject=${subject}&body=${body}`;
-    setSubmittedLink(mailtoUrl);
+    setFallbackMailto(mailtoUrl);
 
-    // Trigger local email client
     try {
-      window.location.href = mailtoUrl;
-    } catch {
-      // Fallback handled by UI state
-    }
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...formData, companyWebsite }),
+      });
 
-    setIsSubmitting(false);
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setSubmitStatus("success");
+        setServerMessage(
+          data.message || "Your project enquiry has been delivered directly to the BOLXOLVE team."
+        );
+      } else {
+        setSubmitStatus("error");
+        setServerMessage(
+          data.error || "Unable to send enquiry automatically. Please use the direct email link below."
+        );
+      }
+    } catch {
+      setSubmitStatus("error");
+      setServerMessage(
+        "A network connection issue occurred. Please click below to send your enquiry directly via email."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -122,11 +167,10 @@ export const Contact: React.FC = () => {
           {/* =========================================================================
               LEFT COLUMN (5 Cols): SECTION INTRODUCTION & VERIFIED CONTACT DETAILS
              ========================================================================= */}
-          <div className="lg:col-span-5 space-y-8">
+          <ScrollReveal direction="left" className="lg:col-span-5 space-y-8">
             {/* Eyebrow & Headline */}
             <div className="space-y-4">
-              <div className="inline-flex items-center space-x-3">
-                <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
+              <div>
                 <span className="text-xs font-mono font-medium tracking-[0.2em] uppercase text-[#BAF247]">
                   LET&apos;S BUILD SOMETHING USEFUL
                 </span>
@@ -143,7 +187,7 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* Verified Contact Details Card */}
-            <div className="p-6 rounded-2xl bg-[#080D1A] border border-[#1E2638] space-y-4">
+            <SpotlightCard className="p-6 space-y-4">
               <span className="text-xs font-mono uppercase tracking-widest text-[#71717A] block pb-1 border-b border-[#1E2638]">
                 DIRECT CONTACT
               </span>
@@ -204,7 +248,15 @@ export const Contact: React.FC = () => {
                   </a>
                 </div>
               </div>
-            </div>
+
+              {/* Social Media Channels */}
+              <div className="pt-3 border-t border-[#1E2638] space-y-2.5">
+                <span className="text-[10px] font-mono uppercase tracking-wider text-[#71717A] block">
+                  Social Channels
+                </span>
+                <SocialLinks showLabels />
+              </div>
+            </SpotlightCard>
 
             {/* Closing Statement */}
             <div className="pt-2">
@@ -212,13 +264,13 @@ export const Contact: React.FC = () => {
                 &ldquo;Good ideas deserve thoughtful execution. Let&apos;s explore what we can build together.&rdquo;
               </blockquote>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* =========================================================================
               RIGHT COLUMN (7 Cols): PROJECT ENQUIRY FORM
              ========================================================================= */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl bg-[#101522] border border-[#1E2638] p-6 sm:p-8 lg:p-10 shadow-[0_16px_48px_rgba(0,0,0,0.5)] space-y-6">
+          <ScrollReveal direction="right" delay={0.15} className="lg:col-span-7">
+            <SpotlightCard className="p-6 sm:p-8 lg:p-10 shadow-[0_16px_48px_rgba(0,0,0,0.5)] space-y-6">
               <div className="space-y-1 border-b border-[#1E2638] pb-4">
                 <h3 className="text-xl sm:text-2xl font-bold tracking-tight text-white">
                   Project Enquiry
@@ -228,198 +280,247 @@ export const Contact: React.FC = () => {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} noValidate className="space-y-5">
-                {/* Full Name */}
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="fullName"
-                    className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
-                  >
-                    Full Name <span className="text-[#BAF247]">*</span>
-                  </label>
-                  <input
-                    id="fullName"
-                    name="fullName"
-                    type="text"
-                    required
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    placeholder="Your name"
-                    className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-white placeholder-[#71717A] text-sm focus:outline-none transition-colors ${
-                      errors.fullName
-                        ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-1 focus:ring-[#EF4444]"
-                        : "border-[#1E2638] focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247]"
-                    }`}
-                  />
-                  {errors.fullName && (
-                    <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.fullName}</span>
+              {submitStatus === "success" ? (
+                <div className="py-8 space-y-6 text-center animate-fadeIn">
+                  <div className="w-14 h-14 mx-auto rounded-full bg-[#BAF247]/10 border border-[#BAF247]/30 flex items-center justify-center text-[#BAF247]">
+                    <CheckCircle2 className="w-7 h-7" />
+                  </div>
+                  <div className="space-y-2">
+                    <h4 className="text-2xl font-bold text-white tracking-tight">
+                      Enquiry Delivered Successfully
+                    </h4>
+                    <p className="text-sm text-[#A1A1AA] max-w-md mx-auto leading-relaxed">
+                      Thank you, <span className="text-white font-medium">{formData.fullName}</span>. We&apos;ve received your project details regarding <span className="text-[#BAF247]">{formData.service}</span>. Our engineering team will review your requirements and reach out to <span className="text-white font-mono">{formData.email}</span> within 24 hours.
                     </p>
-                  )}
+                  </div>
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={handleReset}
+                      className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#080D1A] border border-[#1E2638] text-xs font-mono text-[#D4D4D8] hover:text-[#BAF247] hover:border-[#BAF247]/40 transition-colors cursor-pointer"
+                    >
+                      <RotateCcw className="w-3.5 h-3.5" />
+                      <span>Send another enquiry</span>
+                    </button>
+                  </div>
                 </div>
+              ) : (
+                <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                  {/* Honeypot field invisible to human visitors; traps automated spam bots */}
+                  <div className="sr-only" aria-hidden="true">
+                    <label htmlFor="companyWebsite">Company Website</label>
+                    <input
+                      id="companyWebsite"
+                      name="companyWebsite"
+                      type="text"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={companyWebsite}
+                      onChange={(e) => setCompanyWebsite(e.target.value)}
+                    />
+                  </div>
 
-                {/* Email Address */}
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="email"
-                    className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
-                  >
-                    Email Address <span className="text-[#BAF247]">*</span>
-                  </label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Your email address"
-                    className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-white placeholder-[#71717A] text-sm focus:outline-none transition-colors ${
-                      errors.email
-                        ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-1 focus:ring-[#EF4444]"
-                        : "border-[#1E2638] focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247]"
-                    }`}
-                  />
-                  {errors.email && (
-                    <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.email}</span>
-                    </p>
+                  {/* Error Notification Banner with Instant Email Client Fallback */}
+                  {submitStatus === "error" && (
+                    <div className="p-4 rounded-xl bg-red-950/30 border border-red-500/30 space-y-2 text-xs font-mono">
+                      <div className="flex items-center gap-2 text-red-400 font-semibold">
+                        <AlertCircle className="w-4 h-4 shrink-0" />
+                        <span>Transmission Notice</span>
+                      </div>
+                      <p className="text-[#D4D4D8] font-sans leading-relaxed">
+                        {serverMessage || "Could not dispatch enquiry automatically."}
+                      </p>
+                      {fallbackMailto && (
+                        <p className="pt-1.5 border-t border-red-500/20 text-[#A1A1AA]">
+                          Click to send directly via your email client:{" "}
+                          <a
+                            href={fallbackMailto}
+                            className="text-[#BAF247] underline hover:text-white font-medium"
+                          >
+                            Send enquiry to {CONTACT_DETAILS.email} &rarr;
+                          </a>
+                        </p>
+                      )}
+                    </div>
                   )}
-                </div>
 
-                {/* Business / Organisation (Optional) */}
-                <div className="space-y-1.5">
-                  <div className="flex items-center justify-between">
+                  {/* Full Name */}
+                  <div className="space-y-1.5">
                     <label
-                      htmlFor="business"
+                      htmlFor="fullName"
                       className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
                     >
-                      Business / Organisation
+                      Full Name <span className="text-[#BAF247]">*</span>
                     </label>
-                    <span className="text-[10px] font-mono text-[#71717A]">Optional</span>
-                  </div>
-                  <input
-                    id="business"
-                    name="business"
-                    type="text"
-                    value={formData.business}
-                    onChange={handleChange}
-                    placeholder="Your business name (optional)"
-                    className="w-full px-4 py-3 rounded-lg bg-[#050915] border border-[#1E2638] text-white placeholder-[#71717A] text-sm focus:outline-none focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247] transition-colors"
-                  />
-                </div>
-
-                {/* What do you need? */}
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="service"
-                    className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
-                  >
-                    What do you need? <span className="text-[#BAF247]">*</span>
-                  </label>
-                  <div className="relative">
-                    <select
-                      id="service"
-                      name="service"
+                    <input
+                      id="fullName"
+                      name="fullName"
+                      type="text"
                       required
-                      value={formData.service}
+                      value={formData.fullName}
                       onChange={handleChange}
-                      className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-sm focus:outline-none transition-colors appearance-none cursor-pointer ${
-                        formData.service ? "text-white" : "text-[#71717A]"
-                      } ${
-                        errors.service
+                      placeholder="Your name"
+                      className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-white placeholder-[#71717A] text-sm focus:outline-none transition-colors ${
+                        errors.fullName
                           ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-1 focus:ring-[#EF4444]"
                           : "border-[#1E2638] focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247]"
                       }`}
+                    />
+                    {errors.fullName && (
+                      <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{errors.fullName}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Email Address */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="email"
+                      className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
                     >
-                      <option value="" disabled>
-                        Select a capability or need...
-                      </option>
-                      {SERVICE_OPTIONS.map((opt) => (
-                        <option key={opt} value={opt} className="bg-[#101522] text-white">
-                          {opt}
-                        </option>
-                      ))}
-                    </select>
+                      Email Address <span className="text-[#BAF247]">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Your email address"
+                      className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-white placeholder-[#71717A] text-sm focus:outline-none transition-colors ${
+                        errors.email
+                          ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-1 focus:ring-[#EF4444]"
+                          : "border-[#1E2638] focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247]"
+                      }`}
+                    />
+                    {errors.email && (
+                      <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{errors.email}</span>
+                      </p>
+                    )}
                   </div>
-                  {errors.service && (
-                    <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.service}</span>
-                    </p>
-                  )}
-                </div>
 
-                {/* Tell us about your project */}
-                <div className="space-y-1.5">
-                  <label
-                    htmlFor="projectDetails"
-                    className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
-                  >
-                    Tell us about your project <span className="text-[#BAF247]">*</span>
-                  </label>
-                  <textarea
-                    id="projectDetails"
-                    name="projectDetails"
-                    rows={4}
-                    required
-                    value={formData.projectDetails}
-                    onChange={handleChange}
-                    placeholder="Briefly describe what you're trying to build or the challenge you're looking to solve..."
-                    className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-white placeholder-[#71717A] text-sm focus:outline-none transition-colors resize-y min-h-[110px] ${
-                      errors.projectDetails
-                        ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-1 focus:ring-[#EF4444]"
-                        : "border-[#1E2638] focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247]"
-                    }`}
-                  />
-                  {errors.projectDetails && (
-                    <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
-                      <AlertCircle className="w-3.5 h-3.5 shrink-0" />
-                      <span>{errors.projectDetails}</span>
-                    </p>
-                  )}
-                </div>
-
-                {/* Submit Button */}
-                <div className="pt-2">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full py-3.5 px-6 rounded-lg bg-[#BAF247] hover:bg-[#A8E035] text-[#050915] font-bold text-sm tracking-wide transition-all shadow-[0_4px_16px_rgba(186,242,71,0.2)] disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer group"
-                  >
-                    <span>Send Project Enquiry</span>
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </button>
-                </div>
-
-                {/* Honest Client-Side Fallback Confirmation Banner */}
-                {submittedLink && (
-                  <div className="p-4 rounded-xl bg-[#080D1A] border border-[#BAF247]/40 space-y-2 text-xs font-mono animate-fadeIn">
-                    <div className="flex items-center gap-2 text-[#BAF247] font-semibold">
-                      <CheckCircle2 className="w-4 h-4 shrink-0" />
-                      <span>Enquiry Prepared</span>
-                    </div>
-                    <p className="text-[#A1A1AA] font-sans leading-relaxed">
-                      Opening your email client to send your enquiry to{" "}
-                      <span className="text-white font-mono">{CONTACT_DETAILS.email}</span>.
-                    </p>
-                    <p className="text-[#71717A] text-[11px] pt-1 border-t border-[#1E2638]">
-                      If your email app didn&apos;t open automatically,{" "}
-                      <a
-                        href={submittedLink}
-                        className="text-[#BAF247] underline hover:text-white"
+                  {/* Business / Organisation (Optional) */}
+                  <div className="space-y-1.5">
+                    <div className="flex items-center justify-between">
+                      <label
+                        htmlFor="business"
+                        className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
                       >
-                        click here to send directly
-                      </a>
-                      .
-                    </p>
+                        Business / Organisation
+                      </label>
+                      <span className="text-[10px] font-mono text-[#71717A]">Optional</span>
+                    </div>
+                    <input
+                      id="business"
+                      name="business"
+                      type="text"
+                      value={formData.business}
+                      onChange={handleChange}
+                      placeholder="Your business name (optional)"
+                      className="w-full px-4 py-3 rounded-lg bg-[#050915] border border-[#1E2638] text-white placeholder-[#71717A] text-sm focus:outline-none focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247] transition-colors"
+                    />
                   </div>
-                )}
-              </form>
-            </div>
-          </div>
+
+                  {/* What do you need? */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="service"
+                      className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
+                    >
+                      What do you need? <span className="text-[#BAF247]">*</span>
+                    </label>
+                    <div className="relative">
+                      <select
+                        id="service"
+                        name="service"
+                        required
+                        value={formData.service}
+                        onChange={handleChange}
+                        className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-sm focus:outline-none transition-colors appearance-none cursor-pointer ${
+                          formData.service ? "text-white" : "text-[#71717A]"
+                        } ${
+                          errors.service
+                            ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-1 focus:ring-[#EF4444]"
+                            : "border-[#1E2638] focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247]"
+                        }`}
+                      >
+                        <option value="" disabled>
+                          Select a capability or need...
+                        </option>
+                        {SERVICE_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt} className="bg-[#101522] text-white">
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                    {errors.service && (
+                      <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{errors.service}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Tell us about your project */}
+                  <div className="space-y-1.5">
+                    <label
+                      htmlFor="projectDetails"
+                      className="block text-xs font-mono uppercase tracking-wider text-[#D4D4D8]"
+                    >
+                      Tell us about your project <span className="text-[#BAF247]">*</span>
+                    </label>
+                    <textarea
+                      id="projectDetails"
+                      name="projectDetails"
+                      rows={4}
+                      required
+                      value={formData.projectDetails}
+                      onChange={handleChange}
+                      placeholder="Briefly describe what you're trying to build or the challenge you're looking to solve..."
+                      className={`w-full px-4 py-3 rounded-lg bg-[#050915] border text-white placeholder-[#71717A] text-sm focus:outline-none transition-colors resize-y min-h-[110px] ${
+                        errors.projectDetails
+                          ? "border-[#EF4444] focus:border-[#EF4444] focus:ring-1 focus:ring-[#EF4444]"
+                          : "border-[#1E2638] focus:border-[#BAF247] focus:ring-1 focus:ring-[#BAF247]"
+                      }`}
+                    />
+                    {errors.projectDetails && (
+                      <p className="text-xs text-[#EF4444] font-mono flex items-center gap-1 pt-0.5">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{errors.projectDetails}</span>
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Submit Button */}
+                  <div className="pt-2">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full py-3.5 px-6 rounded-lg bg-[#BAF247] hover:bg-[#cbf968] text-[#050915] font-bold text-sm tracking-wide transition-all shadow-[0_4px_16px_rgba(186,242,71,0.2)] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer group active:scale-[0.98]"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin text-[#050915]" />
+                          <span>Sending Enquiry...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Send Project Enquiry</span>
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </form>
+              )}
+            </SpotlightCard>
+          </ScrollReveal>
         </div>
       </Container>
     </section>
@@ -427,3 +528,4 @@ export const Contact: React.FC = () => {
 };
 
 export default Contact;
+

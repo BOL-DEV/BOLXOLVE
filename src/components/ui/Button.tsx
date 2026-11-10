@@ -16,15 +16,15 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "bg-[#BAF247] text-[#050915] font-semibold hover:bg-[#A8E035] active:bg-[#94CC24] shadow-[0_1px_3px_rgba(0,0,0,0.4)] focus-visible:ring-[#BAF247]",
+    "bg-[#BAF247] text-[#050915] font-semibold hover:bg-[#cbf968] hover:shadow-[0_0_24px_rgba(186,242,71,0.32)] active:scale-[0.98] transition-all duration-200 shadow-[0_1px_3px_rgba(0,0,0,0.4)] focus-visible:ring-[#BAF247]",
   secondary:
-    "bg-[#101522] text-[#FFFFFF] border border-[#1E2638] hover:bg-[#151B2B] hover:border-[#BAF247]/40 active:bg-[#1A2236] focus-visible:ring-[#BAF247]",
+    "bg-[#101522] text-[#FFFFFF] border border-[#1E2638] hover:bg-[#151B2B] hover:border-[#BAF247]/50 hover:shadow-[0_0_20px_rgba(186,242,71,0.12)] active:scale-[0.98] transition-all duration-200 focus-visible:ring-[#BAF247]",
   outline:
-    "bg-transparent text-[#FFFFFF] border border-[#1E2638] hover:border-[#BAF247] hover:text-[#BAF247] active:bg-[#BAF247]/5 focus-visible:ring-[#BAF247]",
+    "bg-transparent text-[#FFFFFF] border border-[#1E2638] hover:border-[#BAF247] hover:text-[#BAF247] hover:shadow-[0_0_16px_rgba(186,242,71,0.1)] active:scale-[0.98] active:bg-[#BAF247]/5 transition-all duration-200 focus-visible:ring-[#BAF247]",
   ghost:
-    "bg-transparent text-[#A1A1AA] hover:text-[#FFFFFF] hover:bg-[#101522]/80 active:bg-[#101522] focus-visible:ring-[#BAF247]",
+    "bg-transparent text-[#A1A1AA] hover:text-[#FFFFFF] hover:bg-[#101522]/80 active:scale-[0.98] active:bg-[#101522] transition-all duration-200 focus-visible:ring-[#BAF247]",
   link:
-    "bg-transparent text-[#BAF247] hover:text-[#A8E035] underline-offset-4 hover:underline p-0 h-auto font-medium focus-visible:ring-[#BAF247]",
+    "bg-transparent text-[#BAF247] hover:text-[#cbf968] underline-offset-4 hover:underline p-0 h-auto font-medium focus-visible:ring-[#BAF247]",
 };
 
 const sizeStyles: Record<ButtonSize, string> = {

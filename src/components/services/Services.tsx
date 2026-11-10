@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ArrowRight, ArrowUpRight, ChevronDown, Check, Lightbulb, ExternalLink } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { SERVICE_CATEGORIES, ServiceCategory } from "./types";
 import RealEstateConceptPreview from "./visuals/RealEstateConceptPreview";
 import RestaurantSolutionPreview from "./visuals/RestaurantSolutionPreview";
@@ -29,24 +30,57 @@ export const Services: React.FC = () => {
   const [expandedMobileId, setExpandedMobileId] = useState<string | null>(SERVICE_CATEGORIES[0].id);
   const shouldReduceMotion = useReducedMotion();
 
-  // Listen to hash changes (e.g. from navbar dropdown or footer links)
-  useEffect(() => {
-    const handleHash = () => {
-      const hash = window.location.hash.replace("#", "");
-      if (!hash) return;
+  // Function to activate service by slug or id and scroll into view
+  const activateService = (slugOrId: string) => {
+    const clean = slugOrId.replace("#", "").trim();
+    if (!clean) return;
 
-      const matched = SERVICE_CATEGORIES.find(
-        (c) => c.id === hash || c.slugs.includes(hash)
-      );
-      if (matched) {
-        setActiveTab(matched.id);
-        setExpandedMobileId(matched.id);
+    const matched = SERVICE_CATEGORIES.find(
+      (c) => c.id === clean || c.slugs.includes(clean)
+    );
+    if (matched) {
+      setActiveTab(matched.id);
+      setExpandedMobileId(matched.id);
+
+      requestAnimationFrame(() => {
+        const mobileTarget = document.getElementById(`mobile-card-${matched.id}`);
+        const section = document.getElementById("services");
+
+        if (window.innerWidth < 1024 && mobileTarget) {
+          mobileTarget.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else if (section) {
+          section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+  };
+
+  // Listen to hash changes and custom selection events (e.g. from navbar dropdown or footer links)
+  useEffect(() => {
+    if (window.location.hash) {
+      activateService(window.location.hash);
+    }
+
+    const handleHash = () => {
+      if (window.location.hash) {
+        activateService(window.location.hash);
       }
     };
 
-    handleHash();
+    const handleCustomEvent = (e: Event) => {
+      const customEvent = e as CustomEvent<{ slug?: string }>;
+      if (customEvent.detail?.slug) {
+        activateService(customEvent.detail.slug);
+      }
+    };
+
     window.addEventListener("hashchange", handleHash);
-    return () => window.removeEventListener("hashchange", handleHash);
+    window.addEventListener("bolxolve:select-service", handleCustomEvent);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHash);
+      window.removeEventListener("bolxolve:select-service", handleCustomEvent);
+    };
   }, []);
 
   const activeCategory =
@@ -62,8 +96,19 @@ export const Services: React.FC = () => {
       <span id="what-we-do" className="relative -top-28 pointer-events-none block h-0 w-0" />
       <span id="our-services" className="relative -top-28 pointer-events-none block h-0 w-0" />
 
-      {/* Atmospheric Soft Ambient Lighting (Aligned with Hero) */}
-      <div className="absolute top-1/4 right-[10%] w-[620px] h-[620px] rounded-full bg-radial-hero pointer-events-none opacity-20 blur-3xl" />
+      {/* Atmospheric Soft Ambient Lighting — Living Breathing Pulse */}
+      <motion.div
+        animate={shouldReduceMotion ? { opacity: 0.2 } : {
+          opacity: [0.14, 0.24, 0.14],
+          scale: [1, 1.06, 1],
+        }}
+        transition={{
+          duration: 9,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="absolute top-1/4 right-[10%] w-[620px] h-[620px] rounded-full bg-radial-hero pointer-events-none opacity-20 blur-3xl"
+      />
 
       <Container size="wide" className="relative z-10">
         {/* =========================================================================
@@ -71,10 +116,9 @@ export const Services: React.FC = () => {
            ========================================================================= */}
         <div className="max-w-3xl mb-16 sm:mb-20 space-y-5">
           {/* Eyebrow */}
-          <div className="inline-flex items-center gap-3">
-            <span className="w-5 h-px bg-[#BAF247]" />
+          <div>
             <span className="text-[11px] sm:text-xs font-mono font-medium tracking-[0.22em] uppercase text-[#BAF247]">
-              WHAT WE DO / OUR SERVICES
+              WHAT WE DO  OUR SERVICES
             </span>
           </div>
 
@@ -105,7 +149,7 @@ export const Services: React.FC = () => {
               return (
                 <div
                   key={category.id}
-                  id={category.slugs[0]}
+                  id={category.id}
                   role="tab"
                   tabIndex={0}
                   aria-selected={isActive}
@@ -123,17 +167,23 @@ export const Services: React.FC = () => {
                   )}
                 >
                   {/* Invisible anchor targets for navbar and footer hash jumps */}
-                  {category.slugs.map((slug) => (
-                    <span
-                      key={slug}
-                      id={slug}
-                      className="relative -top-28 pointer-events-none block h-0 w-0"
-                    />
-                  ))}
+                  {category.slugs
+                    .filter((slug) => slug !== category.id)
+                    .map((slug) => (
+                      <span
+                        key={slug}
+                        id={slug}
+                        className="relative -top-28 pointer-events-none block h-0 w-0"
+                      />
+                    ))}
 
-                  {/* Clean Electric Lime Left Line on Active */}
+                  {/* Clean Gliding Electric Lime Left Line on Active */}
                   {isActive && (
-                    <span className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#BAF247]" />
+                    <motion.span
+                      layoutId="active-service-tab-indicator"
+                      transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                      className="absolute left-0 top-0 bottom-0 w-0.5 bg-[#BAF247]"
+                    />
                   )}
 
                   {/* Number & Category Eyebrow */}
@@ -144,7 +194,7 @@ export const Services: React.FC = () => {
                         isActive ? "text-[#BAF247] font-bold" : "text-[#71717A] group-hover:text-white"
                       )}
                     >
-                      {category.number} &bull; {category.categoryLabel}
+                      {category.number} {category.categoryLabel}
                     </span>
                     <ArrowUpRight
                       className={cn(
@@ -189,7 +239,6 @@ export const Services: React.FC = () => {
                   <div className="flex items-center justify-between border-b border-[#1E2638] pb-3 text-xs font-mono">
                     <div className="flex items-center space-x-2.5">
                       <span className="text-[#BAF247] font-bold">{activeCategory.number}</span>
-                      <span className="text-[#1E2638]">/</span>
                       <span className="text-[#71717A] uppercase tracking-wider">
                         SERVICE CATEGORY
                       </span>
@@ -227,7 +276,7 @@ export const Services: React.FC = () => {
                 </div>
 
                 {/* 3. Practical Example Callout Box */}
-                <div className="p-4 rounded-xl bg-[#101522] border border-[#1E2638] space-y-2">
+                <SpotlightCard className="p-4 space-y-2">
                   <div className="flex items-center gap-2 text-xs font-mono text-[#BAF247] font-semibold uppercase tracking-wider">
                     <Lightbulb className="w-3.5 h-3.5 text-[#BAF247]" />
                     <span>Practical Example</span>
@@ -235,13 +284,13 @@ export const Services: React.FC = () => {
                   <p className="text-xs sm:text-sm text-[#A1A1AA] leading-relaxed">
                     {activeCategory.example}
                   </p>
-                </div>
+                </SpotlightCard>
 
                 {/* 4. Relevant Demonstration Concept Preview */}
                 <div className="pt-2">
-                  <div className="rounded-xl bg-[#080D1A] border border-[#1E2638] shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden">
+                  <SpotlightCard className="p-0 overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.6)]">
                     <ActiveVisual />
-                  </div>
+                  </SpotlightCard>
                 </div>
 
                 {/* 5. Clear Inquiry CTA Button */}
@@ -259,7 +308,7 @@ export const Services: React.FC = () => {
                   </div>
 
                   <span className="text-xs font-mono text-[#71717A]">
-                    Everyday Solutions &bull; Built Around Your Business
+                    Everyday Solutions Built Around Your Business
                   </span>
                 </div>
               </motion.div>
@@ -276,7 +325,7 @@ export const Services: React.FC = () => {
             const CategoryVisual = CONCEPT_PREVIEWS[category.id] || RealEstateConceptPreview;
 
             return (
-              <div key={category.id} className="transition-colors duration-200">
+              <div key={category.id} id={`mobile-card-${category.id}`} className="transition-colors duration-200">
                 {/* Mobile Anchor jumps */}
                 {category.slugs.map((slug) => (
                   <span
@@ -299,7 +348,6 @@ export const Services: React.FC = () => {
                   <div className="space-y-1">
                     <div className="flex items-center gap-2 text-xs font-mono font-bold text-[#BAF247]">
                       <span>{category.number}</span>
-                      <span className="text-[#1E2638]">/</span>
                       <span className="text-[#71717A] uppercase tracking-wider">
                         {category.categoryLabel}
                       </span>
@@ -364,7 +412,7 @@ export const Services: React.FC = () => {
                       {/* Relevant Concept Demonstration */}
                       <div className="space-y-2 pt-1">
                         <span className="text-[10px] font-mono uppercase tracking-widest text-[#71717A] block font-medium">
-                          Demonstration Concept
+                          Solution Architecture
                         </span>
                         <div className="rounded-xl bg-[#080D1A] border border-[#1E2638] overflow-hidden overflow-x-auto">
                           <CategoryVisual />

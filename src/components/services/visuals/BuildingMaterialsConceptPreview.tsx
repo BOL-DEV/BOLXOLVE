@@ -25,8 +25,8 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
       <div className="px-4 py-2.5 bg-[#090D1A] border-b border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
         <div className="flex items-center gap-2">
           <Layers className="w-3.5 h-3.5 text-[#BAF247]" />
-          <span className="text-white font-medium">DEMONSTRATION CONCEPT</span>
-          <span className="text-[#71717A]">&bull; Building Materials Operations System</span>
+          <span className="text-white font-medium">SYSTEM BLUEPRINT</span>
+          <span className="text-[#71717A]">Building Materials Operations System</span>
         </div>
         <span className="text-[11px] text-[#A1A1AA]">
           Single System for Stock, Sales &amp; Staff
@@ -37,7 +37,7 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
       <div className="p-4 sm:p-5 space-y-4 bg-[#070B16]">
         {/* Module Switcher */}
         <div className="flex items-center justify-between border-b border-[#1E2638] pb-2 text-xs font-mono">
-          <div className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center gap-1">
             <button
               type="button"
               onClick={() => setActiveTab("stock")}
@@ -79,8 +79,8 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
 
         {/* Tab 1: Products & Stock */}
         {activeTab === "stock" && (
-          <div className="rounded-lg bg-[#0E1322] border border-[#1E2638] overflow-hidden text-xs">
-            <table className="w-full text-left border-collapse">
+          <div className="rounded-lg bg-[#0E1322] border border-[#1E2638] overflow-x-auto text-xs">
+            <table className="w-full min-w-[540px] text-left border-collapse">
               <thead>
                 <tr className="border-b border-[#1E2638] bg-[#0A0F1D] text-[10px] font-mono text-[#71717A] uppercase">
                   <th className="py-2 px-3">Product Name</th>
@@ -172,29 +172,12 @@ export const BuildingMaterialsConceptPreview: React.FC = () => {
             </div>
           </div>
         )}
-
-        {/* Interactive Demo Callout Banner */}
-        <div className="p-3 bg-gradient-to-r from-[#0E1322] to-[#121A2F] border border-[#BAF247]/30 rounded-lg flex flex-wrap items-center justify-between gap-3 text-xs">
-          <div>
-            <span className="font-semibold text-white block">Full Interactive Operational Prototype</span>
-            <span className="text-[11px] text-[#A1A1AA]">
-              Explore the complete system with live stock deduction, receipt generation, and contractor accounts.
-            </span>
-          </div>
-          <Link
-            href="/demos/building-materials"
-            className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#BAF247] hover:bg-[#cbf95c] text-[#050915] font-semibold text-xs transition-colors shrink-0"
-          >
-            <span>Launch Interactive Demo</span>
-            <ExternalLink className="w-3.5 h-3.5" />
-          </Link>
-        </div>
       </div>
 
       {/* Concept Footer Bar */}
-      <div className="px-4 py-2 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-[10px] font-mono text-[#71717A]">
-        <span>SERVICE 02 &bull; CUSTOM SOFTWARE &amp; BUSINESS SYSTEMS</span>
-        <span className="text-[#BAF247]">INTERACTIVE DEMONSTRATION AVAILABLE</span>
+      <div className="px-4 py-2 bg-[#090D1A] border-t border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-[10px] font-mono text-[#71717A]">
+        <span>SERVICE 02  CUSTOM SOFTWARE &amp; BUSINESS SYSTEMS</span>
+        <span className="text-[#A1A1AA]">PRODUCTION ARCHITECTURE</span>
       </div>
     </div>
   );

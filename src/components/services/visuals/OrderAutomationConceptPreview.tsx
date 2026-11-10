@@ -12,7 +12,7 @@ export const OrderAutomationConceptPreview: React.FC = () => {
         <div className="flex items-center gap-2">
           <Receipt className="w-3.5 h-3.5 text-[#BAF247]" />
           <span className="font-semibold text-white">
-            BOLXOLVE Invoicing &bull; Multi-Branch Enterprise Billing &amp; Operations
+            BOLXOLVE Invoicing Multi-Branch Enterprise Billing &amp; Operations
           </span>
         </div>
 
@@ -47,11 +47,11 @@ export const OrderAutomationConceptPreview: React.FC = () => {
           {/* Clean Minimal Caption Strip */}
           <div className="px-4 py-3 bg-[#090D1A] border-t border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="space-y-0.5">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h4 className="font-bold text-white text-sm tracking-tight">
-                  BOLXOLVE Invoice &bull; Multi-Branch Enterprise Billing &amp; Approval System
+                  BOLXOLVE Invoice Multi-Branch Enterprise Billing &amp; Approval System
                 </h4>
-                <span className="text-[11px] text-[#BAF247] font-mono">&bull; Production Platform</span>
+                <span className="text-[11px] text-[#BAF247] font-mono">Production Platform</span>
               </div>
               <p className="text-[11px] text-[#A1A1AA]">
                 Consolidated sales volume, multi-depot branch breakdown, automated approval workflows, and cashier activity tracking.

@@ -2,6 +2,8 @@
 
 import React from "react";
 import Container from "@/components/ui/Container";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SpotlightCard } from "@/components/ui/SpotlightCard";
 import { COMPANY_VALUES } from "./types";
 
 export const About: React.FC = () => {
@@ -22,10 +24,9 @@ export const About: React.FC = () => {
         {/* =========================================================================
             PART A — COMPANY INTRODUCTION
            ========================================================================= */}
-        <div className="max-w-4xl space-y-6">
+        <ScrollReveal className="max-w-4xl space-y-6">
           {/* Eyebrow */}
-          <div className="inline-flex items-center space-x-3">
-            <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
+          <div>
             <span className="text-xs font-mono font-medium tracking-[0.2em] uppercase text-[#BAF247]">
               ABOUT BOLXOLVE
             </span>
@@ -41,12 +42,12 @@ export const About: React.FC = () => {
           <p className="max-w-3xl text-base sm:text-lg lg:text-xl text-[#D4D4D8] leading-relaxed font-normal pt-2">
             At BOLXOLVE, we believe good technology starts with understanding people, businesses and the challenges they face. We turn those challenges into practical digital solutions designed to make everyday operations better.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* =========================================================================
             PART B — IDENTITY AND PURPOSE (Split Layout: Identity vs. Mission & Vision)
            ========================================================================= */}
-        <div className="pt-12 sm:pt-16 border-t border-[#1E2638]">
+        <ScrollReveal className="pt-12 sm:pt-16 border-t border-[#1E2638]">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Left Column (5 Cols): Our Identity */}
             <div className="lg:col-span-5 space-y-4">
@@ -69,9 +70,8 @@ export const About: React.FC = () => {
             {/* Right Column (7 Cols): Mission & Vision Statements */}
             <div className="lg:col-span-7 space-y-6">
               {/* Mission Statement */}
-              <div className="p-6 sm:p-8 rounded-2xl bg-[#080D1A] border border-[#1E2638] space-y-3">
+              <SpotlightCard className="p-6 sm:p-8 space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
                   <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247] font-semibold">
                     OUR MISSION
                   </span>
@@ -79,12 +79,11 @@ export const About: React.FC = () => {
                 <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
                   &ldquo;To create practical and accessible technology that helps businesses and organisations solve everyday challenges, improve how they operate and make better use of digital tools.&rdquo;
                 </p>
-              </div>
+              </SpotlightCard>
 
               {/* Vision Statement */}
-              <div className="p-6 sm:p-8 rounded-2xl bg-[#080D1A] border border-[#1E2638] space-y-3">
+              <SpotlightCard className="p-6 sm:p-8 space-y-3">
                 <div className="flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
                   <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247] font-semibold">
                     OUR VISION
                   </span>
@@ -92,15 +91,15 @@ export const About: React.FC = () => {
                 <p className="text-base sm:text-lg text-white font-medium leading-relaxed">
                   &ldquo;To become a technology company known for building useful innovations that improve how people, businesses and industries work.&rdquo;
                 </p>
-              </div>
+              </SpotlightCard>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* =========================================================================
             PART C — WHAT GUIDES US (Company Values)
            ========================================================================= */}
-        <div className="pt-12 sm:pt-16 border-t border-[#1E2638] space-y-10 sm:space-y-12">
+        <ScrollReveal className="pt-12 sm:pt-16 border-t border-[#1E2638] space-y-10 sm:space-y-12">
           <div className="space-y-2">
             <span className="text-xs font-mono uppercase tracking-widest text-[#BAF247] font-semibold block">
               WHAT GUIDES US
@@ -112,8 +111,8 @@ export const About: React.FC = () => {
 
           {/* Three Values Editorial Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-            {COMPANY_VALUES.map((value) => (
-              <div key={value.number} className="space-y-3">
+            {COMPANY_VALUES.map((value, idx) => (
+              <ScrollReveal key={value.number} delay={idx * 0.1} className="space-y-3">
                 <span className="text-2xl sm:text-3xl font-mono font-light text-[#BAF247] tracking-tight block">
                   {value.number}
                 </span>
@@ -123,27 +122,28 @@ export const About: React.FC = () => {
                 <p className="text-sm sm:text-base text-[#A1A1AA] leading-relaxed">
                   {value.description}
                 </p>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* =========================================================================
             PART D — CLOSING STATEMENT (Natural Transition into Inquiries / Contact)
            ========================================================================= */}
-        <div className="pt-12 sm:pt-16 border-t border-[#1E2638]">
+        <ScrollReveal className="pt-12 sm:pt-16 border-t border-[#1E2638]">
           <div className="max-w-3xl space-y-4">
             <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-snug">
               &ldquo;We believe the right technology can make a meaningful difference in how work gets done.&rdquo;
             </blockquote>
             <p className="text-xs font-mono uppercase tracking-wider text-[#71717A] pt-1">
-              BOLXOLVE LTD &bull; Digital Solutions &amp; Software Engineering
+              BOLXOLVE LTD  Digital Solutions &amp; Software Engineering
             </p>
           </div>
-        </div>
+        </ScrollReveal>
       </Container>
     </section>
   );
 };
 
 export default About;
+

@@ -65,7 +65,7 @@ export const CASE_STUDIES: Record<string, SolutionProject> = {
       "Create professional invoices and receipts, keep track of transactions, and organise your business records in one place. Spend less time handling paperwork and more time running your business.",
     ],
     primaryCta: {
-      text: "Request a Demo",
+      text: "Inquire About System",
       href: "/#contact",
     },
     secondaryCta: {
@@ -159,7 +159,7 @@ export const CASE_STUDIES: Record<string, SolutionProject> = {
       href: "/#contact",
     },
     liveUrl: "https://zentra.bolxolve.com",
-    productWebsite: "zentrahq.app",
+    productWebsite: "zentra.bolxolve.com",
     screenshot: {
       src: "/showcase/zentra-screenshot.jpg",
       alt: "ZENTRA live event management and ticketing platform screenshot",
@@ -232,7 +232,7 @@ export const CASE_STUDIES: Record<string, SolutionProject> = {
       ctaText: "Get Started with ZENTRA",
       ctaHref: "https://zentra.bolxolve.com",
       external: true,
-      productWebsite: "zentrahq.app",
+      productWebsite: "zentra.bolxolve.com",
     },
   },
 

@@ -126,6 +126,15 @@
   background: radial-gradient(circle at 65% 45%, rgba(186, 242, 71, 0.08) 0%, rgba(16, 21, 34, 0.3) 45%, transparent 70%);
 }
 
+/* Utility to hide scrollbars while preserving scrolling */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* Reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {

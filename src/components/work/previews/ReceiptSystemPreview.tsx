@@ -15,9 +15,8 @@ export const ReceiptSystemPreview: React.FC = () => {
       {/* Top Header */}
       <div className="relative z-10 flex items-center justify-between pb-3 border-b border-[#1E2638] text-[10px] font-mono">
         <div className="flex items-center space-x-2">
-          <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
           <span className="text-white font-semibold">INVOICE &amp; RECEIPT ENGINE</span>
-          <span className="text-[#71717A] hidden sm:inline">&bull; TRANSACTION LEDGER</span>
+          <span className="text-[#71717A] hidden sm:inline">TRANSACTION LEDGER</span>
         </div>
         <span className="text-[9px] px-2 py-0.5 rounded bg-[#101522] border border-[#1E2638] text-[#BAF247] font-semibold">
           ACTIVE DEPLOYMENT

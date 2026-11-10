@@ -108,9 +108,9 @@ export const WebDigitalShowcase: React.FC = () => {
           {/* Clean Minimal Caption Strip without tech tags */}
           <div className="px-4 py-3 bg-[#090D1A] border-t border-[#1E2638] flex flex-wrap items-center justify-between gap-2 text-xs">
             <div className="space-y-0.5">
-              <div className="flex items-center gap-2">
+              <div className="flex flex-wrap items-center gap-2">
                 <h4 className="font-bold text-white text-sm tracking-tight">{project.name}</h4>
-                <span className="text-[11px] text-[#BAF247] font-mono">&bull; {project.category}</span>
+                <span className="text-[11px] text-[#BAF247] font-mono">{project.category}</span>
               </div>
               <p className="text-[11px] text-[#A1A1AA]">{project.tagline}</p>
             </div>

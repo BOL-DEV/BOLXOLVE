@@ -1,66 +1,53 @@
 import React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, Check, GraduationCap, Clock, ShieldCheck, Users, Calendar, Receipt, FileText, BellRing, Sparkles } from "lucide-react";
+import { ArrowRight, Check, GraduationCap, Clock, ShieldCheck, Users, Calendar, Receipt, FileText, BellRing, Sparkles } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
+import { SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Education Management Platform — Primary & Secondary School Solutions",
   description:
     "A next-generation administrative and academic operating system purpose-built for primary and secondary schools. Currently in active development by BOLXOLVE LTD.",
+  alternates: {
+    canonical: "/solutions/education",
+  },
   openGraph: {
     title: "Education Management Platform | BOLXOLVE Solutions",
     description:
       "Modern school management software designed for K-12 primary and secondary institutions. Student records, attendance, report cards, parent portals, and fee billing.",
+    url: `${SITE_URL}/solutions/education`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Education Management Platform | BOLXOLVE Solutions",
+    description:
+      "Modern school management software designed for primary and secondary institutions by BOLXOLVE LTD.",
   },
 };
 
 export default function EducationSolutionPage() {
   return (
-    <article className="min-h-screen bg-[#050915] text-white pt-8 pb-24 overflow-hidden">
+    <article className="min-h-screen bg-[#050915] text-white pt-8 sm:pt-14 lg:pt-20 pb-20 sm:pb-24 overflow-hidden">
       {/* Background Matrix & Subtle Ambient Lighting */}
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
       <div className="absolute top-20 right-1/4 w-[650px] h-[650px] bg-radial-hero pointer-events-none opacity-25" />
 
-      {/* Top Breadcrumb Bar */}
-      <div className="w-full border-b border-[#1E2638] bg-[#050915]/80 backdrop-blur-md sticky top-20 z-40">
-        <Container size="wide">
-          <div className="h-14 flex items-center justify-between text-xs font-mono">
-            <Link
-              href="/#solutions"
-              className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors group"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-              <span>Back to Selected Solutions</span>
-            </Link>
-
-            <div className="hidden sm:flex items-center gap-2 text-[#71717A]">
-              <Link href="/" className="hover:text-white transition-colors">Home</Link>
-              <span>/</span>
-              <span>Solutions</span>
-              <span>/</span>
-              <span className="text-white font-medium">Education Platform</span>
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      <Container size="wide" className="relative z-10 pt-12 sm:pt-16 lg:pt-20">
+      <Container size="wide" className="relative z-10">
         {/* =====================================================================
             1. SOLUTION HERO & UPCOMING STATUS
            ===================================================================== */}
         <div className="space-y-8 max-w-4xl pb-16 border-b border-[#1E2638]">
           <div className="flex flex-wrap items-center gap-3">
             <span className="text-xs font-mono text-[#BAF247] font-bold">
-              SOLUTIONS ROADMAP // 2025
+              SOLUTIONS ROADMAP 2025
             </span>
-            <span className="text-[#1E2638] font-mono text-xs">/</span>
             <span className="text-xs font-mono uppercase tracking-wider text-[#A1A1AA]">
               Primary &amp; Secondary School Operations
             </span>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#BAF247]/10 border border-[#BAF247]/30 text-[11px] font-mono text-[#BAF247] font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247] animate-pulse" />
               IN ACTIVE DEVELOPMENT — EARLY PILOT
             </span>
           </div>

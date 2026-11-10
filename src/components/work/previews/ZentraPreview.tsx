@@ -21,7 +21,7 @@ export const ZentraPreview: React.FC = () => {
       {/* Caption Strip */}
       <div className="px-4 py-3 bg-[#090D1A] border-t border-[#1E2638] flex items-center justify-between text-xs">
         <span className="font-bold text-white tracking-tight">
-          ZENTRA &bull; Dynamic Ticketing &amp; Holographic QR Verification
+          ZENTRA  Dynamic Ticketing &amp; Holographic QR Verification
         </span>
         <span className="text-[11px] text-[#BAF247] font-mono">
           Production Platform

@@ -3,67 +3,23 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, ArrowRight, Check, ExternalLink } from "lucide-react";
+import { ArrowRight, Check, ExternalLink } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { SolutionProject, PROJECTS_LIST } from "@/data/projectsData";
+import { SolutionProject } from "@/data/projectsData";
 
 interface CaseStudyLayoutProps {
   project: SolutionProject;
 }
 
 export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => {
-  // Find previous and next project for bottom navigation
-  const currentIndex = PROJECTS_LIST.findIndex((p) => p.slug === project.slug);
-  const prevProject = currentIndex > 0 ? PROJECTS_LIST[currentIndex - 1] : null;
-  const nextProject = currentIndex < PROJECTS_LIST.length - 1 ? PROJECTS_LIST[currentIndex + 1] : null;
-
   return (
-    <article className="min-h-screen bg-[#050915] text-white pt-8 pb-24 overflow-hidden">
+    <article className="min-h-screen bg-[#050915] text-white pt-8 sm:pt-14 lg:pt-20 pb-20 sm:pb-24 overflow-hidden">
       {/* Background Subtle Tech Grid & Atmospheric Radial Glow */}
       <div className="absolute inset-0 bg-tech-grid opacity-20 pointer-events-none" />
       <div className="absolute top-20 right-1/4 w-[600px] h-[600px] bg-radial-hero pointer-events-none opacity-25" />
 
-      {/* Top Clean Breadcrumb & Navigation Bar */}
-      <div className="w-full border-b border-[#1E2638] bg-[#050915]/80 backdrop-blur-md sticky top-20 z-40">
-        <Container size="wide">
-          <div className="h-14 flex items-center justify-between text-xs font-mono">
-            {/* Back to Products & Solutions */}
-            <Link
-              href="/#solutions"
-              className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors group"
-            >
-              <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1" />
-              <span>Back to Products &amp; Solutions</span>
-            </Link>
-
-            {/* Clean Breadcrumb & Live Link */}
-            <div className="flex items-center gap-3">
-              <div className="hidden sm:flex items-center gap-2 text-[#71717A]">
-                <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                <span>/</span>
-                <Link href="/#solutions" className="hover:text-white transition-colors">Solutions</Link>
-                <span>/</span>
-                <span className="text-white font-medium">{project.title.split(" — ")[0]}</span>
-              </div>
-
-              {project.liveUrl && (
-                <a
-                  href={project.liveUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hidden md:inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#101522] border border-[#1E2638] hover:border-[#BAF247]/40 text-[11px] text-[#BAF247] transition-colors"
-                >
-                  <span>{project.productWebsite || "Live Platform"}</span>
-                  <ExternalLink className="w-3 h-3" />
-                </a>
-              )}
-            </div>
-          </div>
-        </Container>
-      </div>
-
-      <Container size="wide" className="relative z-10 pt-12 sm:pt-16 lg:pt-20">
+      <Container size="wide" className="relative z-10">
         {/* =====================================================================
             1. PRODUCT HERO & HEADLINE
            ===================================================================== */}
@@ -171,8 +127,7 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
             3. THE PROBLEM WE'RE SOLVING
            ===================================================================== */}
         <div className="py-12 border-t border-[#1E2638] space-y-6 max-w-3xl">
-          <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-[#BAF247]">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#BAF247]" />
+          <div className="text-xs font-mono uppercase tracking-widest text-[#BAF247]">
             THE CONTEXT
           </div>
           <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
@@ -303,51 +258,6 @@ export const CaseStudyLayout: React.FC<CaseStudyLayoutProps> = ({ project }) => 
             <p className="text-xs text-[#71717A] italic pt-2">
               {project.closingSection.note}
             </p>
-          )}
-
-          {project.closingSection.productWebsite && (
-            <div className="pt-2">
-              <span className="text-xs font-mono text-[#A1A1AA]">
-                Product website:{" "}
-                <a
-                  href={`https://${project.closingSection.productWebsite}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[#BAF247] hover:underline font-semibold"
-                >
-                  {project.closingSection.productWebsite}
-                </a>
-              </span>
-            </div>
-          )}
-        </div>
-
-        {/* =====================================================================
-            7. PREVIOUS / NEXT SOLUTION NAVIGATION
-           ===================================================================== */}
-        <div className="pt-8 border-t border-[#1E2638] flex items-center justify-between text-xs font-mono">
-          {prevProject ? (
-            <Link
-              href={`/solutions/${prevProject.slug}`}
-              className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors"
-            >
-              <ArrowLeft className="w-3.5 h-3.5" />
-              <span>Previous: {prevProject.title.split(" — ")[0]}</span>
-            </Link>
-          ) : (
-            <div />
-          )}
-
-          {nextProject ? (
-            <Link
-              href={`/solutions/${nextProject.slug}`}
-              className="inline-flex items-center gap-2 text-[#A1A1AA] hover:text-[#BAF247] transition-colors"
-            >
-              <span>Next: {nextProject.title.split(" — ")[0]}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </Link>
-          ) : (
-            <div />
           )}
         </div>
       </Container>

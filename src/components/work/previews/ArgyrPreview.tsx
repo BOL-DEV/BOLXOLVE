@@ -15,8 +15,7 @@ export const ArgyrPreview: React.FC = () => {
       {/* Top Header */}
       <div className="relative z-10 flex items-center justify-between pb-2.5 border-b border-[#1E2638] text-[10px] font-mono">
         <div className="flex items-center space-x-2">
-          <span className="w-2 h-2 rounded-full bg-[#BAF247]" />
-          <span className="text-white font-semibold">ARGYR &bull; WORLDWIDE STOREFRONT</span>
+          <span className="text-white font-semibold">ARGYR  WORLDWIDE STOREFRONT</span>
         </div>
         <span className="text-[9px] px-1.5 py-0.5 rounded bg-[#101522] border border-[#1E2638] text-[#71717A]">
           COMMERCE BLUEPRINT
@@ -85,7 +84,7 @@ export const ArgyrPreview: React.FC = () => {
         {/* Global Multi-Currency Payment Rail Strip */}
         <div className="p-2 rounded bg-[#101522]/80 border border-[#1E2638] flex items-center justify-between text-[9px] font-mono text-[#A1A1AA]">
           <span className="flex items-center gap-1">
-            <Globe className="w-3 h-3 text-[#BAF247]" /> CURRENCIES: USD &bull; EUR &bull; GBP &bull; JPY
+            <Globe className="w-3 h-3 text-[#BAF247]" /> CURRENCIES: USD  EUR  GBP  JPY
           </span>
           <span className="text-[#BAF247] flex items-center gap-1">
             <CreditCard className="w-3 h-3" /> STRIPE CONNECT
@@ -95,7 +94,7 @@ export const ArgyrPreview: React.FC = () => {
 
       {/* Telemetry Footer */}
       <div className="relative z-10 pt-2 border-t border-[#1E2638] flex items-center justify-between text-[9px] font-mono text-[#71717A]">
-        <span>HEADLESS COMMERCE &bull; GLOBAL CHECKOUT</span>
+        <span>HEADLESS COMMERCE  GLOBAL CHECKOUT</span>
         <span className="text-[#BAF247]">FAST-LOAD READY</span>
       </div>
     </div>
