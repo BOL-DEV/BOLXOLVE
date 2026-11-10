@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { AutomationProvider } from "@/demos/business-automation/AutomationContext";
 import AutomationApp from "@/demos/business-automation/AutomationApp";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const title = "Automated E-commerce Order Processing — Interactive Workflow Demo";
 const description =
@@ -18,11 +18,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/demos/business-automation`,
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${title} | BOLXOLVE LTD`,
     description,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ArrowRight, Check, GraduationCap, Clock, ShieldCheck, Users, Calendar, Receipt, FileText, BellRing, Sparkles } from "lucide-react";
 import Container from "@/components/ui/Container";
 import Button from "@/components/ui/Button";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Education Management Platform — Primary & Secondary School Solutions",
@@ -19,12 +19,14 @@ export const metadata: Metadata = {
       "Modern school management software designed for K-12 primary and secondary institutions. Student records, attendance, report cards, parent portals, and fee billing.",
     url: `${SITE_URL}/solutions/education`,
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Education Management Platform | BOLXOLVE Solutions",
     description:
       "Modern school management software designed for primary and secondary institutions by BOLXOLVE LTD.",
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

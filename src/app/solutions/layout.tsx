@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const title = "Software Solutions & Digital Platforms";
 const description =
@@ -16,11 +16,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/solutions`,
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${title} | BOLXOLVE LTD`,
     description,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

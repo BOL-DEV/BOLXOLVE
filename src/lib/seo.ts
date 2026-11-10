@@ -15,3 +15,10 @@ export const SITE_CONFIG = {
   accentColor: "#BAF247",
 } as const;
 
+export const DEFAULT_OG_IMAGE = {
+  url: "/brand/og-icon.jpg",
+  width: 1000,
+  height: 1000,
+  alt: "BOLXOLVE LTD Logo",
+};
+

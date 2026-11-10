@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import { SITE_CONFIG, SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_CONFIG, SITE_URL } from "@/lib/seo";
 import { SOCIAL_LINKS } from "@/lib/tokens";
 import "@/styles/globals.css";
 
@@ -44,11 +44,13 @@ export const metadata: Metadata = {
     siteName: SITE_CONFIG.name,
     type: "website",
     locale: SITE_CONFIG.locale,
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: SITE_CONFIG.defaultTitle,
     description: SITE_CONFIG.defaultDescription,
+    images: [DEFAULT_OG_IMAGE.url],
   },
   robots: {
     index: true,

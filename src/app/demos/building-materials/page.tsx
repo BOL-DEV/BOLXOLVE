@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import { DemoProvider } from "@/demos/building-materials/DemoContext";
 import BuildingMaterialsApp from "@/demos/building-materials/BuildingMaterialsApp";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const title = "Building Materials Distribution System — Interactive Concept Demo";
 const description =
@@ -18,11 +18,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/demos/building-materials`,
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: `${title} | BOLXOLVE LTD`,
     description,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 

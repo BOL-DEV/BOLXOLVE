@@ -1,7 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import LegalPageLayout, { type LegalSection } from "@/components/legal/LegalPageLayout";
-import { SITE_URL } from "@/lib/seo";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const title = "Terms of Service";
 const description =
@@ -18,11 +18,13 @@ export const metadata: Metadata = {
     description,
     url: `${SITE_URL}/terms`,
     type: "website",
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary",
     title: `${title} | BOLXOLVE LTD`,
     description,
+    images: [DEFAULT_OG_IMAGE.url],
   },
 };
 
