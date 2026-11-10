@@ -108,7 +108,7 @@ export const SOCIAL_LINKS = [
 export const COMPANY_INFO = {
   name: "BOLXOLVE LTD",
   shortName: "BOLXOLVE",
-  descriptor: "Hybrid Digital Solutions & Technology",
+  descriptor: "Custom Software, Websites & Intelligent Automation",
   registered: "BOLXOLVE LTD. All rights reserved.",
   social: SOCIAL_LINKS,
   services: [

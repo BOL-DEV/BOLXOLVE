@@ -4,10 +4,10 @@ export const SITE_URL =
 export const SITE_CONFIG = {
   name: "BOLXOLVE LTD",
   shortName: "BOLXOLVE",
-  tagline: "Hybrid Digital Solutions & Technology",
-  defaultTitle: "BOLXOLVE LTD — Hybrid Digital Solutions & Technology",
+  tagline: "Custom Software, Websites & Intelligent Automation",
+  defaultTitle: "BOLXOLVE LTD — Custom Software, Websites & Intelligent Automation",
   defaultDescription:
-    "BOLXOLVE LTD is a technology-driven digital solutions company delivering business websites, e-commerce platforms, custom web applications, business management systems, workflow automation, and AI integrations.",
+    "We build business websites, custom software, e-commerce platforms and intelligent automation that help businesses operate smarter and grow.",
   email: "contact@bolxolve.com",
   phone: "+2347087035189",
   locale: "en_GB",
