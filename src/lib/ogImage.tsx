@@ -21,6 +21,11 @@ function getLogoDataUri(): string | null {
   }
 }
 
+/**
+ * Generates a centered 1200x630 OpenGraph / Twitter banner whose core emblem
+ * and wordmark sit strictly inside the central 580x580 square safe zone so
+ * WhatsApp compact 1:1 crops and full 1.91:1 social cards both stay sharp.
+ */
 export function createBrandOgImage() {
   const logoSrc = getLogoDataUri();
 
@@ -32,44 +37,67 @@ export function createBrandOgImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "space-between",
+          alignItems: "center",
+          justifyContent: "center",
           backgroundColor: "#050915",
           backgroundImage:
-            "radial-gradient(circle at 85% 20%, rgba(186, 242, 71, 0.16) 0%, rgba(5, 9, 21, 0) 55%)",
-          padding: "56px 64px",
+            "radial-gradient(circle at 50% 45%, rgba(186, 242, 71, 0.18) 0%, rgba(16, 21, 34, 0.4) 42%, rgba(5, 9, 21, 1) 78%)",
           color: "#FFFFFF",
           fontFamily: "sans-serif",
-          border: "1px solid #1E2638",
+          border: "2px solid #1E2638",
+          padding: "48px",
         }}
       >
-        {/* Top Row: Brand Identity & Category Pill */}
+        {/* Center Safe-Zone Focal Block (fits cleanly inside WhatsApp 1:1 square crop) */}
         <div
           style={{
             display: "flex",
+            flexDirection: "column",
             alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
+            justifyContent: "center",
+            gap: "24px",
+            maxWidth: "560px",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            {logoSrc && (
-              <img
-                src={logoSrc}
-                alt="BOLXOLVE"
-                width={42}
-                height={54}
-                style={{ objectFit: "contain" }}
-              />
-            )}
+          {logoSrc && (
+            <img
+              src={logoSrc}
+              alt="BOLXOLVE"
+              width={136}
+              height={178}
+              style={{ objectFit: "contain" }}
+            />
+          )}
+
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "12px",
+            }}
+          >
             <span
               style={{
-                fontSize: "28px",
-                fontWeight: 800,
-                letterSpacing: "0.08em",
+                fontSize: "68px",
+                fontWeight: 900,
+                letterSpacing: "0.14em",
                 color: "#FFFFFF",
+                lineHeight: 1,
               }}
             >
               BOLXOLVE
+            </span>
+
+            <span
+              style={{
+                fontSize: "24px",
+                fontWeight: 700,
+                letterSpacing: "0.22em",
+                color: "#BAF247",
+              }}
+            >
+              DIGITAL SOLUTIONS
             </span>
           </div>
 
@@ -77,92 +105,19 @@ export function createBrandOgImage() {
             style={{
               display: "flex",
               alignItems: "center",
-              padding: "8px 18px",
+              justifyContent: "center",
+              padding: "10px 26px",
               borderRadius: "9999px",
               backgroundColor: "#101522",
-              border: "1px solid #1E2638",
-              color: "#BAF247",
-              fontSize: "14px",
-              letterSpacing: "0.18em",
-              fontWeight: 600,
-            }}
-          >
-            DIGITAL SOLUTIONS & TECHNOLOGY
-          </div>
-        </div>
-
-        {/* Main Center Headline */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "18px",
-            maxWidth: "980px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              fontSize: "62px",
-              fontWeight: 800,
-              lineHeight: 1.08,
-              letterSpacing: "-0.03em",
-            }}
-          >
-            <span style={{ color: "#FFFFFF" }}>We turn complex challenges into</span>
-            <span style={{ color: "#BAF247" }}>powerful digital solutions.</span>
-          </div>
-
-          <div
-            style={{
-              display: "flex",
-              fontSize: "24px",
-              color: "#A1A1AA",
-              lineHeight: 1.4,
-            }}
-          >
-            Custom Software &bull; Web Platforms &bull; Business Automation &bull; Practical AI
-          </div>
-        </div>
-
-        {/* Bottom Metadata Strip */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            width: "100%",
-            paddingTop: "24px",
-            borderTop: "1px solid #1E2638",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "24px",
-              fontSize: "18px",
+              border: "1px solid #2A354D",
               color: "#D4D4D8",
-            }}
-          >
-            <span>ZENTRA</span>
-            <span style={{ color: "#3F3F46" }}>/</span>
-            <span>Invoice Management</span>
-            <span style={{ color: "#3F3F46" }}>/</span>
-            <span>BOLMEET AI</span>
-          </div>
-
-          <span
-            style={{
               fontSize: "20px",
-              fontWeight: 700,
-              color: "#BAF247",
-              letterSpacing: "0.06em",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
             }}
           >
             bolxolve.com
-          </span>
+          </div>
         </div>
       </div>
     ),
@@ -171,4 +126,3 @@ export function createBrandOgImage() {
     }
   );
 }
-
